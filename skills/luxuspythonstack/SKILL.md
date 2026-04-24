@@ -177,6 +177,8 @@ Load on demand as needed:
 - `references/blueprint-AGENTS.md` — Template for AGENTS.md generation
 - `references/devenv/shlib-system.md` — Shell library system explanation
 - `references/devenv/ubuntu-setup.md` — Ubuntu base system setup
-- `references/devenv/ecosystems.md` — Node, Go, Rust, Java, Ruby installation
+- `references/devenv/zsh-setup.md` — ZSH, Antidote, p10k, fonts, prompt
+- `references/devenv/ecosystems.md` — Node, Python, Go, Rust, Java, Ruby installation
 - `references/devenv/networks-security.md` — SSH, UFW, fail2ban
 - `references/devenv/docker-cuda.md` — Docker + NVIDIA container toolkit
+- `references/devenv/ai-stack.md` — VSCode, Kilo, Ollama, MCPHub, SearXNG
