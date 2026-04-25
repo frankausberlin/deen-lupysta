@@ -234,7 +234,7 @@ if [[ -n "$CONDA_DEFAULT_ENV" && "$CONDA_DEFAULT_ENV" != "base" ]]; then
     conda deactivate 2>/dev/null || true
 fi
 watch_file uv.lock
-use uv  # uses uv's direnv integration
+layout uv  # uses layout_uv() from ~/.config/direnv/direnvrc
 ENVRC_EOF
     fi
     direnv allow 2>/dev/null || true

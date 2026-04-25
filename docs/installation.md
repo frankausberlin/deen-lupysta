@@ -24,9 +24,9 @@ The direnv hook must be at the **absolute end** of your shell configuration:
 eval "$(direnv hook zsh)"   # or: eval "$(direnv hook bash)"
 ```
 
-### direnv Utility Function (Fallback)
+### direnv Utility Function
 
-If `use uv` is not available in your direnv version, create or verify `~/.config/direnv/direnvrc`:
+Create or verify `~/.config/direnv/direnvrc` with the `layout_uv` function:
 
 ```bash
 layout_uv() {
