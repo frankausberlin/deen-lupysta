@@ -1,5 +1,5 @@
 ---
-name: luxus-python-stack
+name: luxuspythonstack
 description: >
   Expert knowledge of the Luxurious Python Stack — a five-level development workflow
   for Python projects using UV, direnv, ruff, basedpyright, and AI agent integration.

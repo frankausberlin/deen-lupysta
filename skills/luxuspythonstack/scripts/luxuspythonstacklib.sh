@@ -1,3 +1,6 @@
+# cw - change to working folder or set working folder
+cw() { [[ "$1" == "." ]] && echo "$PWD" > "$HOME/.config/current_working_folder" || cd "$(cat "$HOME/.config/current_working_folder")"; }
+
 # ─── pyinit ───────────────────────────────────────────────────────────────────
 # Luxury Python Project Initializer — initialize a uv-based Python project.
 #
@@ -762,3 +765,4 @@ jupyter-launcher() {
 }
 
 alias jl='jupyter-launcher'
+
