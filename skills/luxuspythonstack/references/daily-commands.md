@@ -19,9 +19,10 @@ pyinit my-project --force       # re-run, overwrite generated files
 act <envname>             # activate + save to ~/.startenv
 mamba activate <envname>  # activate without saving
 mamba deactivate          # deactivate
-jl [folder]               # Jupyter Lab (token enabled)
-jl -x [folder]            # Jupyter Lab without token (unsafe)
-jl --colab [folder]       # Jupyter Lab with Colab origin
+jupyter-launcher [folder]          # Jupyter Lab (token enabled)
+jupyter-launcher -x [folder]       # Jupyter Lab without token (unsafe)
+jupyter-launcher --colab [folder]  # Jupyter Lab with Colab origin
+alias jl='jupyter-launcher -x'     # optional personal default
 
 # UV/direnv (Level 2 — Projects)
 direnv allow   # allow .envrc (once per project)
@@ -90,7 +91,8 @@ git push origin feature/my-feature
 ```shell
 pyinit [name] [--lib] [--python X.Y] [--force]
 act <envname>
-jl [-x] [--colab] [dir]
+jupyter-launcher [-x] [--colab] [dir]
+jl  # alias for jupyter-launcher; customize locally if desired
 cw / cw .
 rlb
 ```

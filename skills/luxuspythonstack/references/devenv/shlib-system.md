@@ -26,11 +26,10 @@ Three components in `.zshrc`:
     ├── 25-zsh-p10k.sh
     ├── 30-nodejs-config.sh
     ├── 35-python-config.sh
-    ├── 40-jupyter-launcher.sh
-    ├── 45-rust.sh
-    ├── 50-go-config.sh
-    ├── 55-java.sh
-    ├── 60-ruby.sh
+    ├── 40-rust.sh
+    ├── 45-go-config.sh
+    ├── 50-java.sh
+    ├── 55-ruby.sh
     └── 80-luxuspythonstack.sh -> /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh
 ```
 
@@ -44,13 +43,14 @@ Files are sourced in alphanumeric order. Numbers between known files allow futur
 - `25-29`: p10k
 - `30-34`: Node
 - `35-39`: Python (UV, Mamba, direnv)
-- `40-44`: Jupyter
-- `45-49`: Rust
-- `50-54`: Go
-- `55-59`: Java
-- `60-64`: Ruby
+- `40-44`: Rust
+- `45-49`: Go
+- `50-54`: Java
+- `55-59`: Ruby
 - `70-79`: OpenCode / agent tools
 - `80-89`: Luxus Python Stack
+
+Jupyter is no longer a separate `40-jupyter-launcher.sh` shlib file. `jupyter-launcher` and the default `jl` alias are provided by `80-luxuspythonstack.sh`.
 
 ## Symlinked Stack Libraries
 

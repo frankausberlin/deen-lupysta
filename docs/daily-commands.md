@@ -17,13 +17,14 @@ pyinit my-project --force       # re-run and overwrite generated files
 ### Mamba (Level 1 — Data Science)
 
 ```shell
-act <envname>                        # activate + save to ~/.startenv
-mamba activate <envname>             # activate without saving
-mamba deactivate                     # deactivate
-mamba activate base                  # back to base
-jl [folder]                          # start Jupyter Lab (token enabled)
-jl -x [folder]                       # start without token (unsafe)
-jl --colab [folder]                  # start with Colab origin
+act <envname>                              # activate + save to ~/.startenv
+mamba activate <envname>                   # activate without saving
+mamba deactivate                           # deactivate
+mamba activate base                        # back to base
+jupyter-launcher [folder]                  # start Jupyter Lab (token enabled)
+jupyter-launcher -x [folder]               # start without token (unsafe)
+jupyter-launcher --colab [folder]          # start with Colab origin
+alias jl='jupyter-launcher -x'             # optional personal default
 ```
 
 ### UV/direnv (Level 2 — Projects)
@@ -100,7 +101,8 @@ uv sync
 ```shell
 pyinit [name] [--lib] [--python X.Y] [--force]  # create project
 act <envname>        # activate mamba env + save to ~/.startenv
-jl [-x] [--colab] [dir]  # start Jupyter Lab
+jupyter-launcher [-x] [--colab] [dir]  # start Jupyter Lab
+jl                   # alias for jupyter-launcher; customize in your shlib if desired
 cw                   # cd to saved working folder
 cw .                 # save current folder as working folder
 rlb                  # reload shell configuration (source ~/.zshrc)

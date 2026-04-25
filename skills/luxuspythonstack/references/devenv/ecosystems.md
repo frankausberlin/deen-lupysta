@@ -159,7 +159,7 @@ We use **rustup**, the official toolchain installer, to manage Rust completely c
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Make Rust environment available for ZSH via Shlib (not .zshrc!)
-cat << 'EOF' > ~/.shlib/shlibs/45-rust.sh
+cat << 'EOF' > ~/.shlib/shlibs/40-rust.sh
 # --- Rust / Cargo ---
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 EOF
@@ -182,7 +182,7 @@ sudo add-apt-repository ppa:longsleep/golang-backports -y
 sudo nala update && sudo nala install golang-go -y
 
 # Cleanly integrate GOPATH and GOBIN into the Shlib system
-cat << 'EOF' > ~/.shlib/shlibs/50-go-config.sh
+cat << 'EOF' > ~/.shlib/shlibs/45-go-config.sh
 
 # --- Go ---
 export GOPATH="$HOME/go"
@@ -203,7 +203,7 @@ env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
 curl -s "https://get.sdkman.io" | bash
 
 # Initialize SDKMAN! for ZSH
-cat << 'EOF' >> ~/.shlib/shlibs/55-java.sh
+cat << 'EOF' >> ~/.shlib/shlibs/50-java.sh
 
 # --- SDKMAN! (Java & JVM Tools) ---
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -222,7 +222,7 @@ sdk install maven
 sdk install gradle
 ```
 
-⚠️ After installation, SDKMAN generates code at the end of `.zshrc` with the instruction "this must be at the end". Delete it — the shell snippet is already where it belongs: `~/.shlib/shlibs/55-java.sh`. Keep your zshrc file clean.
+⚠️ After installation, SDKMAN generates code at the end of `.zshrc` with the instruction "this must be at the end". Delete it — the shell snippet is already where it belongs: `~/.shlib/shlibs/50-java.sh`. Keep your zshrc file clean.
 
 ## 💎 Ruby (rbenv & bundler)
 
@@ -234,7 +234,7 @@ sdk install gradle
 brew install rbenv ruby-build
 
 # Hook rbenv into ZSH
-cat << 'EOF' >> ~/.shlib/shlibs/60-ruby.sh
+cat << 'EOF' >> ~/.shlib/shlibs/55-ruby.sh
 
 # --- Ruby / rbenv ---
 eval "$(rbenv init - zsh)"

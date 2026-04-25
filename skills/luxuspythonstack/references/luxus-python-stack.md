@@ -66,16 +66,21 @@ act ds12     # activate ds12 and save
 act base     # switch to base and save
 ```
 
-### jl — Jupyter Lab Launcher
+### jupyter-launcher — Jupyter Lab Launcher
 
 Start Jupyter Lab with sensible defaults.
 
 ```shell
-jl              # current directory, token enabled (secure)
-jl -x           # without token (unsafe, local-only)
-jl --colab      # allow Colab origin
-jl my-notebooks # start in specific directory
+jupyter-launcher              # ~/labor, token enabled (secure)
+jupyter-launcher .            # current directory
+jupyter-launcher -x           # without token (unsafe, local-only)
+jupyter-launcher --colab      # allow Colab origin
+jupyter-launcher my-notebooks # start in specific directory
+
+alias jl='jupyter-launcher -x' # optional personal default
 ```
+
+`jupyter-launcher` is the canonical function. `jl` is only a configurable alias and may be overridden locally.
 
 ### cw — Current Working Folder
 

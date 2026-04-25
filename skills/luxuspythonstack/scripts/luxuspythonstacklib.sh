@@ -702,3 +702,63 @@ JUST_DOCS_EOF
 
     unset -f _write_if_missing
 }
+
+# ─── jupyter-launcher ─────────────────────────────────────────────────────────
+# Canonical Jupyter Lab launcher for the Luxurious Python Stack.
+#
+# Usage:
+#   jupyter-launcher                 # ~/labor, token enabled
+#   jupyter-launcher .               # current directory
+#   jupyter-launcher ~/notebooks     # explicit notebook directory
+#   jupyter-launcher -x              # no token / no XSRF check (local-only)
+#   jupyter-launcher --colab         # allow Google Colab origin
+#
+# Personal defaults belong in the `jl` alias, for example:
+#   alias jl='jupyter-launcher -x'
+jupyter-launcher() {
+    local _notebook_dir="$HOME/labor"
+    local _args=(--port=8888 --no-browser --ip=127.0.0.1 --ServerApp.port_retries=0)
+
+    [[ ${EUID:-$(id -u)} -eq 0 ]] && _args+=(--allow-root)
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -x)
+                _args+=(--ServerApp.token='' --ServerApp.disable_check_xsrf=True --ServerApp.allow_credentials=True)
+                ;;
+            --colab)
+                _args+=(--ServerApp.allow_origin='https://colab.research.google.com' --ServerApp.jpserver_extensions="{'jupyter_server_documents':False}")
+                ;;
+            .)
+                _notebook_dir="$PWD"
+                ;;
+            -*)
+                echo "Unknown option: $1" >&2
+                return 1
+                ;;
+            *)
+                _notebook_dir="$1"
+                ;;
+        esac
+        shift
+    done
+
+    local _env_msg="${CONDA_DEFAULT_ENV:-${VIRTUAL_ENV:-none}}"
+    local _jupyter_bin
+    _jupyter_bin="$(command -v jupyter 2>/dev/null || true)"
+
+    if [[ -z "$_jupyter_bin" ]]; then
+        echo "Error: jupyter executable not found in PATH." >&2
+        return 1
+    fi
+
+    echo -e "\n\e[95m🚀 Jupyter Lab is launching\e[0m"
+    echo -e "URL:          \e[1;3;34mhttp://localhost:8888/lab/\e[0m"
+    echo -e "Notebook-dir: \e[1;3;34m$_notebook_dir\e[0m"
+    echo -e "Environment:  \e[1;3;34m$_env_msg\e[0m"
+    echo -e "Instance:     \e[1;3;34m$_jupyter_bin\e[0m\n"
+
+    jupyter lab "${_args[@]}" --notebook-dir="$_notebook_dir"
+}
+
+alias jl='jupyter-launcher'

@@ -37,7 +37,8 @@ This repository contains the **documentation**, **shell library**, and **AI agen
 |----------|-------------|
 | `pyinit [name] [--lib] [--python X.Y] [--force]` | Initialize a Python project |
 | `act <env>` | Activate Mamba environment |
-| `jl [-x] [--colab] [dir]` | Start Jupyter Lab |
+| `jupyter-launcher [-x] [--colab] [dir]` | Start Jupyter Lab |
+| `jl` | Configurable alias for `jupyter-launcher` |
 | `cw` / `cw .` | Jump to / set working folder |
 | `rlb` | Reload shell configuration |
 

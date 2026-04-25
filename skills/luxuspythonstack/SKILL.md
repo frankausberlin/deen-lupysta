@@ -172,9 +172,12 @@ Shell functions defined in `scripts/luxuspythonstacklib.sh`:
 |----------|-------|-------------|
 | `pyinit` | `pyinit [name] [--lib] [--python X.Y] [--force]` | Create a new Python project |
 | `act` | `act <envname>` | Activate Mamba env + save to `.startenv` |
-| `jl` | `jl [-x] [--colab] [folder]` | Start Jupyter Lab |
+| `jupyter-launcher` | `jupyter-launcher [-x] [--colab] [folder]` | Start Jupyter Lab |
+| `jl` | `jl` | Configurable alias for `jupyter-launcher` |
 | `cw` | `cw` / `cw .` | Jump to / set working folder (global state) |
 | `rlb` | `rlb` | Reload shell configuration |
+
+`jupyter-launcher` is the canonical implementation. `jl` is intentionally only an alias so users can preconfigure personal defaults, for example `alias jl='jupyter-launcher -x'`.
 
 ## Important Rules
 
