@@ -31,7 +31,7 @@ Three components in `.zshrc`:
     ├── 50-go-config.sh
     ├── 55-java.sh
     ├── 60-ruby.sh
-    └── 80-luxuspythonstack.sh
+    └── 80-luxuspythonstack.sh -> /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh
 ```
 
 ## Numbering Convention
@@ -51,6 +51,19 @@ Files are sourced in alphanumeric order. Numbers between known files allow futur
 - `60-64`: Ruby
 - `70-79`: OpenCode / agent tools
 - `80-89`: Luxus Python Stack
+
+## Symlinked Stack Libraries
+
+Repository-managed shell libraries should be linked, not copied. This keeps one canonical source file and makes updates as simple as `git pull` in the repository checkout.
+
+For Luxus Python Stack, choose the two-digit load-order number yourself and create a symlink:
+
+```shell
+ln -s /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh \
+      /path/to/.shlib/shlibs/80-luxuspythonstack.sh
+```
+
+Use a different number if your local layout requires it, for example `70-luxuspythonstack.sh` to load it earlier or `85-luxuspythonstack.sh` to load it later.
 
 ## Lock Mechanism
 

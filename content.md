@@ -1,5 +1,7 @@
 # deen-lupysta
 
+> Maintenance note: this file is a compact landing-page/export summary. Keep detailed installation steps in `docs/installation.md` and only link to them here.
+
 Developer Environment & Luxurious Python Stack — from bare Ubuntu to production-ready CI/CD with AI agent integration.
 
 ## Summary
@@ -18,13 +20,7 @@ The `pyinit` shell function initializes a complete Python project with all conve
 
 ## Installation
 
-```shell
-# Source the shell library
-source /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh
-
-# Or install into shlib:
-./skills/luxuspythonstack/scripts/install.sh
-```
+See `docs/installation.md` for the canonical installation flow. Shell and agent integrations are symlink-based, so updates happen with `git pull` in the repository checkout.
 
 ## Key Commands
 

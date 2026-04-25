@@ -23,6 +23,12 @@ See [architecture.md](../../docs/architecture.md) for detailed explanation.
 
 Defined in `scripts/luxuspythonstacklib.sh`:
 
+### Installation and Updates
+
+The canonical installation guide is `../../docs/installation.md`. Install the shell library and agent skill via symbolic links. Do not copy either the `.sh` file or the skill folder; symlinks keep the checked-out repository as the source of truth.
+
+The shlib number is user-defined and controls load order. Repeat the skill folder symlink for every agent skills directory that should provide this stack. Update the stack with `git pull` in the repository checkout.
+
 ### pyinit — Project Initializer
 
 Creates a complete Python project with all files and folders. Supports `--lib`, `--python X.Y`, and `--force` flags.
@@ -140,6 +146,10 @@ AI agents use MCP servers to interact with tools and filesystems. A pre-configur
 ## Tool Version Precedence
 
 `ruff` and `basedpyright` are installed both globally (`uv tool install`) and as per-project dev dependencies. When `direnv` activates a project's `.venv`, project-local binaries take precedence over global ones. Always use `uv run ruff ...` in scripts, CI, and automation to guarantee the project-pinned version runs.
+
+## Shell Library Maintenance
+
+`scripts/luxuspythonstacklib.sh` intentionally remains a single file for now because this makes symlink-based installation simple and robust. If it keeps growing, split it into smaller source modules only when there is also a build or concat step that produces one stable `luxuspythonstacklib.sh` target for shlib users.
 
 ## System Requirements
 

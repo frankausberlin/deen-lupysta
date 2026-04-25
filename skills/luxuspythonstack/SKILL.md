@@ -16,6 +16,24 @@ This skill provides expert knowledge of the Luxurious Python Stack — a five-le
 
 For full documentation, load `references/luxus-python-stack.md`. For quick command lookup, see `references/daily-commands.md`. For DevEnv/setup context, browse `references/devenv/`.
 
+## Installation Model
+
+The canonical installation guide is `../../docs/installation.md`. The stack is installed by symbolic links, not by copying files. This keeps the repository checkout as the single source of truth and allows updates via `git pull`.
+
+Agents should recommend the canonical guide instead of duplicating full install commands. The key rules are:
+
+- Link `scripts/luxuspythonstacklib.sh` into the user's shlib setup with a user-chosen two-digit load-order prefix.
+- Link the `skills/luxuspythonstack` folder into every agent-specific skills directory where this stack should be available.
+- Avoid copy-based installation instructions.
+
+## Maintenance / Update Policy
+
+- Treat this repository checkout as the only editable source of truth.
+- Do not patch files inside linked agent skills directories; edit the repository files instead.
+- Do not replace symlinks with copied files during troubleshooting.
+- Update installed integrations with `git pull` in the repository checkout, then reload the shell if shell functions changed.
+- Keep detailed installation steps in `docs/installation.md`; keep this skill file focused on agent behavior and operational rules.
+
 ## Five-Level Architecture
 
 | Level | Name | Tool | Activation |

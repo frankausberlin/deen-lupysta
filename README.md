@@ -15,17 +15,13 @@ This repository contains the **documentation**, **shell library**, and **AI agen
 
 ## Quick Start
 
-```bash
-# 1. Install prerequisites (see docs/installation.md)
-# 2. Source the shell library
-source /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh
+1. Follow the canonical [installation guide](docs/installation.md) for prerequisites, shell integration, agent skill symlinks, and updates.
+2. Ensure the direnv hook is at the absolute end of your shell config.
+3. Create your first project:
 
-# 3. Ensure direnv hook is at the END of .zshrc
-eval "$(direnv hook zsh)"
-
-# 4. Create your first project
-pyinit my-project
-```
+   ```bash
+   pyinit my-project
+   ```
 
 ## Documentation
 

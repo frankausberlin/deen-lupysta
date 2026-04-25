@@ -38,7 +38,18 @@ layout_uv() {
 
 ## Shell Library Installation
 
-Source the shell library in your `.zshrc` or `.bashrc`:
+This file is the canonical source for installation and update instructions. Other project files should link here instead of duplicating full command blocks.
+
+The recommended installation is a symbolic link. Do **not** copy the shell library into your shell setup. A symlink keeps the live repository as the source of truth, so updates are only:
+
+```shell
+cd /path/to/deen-lupysta
+git pull
+```
+
+### Direct Shell Sourcing
+
+For a minimal setup, source the repository file directly in your `.zshrc` or `.bashrc`:
 
 ```shell
 source /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh
@@ -46,12 +57,29 @@ source /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib
 
 ### shlib Integration
 
-If you use the [shlib system](skills/luxuspythonstack/references/devenv/shlib-system.md), copy the library to your shlib directory:
+If you use the [shlib system](../skills/luxuspythonstack/references/devenv/shlib-system.md), create a symlink in your shlib directory. Choose the two-digit prefix yourself according to your load order; `80` is only an example.
 
 ```shell
-cp /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh \
-   ~/.shlib/shlibs/80-luxuspythonstack.sh
+ln -s /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh \
+      /path/to/.shlib/shlibs/80-luxuspythonstack.sh
 ```
+
+Use a different number when it fits your shlib layout better, for example `70-luxuspythonstack.sh` or `85-luxuspythonstack.sh`.
+
+### Agent Skill Installation
+
+Install the AI agent skill with symlinks as well. Link the repository folder into every agent-specific skills directory where the stack should be available:
+
+```shell
+ln -s /path/to/deen-lupysta/skills/luxuspythonstack \
+      /path/to/agent/skills/luxuspythonstack
+
+# Repeat for additional agents if needed:
+ln -s /path/to/deen-lupysta/skills/luxuspythonstack \
+      /path/to/other-agent/skills/luxuspythonstack
+```
+
+This keeps the shell library and all agent skill references updateable through the same repository checkout.
 
 ## Verify Installation
 
