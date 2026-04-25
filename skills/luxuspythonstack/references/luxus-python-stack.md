@@ -135,6 +135,8 @@ GitHub Actions workflows:
 
 For details on SESSION.md, JOURNAL.md, and the agent session workflow, see [agent-workflow.md](../../docs/agent-workflow.md).
 
+AI agents use MCP servers to interact with tools and filesystems. A pre-configured collection of MCP servers (web search, GitHub, Docker, browser automation, etc.) managed by MCPHub is documented in `references/devenv/ai-stack.md` — load only when setting up agent infrastructure.
+
 ## Tool Version Precedence
 
 `ruff` and `basedpyright` are installed both globally (`uv tool install`) and as per-project dev dependencies. When `direnv` activates a project's `.venv`, project-local binaries take precedence over global ones. Always use `uv run ruff ...` in scripts, CI, and automation to guarantee the project-pinned version runs.

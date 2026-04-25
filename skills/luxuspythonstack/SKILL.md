@@ -132,6 +132,8 @@ git push origin main --tags
 
 ### 5. AI Agent Session Workflow (Level 4)
 
+AI agents operate through MCP servers (web search, GitHub, Docker, browser automation, etc.) managed by MCPHub. Server setup is documented in `references/devenv/ai-stack.md` — load only when configuring agent infrastructure.
+
 **Start:**
 1. Read `AGENTS.md` for project context
 2. Read `SESSION.md` if it exists
