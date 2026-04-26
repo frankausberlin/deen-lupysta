@@ -1,4 +1,6 @@
-# deen-lupysta — Developer Environment & Luxurious Python Stack
+![](https://lh3.googleusercontent.com/d/1JdavIkcaCKkXrqiJtGHpAMvXAp73Z8tA)
+
+# Developer Environment & Luxurious Python Stack
 
 A curated, battle-tested development environment and Python workflow — from bare Ubuntu to production-ready CI/CD with AI agent integration.
 
