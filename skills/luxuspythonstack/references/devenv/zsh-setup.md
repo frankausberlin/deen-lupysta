@@ -87,7 +87,42 @@ Restart terminal. Powerlevel10k will guide through the configuration wizard on f
 After p10k wizard configuration, move auto-generated config into shlib:
 
 ```shell
-mv ~/.p10k.zsh ~/.shlib/shlibs/25-zsh-p10k.sh
+cat << 'EOF' >> ~/.shlib/shlibs/25-zsh-p10k.sh
+
+# ─── Custom Jupyter P10k Segment (Passive Runtime Tracker) ────────────────────
+# otptional: info is folder a jupyter runtime-folder in p10k prompt
+# insert in ~/.p10k.zsh to the list of segments in POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS 
+# without 'prompt_', just 'my_jupyter'
+function prompt_my_jupyter() {
+  # Where Jupyter on Linux logs its active server processes
+  local runtime_dir="${XDG_DATA_HOME:-$HOME/.local/share}/jupyter/runtime"
+    # Find all server JSONs (the '(N)' prevents errors if none exist)
+  local json_files=("$runtime_dir"/(jpserver|nbserver)-*.json(N))
+    # If no server is running at all -> abort immediately (costs 0 performance)
+  if (( ${#json_files} == 0 )); then
+    return
+  fi
+  local is_jupyter_dir=false
+  # Read the released paths from the running JSONs quickly using awk
+  # The Zsh syntax ${(@f)$(...)} converts the rows directly into an array
+  local server_dirs=("${(@f)$(cat "${json_files[@]}" 2>/dev/null | awk -F'"' '/"(root_dir|notebook_dir)"/ {print $4}' | sort -u)}")
+  # Check whether the current directory ($PWD) is a (sub)folder of a running server
+  local server_dir
+  for server_dir in "${server_dirs[@]}"; do
+    if [[ "$PWD" == "$server_dir" || "$PWD" == "$server_dir/"* ]]; then
+      is_jupyter_dir=true
+      break
+    fi
+  done
+  # Hit! Server is running and we are within its sphere of influence.
+  if $is_jupyter_dir; then
+    p10k segment -f 208 -i '' -t 'jupyter'
+  fi
+}
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+EOF
 ```
 
 ## 7. Final .zshrc Structure

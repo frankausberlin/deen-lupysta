@@ -714,29 +714,45 @@ JUST_DOCS_EOF
 #   jupyter-launcher .               # current directory
 #   jupyter-launcher ~/notebooks     # explicit notebook directory
 #   jupyter-launcher -x              # no token / no XSRF check (local-only)
-#   jupyter-launcher --colab         # allow Google Colab origin
+#   jupyter-launcher --colab         # allow Google Colab origin (uses http_over_ws)
+#   jupyter-launcher -p 9000         # custom port
 #
 # Personal defaults belong in the `jl` alias, for example:
-#   alias jl='jupyter-launcher -x'
+#   alias jl='jupyter-launcher --colab -x'
 jupyter-launcher() {
     local _notebook_dir="$HOME/labor"
-    local _args=(--port=8888 --no-browser --ip=127.0.0.1 --ServerApp.port_retries=0)
+    local _port=8888
+    local _args=(--no-browser --ip=127.0.0.1 --ServerApp.port_retries=0)
+    local _colab_mode=false
+    local _disable_xsrf=false
+    local _disable_token=false
 
     [[ ${EUID:-$(id -u)} -eq 0 ]] && _args+=(--allow-root)
 
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            -x)
-                _args+=(--ServerApp.token='' --ServerApp.disable_check_xsrf=True --ServerApp.allow_credentials=True)
+            -n|--no-token)
+                _disable_xsrf=true
+                _disable_token=true
                 ;;
-            --colab)
-                _args+=(--ServerApp.allow_origin='https://colab.research.google.com' --ServerApp.jpserver_extensions="{'jupyter_server_documents':False}")
+            -c|--colab)
+                _colab_mode=true
+                _disable_xsrf=true
+                _args+=(
+                    --ServerApp.allow_origin='https://colab.research.google.com'
+                    --ServerApp.allow_remote_access=True
+                    --ServerApp.jpserver_extensions="{'jupyter_server_documents':False}"
+                )
+                ;;
+            -p|--port)
+                _port="$2"
+                shift
                 ;;
             .)
                 _notebook_dir="$PWD"
                 ;;
             -*)
-                echo "Unknown option: $1" >&2
+                echo -e "\e[31mUnknown option: $1\e[0m" >&2
                 return 1
                 ;;
             *)
@@ -746,23 +762,49 @@ jupyter-launcher() {
         shift
     done
 
-    local _env_msg="${CONDA_DEFAULT_ENV:-${VIRTUAL_ENV:-none}}"
+    # Deduplizierte Flags gezielt nur einmal anhängen
+    if $_disable_xsrf; then
+        _args+=(--ServerApp.disable_check_xsrf=True)
+    fi
+    
+    if $_disable_token; then
+        _args+=(--ServerApp.token='' --ServerApp.allow_credentials=True)
+    fi
+
+    # Port anhängen
+    _args+=(--port="$_port")
+
+    # Target Directory erstellen, falls es nicht existiert
+    mkdir -p "$_notebook_dir"
+
+    local _env_msg="${CONDA_DEFAULT_ENV:-${VIRTUAL_ENV:-system/none}}"
     local _jupyter_bin
     _jupyter_bin="$(command -v jupyter 2>/dev/null || true)"
 
     if [[ -z "$_jupyter_bin" ]]; then
-        echo "Error: jupyter executable not found in PATH." >&2
+        echo -e "\e[31mError: jupyter executable not found in PATH.\e[0m" >&2
+        local _suggested_env=$(cat ~/.startenv 2>/dev/null || echo base)
+        echo -e "Did you forget to activate it? Try: \e[33mact $_suggested_env\e[0m" >&2
         return 1
     fi
 
     echo -e "\n\e[95m🚀 Jupyter Lab is launching\e[0m"
-    echo -e "URL:          \e[1;3;34mhttp://localhost:8888/lab/\e[0m"
+    echo -e "URL:          \e[1;3;34mhttp://localhost:${_port}/lab/\e[0m"
     echo -e "Notebook-dir: \e[1;3;34m$_notebook_dir\e[0m"
     echo -e "Environment:  \e[1;3;34m$_env_msg\e[0m"
-    echo -e "Instance:     \e[1;3;34m$_jupyter_bin\e[0m\n"
+    echo -e "Instance:     \e[1;3;34m$_jupyter_bin\e[0m"
+    
+    if $_colab_mode; then
+        echo -e "Colab Hook:   \e[1;3;32mhttp://localhost:${_port}/\e[0m (Copy this to Colab local runtime)\n"
+    else
+        echo ""
+    fi
 
     jupyter lab "${_args[@]}" --notebook-dir="$_notebook_dir"
 }
 
-alias jl='jupyter-launcher'
+#alias jl='jupyter-launcher'
+
+# customize according to preference
+alias jl='jupyter-launcher -n -c'
 
