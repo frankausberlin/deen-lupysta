@@ -16,7 +16,7 @@
 
 <tr align=center><td colspan=5>🛠️ Developer Environment<br></td></tr>
 
-<tr align=center><td>🐧Ubuntu<br>Base-System</td><td>🛡️Network<br>Security</td><td>📦Docker<br>Cuda</td><td>👾Github<br>SearXNG</td><td>🌎VSCode<br>Eco-Systems</td></tr>
+<tr align=center><td>🐧Ubuntu<br>Base-System</td><td>🛡️Network<br>Security</td><td>📦Docker<br>Cuda</td><td>👾Git, Code<br>SearXNG</td><td>🌎Eco<br>Systems</td></tr>
 
 <tr align=center><td colspan=5>🧱 Shlib System / Package Manager Policy</td></tr><tr align=center><td colspan=5></td></tr>
 </table>
