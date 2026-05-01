@@ -1,8 +1,8 @@
-# ZSH, Antidote & Powerlevel10k
+### ZSH, Antidote & Powerlevel10k
 
 Complete terminal setup: ZSH as shell, Antidote as plugin manager, Powerlevel10k as prompt.
 
-## 1. ZSH
+#### 1. ZSH
 
 ```shell
 # Install and switch to zsh
@@ -17,7 +17,7 @@ Add to `~/.shlib/shlibs/10-zsh-config.sh`:
 setopt INTERACTIVE_COMMENTS
 ```
 
-## 2. Fonts (MesloLGS NF)
+#### 2. Fonts (MesloLGS NF)
 
 ```shell
 mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts
@@ -34,13 +34,13 @@ For Guake:
 3. Unset "Use system fixed width font"
 4. Set font to MesloLGS NF Regular
 
-## 3. Antidote Plugin Manager
+#### 3. Antidote Plugin Manager
 
 ```shell
 git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
 ```
 
-## 4. Plugin Selection
+#### 4. Plugin Selection
 
 ```shell
 cat << 'EOF' > ~/.zsh_plugins.txt
@@ -54,7 +54,7 @@ hlissner/zsh-autopair
 EOF
 ```
 
-## 5. Integration into shlib
+#### 5. Integration into shlib
 
 ```shell
 cat << 'EOF' >> ~/.shlib/shlibs/20-zsh-appearance.sh
@@ -82,7 +82,7 @@ EOF
 
 Restart terminal. Powerlevel10k will guide through the configuration wizard on first startup.
 
-## 6. p10k Config in shlib
+#### 6. p10k Config in shlib
 
 After p10k wizard configuration, move auto-generated config into shlib:
 
@@ -125,7 +125,7 @@ function prompt_my_jupyter() {
 EOF
 ```
 
-## 7. Final .zshrc Structure
+#### 7. Final .zshrc Structure
 
 The `.zshrc` should contain only these sections, in this order:
 
@@ -155,7 +155,7 @@ fi
 
 Nothing else. All configuration lives in `~/.shlib/shlibs/`.
 
-## 8. Shlib Lock
+#### 8. Shlib Lock
 
 After cleaning `.zshrc` and creating shlib files:
 
@@ -165,7 +165,7 @@ cp ~/.zshrc ~/.zshrc.lock
 
 The lock snippet shows a diff if any installer modifies `.zshrc` without permission.
 
-## 9. p10k + direnv Compatibility
+#### 9. p10k + direnv Compatibility
 
 To prevent p10k instant-prompt warnings from direnv log output, add to `35-python-config.sh`:
 

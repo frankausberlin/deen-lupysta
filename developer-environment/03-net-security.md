@@ -1,14 +1,14 @@
-# Network & Security
+### Network & Security
 
-## SSH Setup
+#### SSH Setup
 
-### Server Side — Enable Service
+* Server Side — Enable Service
 
 ```shell
 sudo systemctl enable --now ssh
 ```
 
-### Client Side — Generate Key & Copy
+* Client Side — Generate Key & Copy
 
 ```shell
 ssh-keygen -t ed25519
@@ -19,7 +19,7 @@ ssh-copy-id -p 8022 user@host
 ssh-copy-id -o "IdentitiesOnly=yes" -i ~/.ssh/id_ed25519.pub user@host
 ```
 
-### SSH Hardening (`/etc/ssh/sshd_config.d/99-custom-hardening.conf`)
+* SSH Hardening (`/etc/ssh/sshd_config.d/99-custom-hardening.conf`)
 
 ```ini
 PubkeyAuthentication yes
@@ -38,7 +38,7 @@ MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
 
 Validate config before reloading: `sudo sshd -t && sudo systemctl reload ssh`
 
-## Firewall (UFW)
+#### Firewall (UFW)
 
 ```shell
 sudo ufw default deny incoming
@@ -47,7 +47,7 @@ sudo ufw limit ssh       # SSH with brute-force protection
 sudo ufw --force enable
 ```
 
-## fail2ban
+#### fail2ban
 
 ```ini
 # /etc/fail2ban/jail.local
@@ -65,7 +65,7 @@ findtime = 600
 sudo systemctl restart fail2ban
 ```
 
-## Docker + UFW
+#### Docker + UFW
 
 Docker manipulates iptables directly and bypasses UFW rules. Container ports published with `-p` may be reachable from outside even with UFW enabled. Install `ufw-docker` to fix:
 
@@ -77,7 +77,7 @@ sudo ufw-docker install
 sudo systemctl restart ufw
 ```
 
-## Security Best Practices
+#### Security Best Practices
 
 - Keep a second SSH session open when modifying sshd_config
 - Use `AllowUsers` instead of `AllowGroups` for explicit access control

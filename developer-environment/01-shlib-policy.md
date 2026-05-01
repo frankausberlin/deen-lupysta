@@ -1,8 +1,29 @@
-# Shlib System
+### 1.1 🧱 Shlib System / Package Manager Policy
+
+#### Package Manager Policy
+
+Simple guideline on how to install what.
+
+| Layer | Tool | Scope |
+|-------|------|-------|
+| OS / System | `apt` / `nala` | Core packages, system daemons, C-libraries, compilers |
+| GUI Apps | `flatpak` | Desktop applications (sandboxed) |
+| Modern CLI | `brew` | CLI tools + TUIs not in apt |
+| Python Global | `uv tool` (or `pipx`) | Python CLI utilities (ruff, basedpyright) |
+| Python Project | `uv add` / `uv sync` | ALL project dependencies |
+| Python Data Science | `mamba install` + `uv pip install` | Heavy C-extensions, CUDA, ML frameworks |
+| Node | `pnpm` | All JS/TS dependencies |
+| Rust | `cargo` | Rust binaries and project deps |
+| Go | `go install` | Go-based CLI tools |
+| Java | `sdk` (SDKMAN) | JDK versions + JVM tools |
+| Ruby | `gem` / `bundle` | CLI tools + project deps |
+
+
+#### Shlib System
 
 The Shlib (Shell Library) system keeps the `.zshrc` file clean and manageable by moving shell configuration into sorted, versioned files.
 
-## Architecture
+* **Architecture**
 
 Three components in `.zshrc`:
 
@@ -10,7 +31,7 @@ Three components in `.zshrc`:
 2. **Exports Loader** — Files in `~/.shlib/exports/` become env vars (filename = varname, content = value)
 3. **Library Loader** — Sorted scripts in `~/.shlib/shlibs/` are sourced in order
 
-## Directory Structure
+* **Directory Structure**
 
 ```
 ~/.shlib/
@@ -33,7 +54,7 @@ Three components in `.zshrc`:
     └── 80-luxuspythonstack.sh -> /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh
 ```
 
-## Numbering Convention
+* **Numbering Convention**
 
 Files are sourced in alphanumeric order. Numbers between known files allow future insertion:
 - `05-09`: Aliases
@@ -52,7 +73,7 @@ Files are sourced in alphanumeric order. Numbers between known files allow futur
 
 Jupyter is no longer a separate `40-jupyter-launcher.sh` shlib file. `jupyter-launcher` and the default `jl` alias are provided by `80-luxuspythonstack.sh`.
 
-## Symlinked Stack Libraries
+* **Symlinked Stack Libraries**
 
 Repository-managed shell libraries should be linked, not copied. This keeps one canonical source file and makes updates as simple as `git pull` in the repository checkout.
 
@@ -65,7 +86,7 @@ ln -s /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.
 
 Use a different number if your local layout requires it, for example `70-luxuspythonstack.sh` to load it earlier or `85-luxuspythonstack.sh` to load it later.
 
-## Lock Mechanism
+* **Lock Mechanism**
 
 After cleaning `.zshrc` and moving configuration to shlib files, create a lock:
 
@@ -77,7 +98,7 @@ On each shell start, the lock snippet compares `.zshrc` against `.zshrc.lock`. I
 
 To update the lock after intentional changes: `shliblock` or `cp ~/.zshrc ~/.zshrc.lock`.
 
-## Exports System
+* **Exports System**
 
 Files in `~/.shlib/exports/` are exported as environment variables on shell start. The filename becomes the variable name, the file content (trimmed) becomes the value.
 
@@ -88,7 +109,7 @@ Files in `~/.shlib/exports/` are exported as environment variables on shell star
 
 All export files should be `chmod 600` to prevent other users from reading secrets.
 
-## The Three Snippets (exact content in .zshrc)
+* **The Three Snippets (exact content in .zshrc)**
 
 ```shell
 # >>>>>> SHLIB for zsh
