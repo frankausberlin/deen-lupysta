@@ -12,11 +12,11 @@
 
 <tr align=center><td colspan=5>🧠 AI Stack<br></td></tr>
 
-<tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 liteLLM<br>MCPHub</td><td>🖥️ LocalAI<br>Open WebUI</td><td>🛡️ Guardrails<br>Hermes Agent</td><td>☁️Cloud-Hosted<br>vast.ai</td></tr>
+<tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 liteLLM<br>MCPHub</td><td>🖥️ LocalAI<br>Open WebUI</td><td>🛡️ Guardrails<br>Hermes Agent</td><td>☁️vast.ai<br>Cloud-Hosted</td></tr>
 
 <tr align=center><td colspan=5>🛠️ Developer Environment<br></td></tr>
 
-<tr align=center><td>🐧Ubuntu<br>Base-System</td><td>🛡️Network<br>Security</td><td>📦Docker<br>Cuda</td><td>👾Github<br>SearXNG</td><td>🌎VSCode<br>Eco-Systems</td></tr>
+<tr align=center><td>🐧Ubuntu<br>Base-System</td><td>🛡️Network<br>Security</td><td>📦Docker<br>Cuda</td><td>👾Git, Code<br>SearXNG</td><td>🌎Eco<br>Systems</td></tr>
 
 <tr align=center><td colspan=5>🧱 Shlib System / Package Manager Policy</td></tr><tr align=center><td colspan=5></td></tr>
 </table>
