@@ -71,8 +71,8 @@ Never run scripts or script snippets without carefully reviewing them.
 ## 3. 🧠 AI Stack
 ### 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
 ### 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
-### 3.3 ☁️ [vast.ai & LocalAI](ai-stack/03-vastai-localai.md)
-### 3.4 🛡️ [Guardrails & Heartbeating Skill (Lionheart)](ai-stack/04-guardrails-heartbeatskill.md)
+### 3.3 ☁️ [vast.ai & LocalAI](ai-stack/03-vastai-localai.md) *(🚧 WIP)*
+### 3.4 🛡️ [Guardrails & Heartbeating Skill (Lionheart)](ai-stack/04-guardrails-heartbeatskill.md) *(🚧 WIP)*
 
 <font color=#005F6A size=+5><b>The Luxurious Python Stack</b></font>
 

@@ -1,8 +1,9 @@
 ### 🐍 Python (uv, mamba, direnv)
 
 ```shell
-# pipx is great as a fallback, even if uv tool now does the main work
-sudo nala install python3 pipx -y
+# Python 3 base (pipx only if you need a fallback for tools that don't play nice with `uv tool`)
+sudo nala install -y python3
+# Optional fallback: sudo nala install -y pipx
 
 # UV (The lightning-fast Rust-based manager)
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -13,11 +14,9 @@ source "$HOME/.local/bin/env"
 # Base equipment (uv tool = pipx on steroids)
 uv tool install ruff && uv tool install bump-my-version && uv tool install basedpyright
 
-# We install 'just' (Command Runner) cleanly via Homebrew.
-brew install just
-
-# Install direnv via Homebrew and create a direnv layout for uv
-brew install direnv && mkdir -p ~/.config/direnv && cat << 'EOF' > ~/.config/direnv/direnvrc
+# 'just' and 'direnv' are already installed via Homebrew in section 1.2 (Base Tools).
+# Here we only create the direnv layout for uv.
+mkdir -p ~/.config/direnv && cat << 'EOF' > ~/.config/direnv/direnvrc
 layout_uv() {
     # If no environment exists yet, uv creates one in a flash.
     [ ! -d ".venv" ] && uv venv
@@ -64,7 +63,12 @@ fi
 unset __mamba_setup
 
 # --- Default Environment Activation ---
-mamba activate $([[ -f ~/.startenv ]] && echo "$(< ~/.startenv)" || echo base)
+# Only activate a Mamba env if no project-level .envrc is present in the CWD.
+# In project directories direnv supersedes Mamba anyway — skipping the activation
+# keeps shell startup fast.
+if [ ! -f "$PWD/.envrc" ]; then
+    mamba activate $([[ -f ~/.startenv ]] && echo "$(< ~/.startenv)" || echo base)
+fi
 
 # startenv function
 act() { [ "$#" -ne 0 ] && echo $1 > ~/.startenv && mamba activate $1; }

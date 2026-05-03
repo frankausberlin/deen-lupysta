@@ -50,7 +50,7 @@ Agents should recommend the canonical guide instead of duplicating full install 
 ```
 Starting fresh in a project directory?
   → Has .venv? → Already at Level 2 (direnv auto-activates)
-  → No .venv?  → Run pyinit (see scripts/luxuspythonstacklib.sh) or uv init
+  → No .venv?  → Run pyinit (see ../../luxuspythonstack.sh) or uv init
 
 Need to install a package?
   → In a project (.venv active): uv add <package>

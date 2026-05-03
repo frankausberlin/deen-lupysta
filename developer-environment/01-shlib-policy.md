@@ -9,7 +9,7 @@ Simple guideline on how to install what.
 | OS / System | `apt` / `nala` | Core packages, system daemons, C-libraries, compilers |
 | GUI Apps | `flatpak` | Desktop applications (sandboxed) |
 | Modern CLI | `brew` | CLI tools + TUIs not in apt |
-| Python Global | `uv tool` (or `pipx`) | Python CLI utilities (ruff, basedpyright) |
+| Python Global | `uv tool` | Python CLI utilities (ruff, basedpyright); `pipx` only as fallback if `uv` is unavailable |
 | Python Project | `uv add` / `uv sync` | ALL project dependencies |
 | Python Data Science | `mamba install` + `uv pip install` | Heavy C-extensions, CUDA, ML frameworks |
 | Node | `pnpm` | All JS/TS dependencies |
@@ -96,7 +96,13 @@ cp ~/.zshrc ~/.zshrc.lock
 
 On each shell start, the lock snippet compares `.zshrc` against `.zshrc.lock`. If different, a diff is shown — this catches installers modifying `.zshrc` without permission.
 
-To update the lock after intentional changes: `shliblock` or `cp ~/.zshrc ~/.zshrc.lock`.
+To update the lock after intentional changes: `cp ~/.zshrc ~/.zshrc.lock`.
+
+Optional convenience alias — add to `~/.shlib/shlibs/05-aliases.sh`:
+
+```shell
+alias shliblock='cp ~/.zshrc ~/.zshrc.lock && echo "✔ shlib lock updated"'
+```
 
 * **Exports System**
 
