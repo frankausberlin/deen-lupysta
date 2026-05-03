@@ -83,6 +83,3 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 4.4 🏗️ [Skill - *luxuspythonstack/*](skills/luxuspythonstack/SKILL.md)
 ### 4.5 🔧 [Scripts - *luxuspythonstack.sh*](luxuspythonstack.sh)
 
-## License
-
-MIT — see [LICENSE](LICENSE).
