@@ -47,7 +47,6 @@ Never run scripts or script snippets without carefully reviewing them.
 </td></tr></table>
 
 ---
-
 <font color=#005F6A size=+5><b>The Developer Environment</b></font>
 
 ## 1. 🐧 Base System
@@ -66,6 +65,7 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 2.5 ☕ [Java (SDKMAN!)](developer-environment/11-java.md)
 ### 2.6 💎 [Ruby (rbenv & bundler)](developer-environment/12-ruby.md)
 
+---
 <font color=#005F6A size=+5><b>The AI Stack</b></font>
 
 ## 3. 🧠 AI Stack
@@ -74,6 +74,7 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 3.3 ☁️ [vast.ai & LocalAI](ai-stack/03-vastai-localai.md) *(🚧 WIP)*
 ### 3.4 🛡️ [Guardrails & Heartbeating Skill (Lionheart)](ai-stack/04-guardrails-heartbeatskill.md) *(🚧 WIP)*
 
+---
 <font color=#005F6A size=+5><b>The Luxurious Python Stack</b></font>
 
 ## 4. 💎 Luxurious Python Stack
