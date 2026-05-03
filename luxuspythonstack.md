@@ -21,7 +21,7 @@ The Luxurious Python Stack requires the following installed at the system level:
 | `basedpyright` | Strict type checking | `uv tool install basedpyright` |
 | `mamba` | Data science environments (Level 1) | Miniforge installer |
 
-For a full Ubuntu setup guide, see the `devenv/` references in the [skill](../skills/luxuspythonstack/references/devenv/).
+For a full Ubuntu setup guide, see the [developer environment](developer-environment/) section.
 
 ### direnv Hook
 
@@ -46,7 +46,7 @@ layout_uv() {
 
 ## Shell Library Installation
 
-This file is the canonical source for installation and update instructions. Other project files should link here instead of duplicating full command blocks.
+This file is the canonical source for installation and update instructions. Other project files should link here instead of duplicating full command blocks. The [skill](skills/luxuspythonstack/SKILL.md) provides structured instructions for AI coding agents.
 
 The recommended installation is a symbolic link. Do **not** copy the shell library into your shell setup. A symlink keeps the live repository as the source of truth, so updates are only:
 
@@ -60,15 +60,15 @@ git pull
 For a minimal setup, source the repository file directly in your `.zshrc` or `.bashrc`:
 
 ```shell
-source /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh
+source /path/to/deen-lupysta/luxuspythonstack.sh
 ```
 
 ### shlib Integration
 
-If you use the [shlib system](../skills/luxuspythonstack/references/devenv/shlib-system.md), create a symlink in your shlib directory. Choose the two-digit prefix yourself according to your load order; `80` is only an example.
+If you use the [shlib system](developer-environment/01-shlib-policy.md), create a symlink in your shlib directory. Choose the two-digit prefix yourself according to your load order; `80` is only an example.
 
 ```shell
-ln -s /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh \
+ln -s /path/to/deen-lupysta/luxuspythonstack.sh \
       /path/to/.shlib/shlibs/80-luxuspythonstack.sh
 ```
 
@@ -106,7 +106,7 @@ The Luxurious Python Stack separates concerns into five distinct layers. Each le
 | Level | Name | Tool | Activation |
 |-------|------|------|------------|
 | 0 | Global / System | `/usr/bin/python` | Always active (fallback) |
-| 1 | Mamba / Jupyter | Mamba + UV | `act <envname>` or startup via `.startenv` |
+| 1 | Mamba / Jupyter | Mamba + UV | `act <envname>` or startup via `~/.startenv` |
 | 2 | Projects | UV + direnv | Auto via `direnv` when `.venv` exists |
 | 3 | CI / CD | GitHub Actions + UV | On push/PR or manual trigger |
 | 4 | AI Agents | AGENTS.md + SESSION.md | Agent session start |
@@ -123,7 +123,7 @@ The Luxurious Python Stack separates concerns into five distinct layers. Each le
 - Intended for data science and experimentation
 - Tools: Jupyter Lab, PyTorch, TensorFlow, Scikit-Learn, etc.
 - Always active unless a `.venv` exists at the current location (superseded by direnv)
-- **Startup:** `act <envname>` activates the environment and saves it to `~/.startenv`
+- **Startup:** `act <envname>` activates the environment and saves it to `~/.startenv` (absolute path in home directory)
 - **Volatile:** The rule is "no updates, just delete and recreate"
 - **Naming convention:** `ds12` = "data science Python 3.12"
 - `uv pip install` is used for speed inside Mamba environments (intentionally not under Mamba's control)
@@ -181,7 +181,7 @@ When direnv detects a `.venv` in the current directory, it automatically deactiv
 
 # Luxus Python Stack — Daily Commands
 
-Quick reference for all common operations. For full documentation, see `references/luxus-python-stack.md`.
+Quick reference for all common operations.
 
 ## Project Initialization
 
@@ -201,9 +201,9 @@ act <envname>             # activate + save to ~/.startenv
 mamba activate <envname>  # activate without saving
 mamba deactivate          # deactivate
 jupyter-launcher [folder]          # Jupyter Lab (token enabled)
-jupyter-launcher -x [folder]       # Jupyter Lab without token (unsafe)
+jupyter-launcher -n [folder]       # Jupyter Lab without token (unsafe)
 jupyter-launcher --colab [folder]  # Jupyter Lab with Colab origin
-alias jl='jupyter-launcher -x'     # optional personal default
+alias jl='jupyter-launcher -n'     # optional personal default
 
 # UV/direnv (Level 2 — Projects)
 direnv allow   # allow .envrc (once per project)

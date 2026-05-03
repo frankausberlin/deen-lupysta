@@ -1,3 +1,15 @@
+# _LUXUS_SCRIPT_DIR — absolute path to the directory containing this sourced script
+if [ -n "${BASH_SOURCE[0]:-}" ]; then
+    _LUXUS_SOURCE="${BASH_SOURCE[0]}"
+elif [ -n "${ZSH_VERSION:-}" ]; then
+    eval '_LUXUS_SOURCE="${(%):-%N}"'
+else
+    _LUXUS_SOURCE="$0"
+fi
+_LUXUS_REAL_SOURCE="$(readlink -f "$_LUXUS_SOURCE" 2>/dev/null || printf '%s\n' "$_LUXUS_SOURCE")"
+_LUXUS_SCRIPT_DIR="$(cd "$(dirname "$_LUXUS_REAL_SOURCE")" && pwd)"
+unset _LUXUS_SOURCE _LUXUS_REAL_SOURCE
+
 # cw - change to working folder or set working folder
 cw() { [[ "$1" == "." ]] && echo "$PWD" > "$HOME/.config/current_working_folder" || cd "$(cat "$HOME/.config/current_working_folder")"; }
 
@@ -394,8 +406,8 @@ RELEASE_EOF
     fi
 
     # ─── Step 8c: Generate AGENTS.md from blueprint ───────────────────────────
-    # _LUXUS_SCRIPT_DIR is set at top-level (source-time) and works in both Bash and Zsh.
-    local _BLUEPRINT="${_LUXUS_SCRIPT_DIR}/../references/blueprint-AGENTS.md"
+    # _LUXUS_SCRIPT_DIR is set at source time and resolves symlinked shlib installations.
+    local _BLUEPRINT="${_LUXUS_SCRIPT_DIR}/skills/luxuspythonstack/references/blueprint-AGENTS.md"
     if _write_if_missing "AGENTS.md"; then
         if [[ -f "$_BLUEPRINT" ]]; then
             sed -e "s/{{PROJECT_NAME}}/$PROJECT_NAME/g" \

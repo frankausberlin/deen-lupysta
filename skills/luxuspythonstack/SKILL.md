@@ -17,11 +17,11 @@ This skill provides expert knowledge of the Luxurious Python Stack — a five-le
 
 ## Installation Model
 
-The canonical installation guide is `../../docs/installation.md`. The stack is installed by symbolic links, not by copying files. This keeps the repository checkout as the single source of truth and allows updates via `git pull`.
+The stack is installed by symbolic links, not by copying files. This keeps the repository checkout as the single source of truth and allows updates via `git pull`. The canonical installation guide is in the project root: [`luxuspythonstack.md`](../../luxuspythonstack.md).
 
 Agents should recommend the canonical guide instead of duplicating full install commands. The key rules are:
 
-- Link `scripts/luxuspythonstacklib.sh` into the user's shlib setup with a user-chosen two-digit load-order prefix.
+- Link [`luxuspythonstack.sh`](../../luxuspythonstack.sh) into the user's shlib setup with a user-chosen two-digit load-order prefix.
 - Link the `skills/luxuspythonstack` folder into every agent-specific skills directory where this stack should be available.
 - Avoid copy-based installation instructions.
 
@@ -31,14 +31,14 @@ Agents should recommend the canonical guide instead of duplicating full install 
 - Do not patch files inside linked agent skills directories; edit the repository files instead.
 - Do not replace symlinks with copied files during troubleshooting.
 - Update installed integrations with `git pull` in the repository checkout, then reload the shell if shell functions changed.
-- Keep detailed installation steps in `docs/installation.md`; keep this skill file focused on agent behavior and operational rules.
+- Keep detailed installation steps in [`luxuspythonstack.md`](../../luxuspythonstack.md); keep this skill file focused on agent behavior and operational rules.
 
 ## Five-Level Architecture
 
 | Level | Name | Tool | Activation |
 |-------|------|------|------------|
 | 0 | Global / System | `/usr/bin/python` | Always active (fallback) |
-| 1 | Mamba / Jupyter | Mamba + UV | `act <envname>` or startup via `.startenv` |
+| 1 | Mamba / Jupyter | Mamba + UV | `act <envname>` or startup via `~/.startenv` |
 | 2 | Projects | UV + direnv | Auto via `direnv` when `.venv` exists |
 | 3 | CI / CD | GitHub Actions + UV | On push/PR or manual trigger |
 | 4 | AI Agents | AGENTS.md + SESSION.md | Agent session start |
@@ -70,7 +70,7 @@ Need to release?
 
 ### 1. Initialize a New Python Project
 
-Use the `pyinit` shell function (defined in [`scripts/luxuspythonstacklib.sh`](scripts/luxuspythonstacklib.sh)):
+Use the `pyinit` shell function (defined in [`luxuspythonstack.sh`](../../luxuspythonstack.sh)):
 
 ```shell
 pyinit                              # app in current directory
@@ -149,7 +149,7 @@ git push origin main --tags
 
 ### 5. AI Agent Session Workflow (Level 4)
 
-AI agents operate through MCP servers (web search, GitHub, Docker, browser automation, etc.) managed by MCPHub. Server setup is documented in `references/devenv/ai-stack.md` — load only when configuring agent infrastructure.
+AI agents operate through MCP servers (web search, GitHub, Docker, browser automation, etc.) managed by MCPHub. Server setup is documented in the [AI stack](../../ai-stack/) section — load only when configuring agent infrastructure.
 
 **Start:**
 1. Read `AGENTS.md` for project context
@@ -165,18 +165,18 @@ AI agents operate through MCP servers (web search, GitHub, Docker, browser autom
 
 ## Key Shell Functions
 
-Shell functions defined in `scripts/luxuspythonstacklib.sh`:
+Shell functions defined in [`luxuspythonstack.sh`](../../luxuspythonstack.sh):
 
 | Function | Usage | Description |
 |----------|-------|-------------|
 | `pyinit` | `pyinit [name] [--lib] [--python X.Y] [--force]` | Create a new Python project |
-| `act` | `act <envname>` | Activate Mamba env + save to `.startenv` |
-| `jupyter-launcher` | `jupyter-launcher [-x] [--colab] [folder]` | Start Jupyter Lab |
-| `jl` | `jl` | Configurable alias for `jupyter-launcher` |
+| `act` | `act <envname>` | Activate Mamba env + save to `~/.startenv` |
+| `jupyter-launcher` | `jupyter-launcher [-n] [--colab] [folder]` | Start Jupyter Lab |
+| `jl` | `jl` | Configurable alias for `jupyter-launcher` (default: `-n -c`) |
 | `cw` | `cw` / `cw .` | Jump to / set working folder (global state) |
 | `rlb` | `rlb` | Reload shell configuration |
 
-`jupyter-launcher` is the canonical implementation. `jl` is intentionally only an alias so users can preconfigure personal defaults, for example `alias jl='jupyter-launcher -x'`.
+`jupyter-launcher` is the canonical implementation. `jl` is intentionally only an alias so users can preconfigure personal defaults, for example `alias jl='jupyter-launcher -n -c'`.
 
 ## Important Rules
 
@@ -188,19 +188,14 @@ Shell functions defined in `scripts/luxuspythonstacklib.sh`:
 
 4. **direnv**: If auto-activation stops working, run `direnv allow` in the project directory.
 
-5. **pre-push hook**: Install with `cp scripts/pre-push .git/hooks/pre-push` to run CI checks locally before pushing.
+5. **pre-push hook**: Run `just pre-push` to execute CI checks locally before pushing.
 
 ## Reference Files
 
 Load on demand as needed:
 
-- `references/luxus-python-stack.md` — Full stack documentation
-- `references/daily-commands.md` — Complete command reference
-- `references/blueprint-AGENTS.md` — Template for AGENTS.md generation
-- `references/devenv/shlib-system.md` — Shell library system explanation
-- `references/devenv/ubuntu-setup.md` — Ubuntu base system setup
-- `references/devenv/zsh-setup.md` — ZSH, Antidote, p10k, fonts, prompt
-- `references/devenv/ecosystems.md` — Node, Python, Go, Rust, Java, Ruby installation
-- `references/devenv/networks-security.md` — SSH, UFW, fail2ban
-- `references/devenv/docker-cuda.md` — Docker + NVIDIA container toolkit
-- `references/devenv/ai-stack.md` — VSCode, Kilo, Ollama, MCPHub, SearXNG
+- [`references/daily-commands.md`](references/daily-commands.md) — Complete command reference
+- [`references/blueprint-AGENTS.md`](references/blueprint-AGENTS.md) — Template for AGENTS.md generation
+- [`../../developer-environment/`](../../developer-environment/) — Full developer environment setup guides
+- [`../../ai-stack/`](../../ai-stack/) — AI stack component setup
+- [`../../luxuspythonstack.md`](../../luxuspythonstack.md) — Full Luxurious Python Stack documentation

@@ -67,7 +67,7 @@ unset __mamba_setup
 mamba activate $([[ -f ~/.startenv ]] && echo "$(< ~/.startenv)" || echo base)
 
 # startenv function
-act() { [ "$#" -ne 0 ] && echo $1 > .startenv && mamba activate $1; }
+act() { [ "$#" -ne 0 ] && echo $1 > ~/.startenv && mamba activate $1; }
 
 # Creates an environment in a folder if it doesn't already exist and places it under the management of direnv.
 alias allowuv='echo "layout uv" > .envrc && direnv allow'

@@ -1,5 +1,7 @@
 ### ZSH, Antidote & Powerlevel10k
 
+<img src="https://lh3.googleusercontent.com/d/1GWuo758MHQI1G9AdVX_lv9H8mXMmDrrA" width=800>
+
 Complete terminal setup: ZSH as shell, Antidote as plugin manager, Powerlevel10k as prompt.
 
 #### 1. ZSH

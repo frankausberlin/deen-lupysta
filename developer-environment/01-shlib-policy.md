@@ -51,7 +51,7 @@ Three components in `.zshrc`:
     ├── 45-go-config.sh
     ├── 50-java.sh
     ├── 55-ruby.sh
-    └── 80-luxuspythonstack.sh -> /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh
+    └── 80-luxuspythonstack.sh -> /path/to/deen-lupysta/luxuspythonstack.sh
 ```
 
 * **Numbering Convention**
@@ -71,7 +71,7 @@ Files are sourced in alphanumeric order. Numbers between known files allow futur
 - `70-79`: OpenCode / agent tools
 - `80-89`: Luxus Python Stack
 
-Jupyter is no longer a separate `40-jupyter-launcher.sh` shlib file. `jupyter-launcher` and the default `jl` alias are provided by `80-luxuspythonstack.sh`.
+`jupyter-launcher` and the default `jl` alias are provided by `80-luxuspythonstack.sh` (symlinked to the Luxurious Python Stack shell library).
 
 * **Symlinked Stack Libraries**
 
@@ -80,7 +80,7 @@ Repository-managed shell libraries should be linked, not copied. This keeps one 
 For Luxus Python Stack, choose the two-digit load-order number yourself and create a symlink:
 
 ```shell
-ln -s /path/to/deen-lupysta/skills/luxuspythonstack/scripts/luxuspythonstacklib.sh \
+ln -s /path/to/deen-lupysta/luxuspythonstack.sh \
       /path/to/.shlib/shlibs/80-luxuspythonstack.sh
 ```
 

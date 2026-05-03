@@ -12,17 +12,17 @@
 
 <tr align=center><td colspan=5>🧠 AI Stack<br></td></tr>
 
-<tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 liteLLM<br>MCPHub</td><td>🖥️ LocalAI<br>Open WebUI</td><td>🛡️ Guardrails<br>Hermes Agent</td><td>☁️vast.ai<br>Cloud-Hosted</td></tr>
+<tr align=center><td colspan=5><table><tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>☁️ vast.ai<br>LocalAI</td><td>🛡️ Guardrails<br>Heartbeat Skill</td></tr></table></td></tr>
 
 <tr align=center><td colspan=5>🛠️ Developer Environment<br></td></tr>
 
 <tr align=center><td>🐧Ubuntu<br>Base-System</td><td>🛡️Network<br>Security</td><td>📦Docker<br>Cuda</td><td>👾Git, Code<br>SearXNG</td><td>🌎Eco<br>Systems</td></tr>
 
-<tr align=center><td colspan=5>🧱 Shlib System / Package Manager Policy</td></tr><tr align=center><td colspan=5></td></tr>
+<tr align=center><td colspan=5>🧱 Shlib System / Package Manager Policy / ZShell</td></tr><tr align=center><td colspan=5></td></tr>
 </table>
 
 
-*I'm constantly installing and configuring Ubuntu on my laptop, PC, and Pi. However, since I'm just a simple programmer and not a system administrator, I've started storing the most important things in a Colab notebook so I can easily access everything via copy and paste.*
+*I'm constantly installing and configuring Ubuntu on my laptop, PC, and Pi. However, since I'm just a simple programmer and not a system administrator, I've started storing the most important things in Colab notebooks so I can easily access everything via copy and paste.*
 
 *That escalated a little...*
 
@@ -56,7 +56,7 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 1.3 🔒 [Network & security](developer-environment/03-net-security.md)
 ### 1.4 📦️ [Docker & CUDA Toolkit](developer-environment/04-docker-cuda.md)
 ### 1.5 🌐 [Git, Code & SearXng](developer-environment/05-git-code-searxng.md)
-### 1.6 🧿 [ZSH, Antidote & p10k](developer-environment/06-zsh-antipode-p10k.md)
+### 1.6 🧿 [ZSH, Antidote & p10k](developer-environment/06-zsh-antidote-p10k.md)
 
 ## 2. 🗺️ Ecosystems
 ### 2.1 🟢 [Node.js (fnm + pnpm)](developer-environment/07-nodejs.md)
@@ -69,20 +69,19 @@ Never run scripts or script snippets without carefully reviewing them.
 <font color=#005F6A size=+5><b>The AI Stack</b></font>
 
 ## 3. 🧠 AI Stack
-### 3.1 🦙 Ollama & Agents
-### 3.2 🔌 LiteLLM & Mcphub
-### 3.3 🖥️ LocalAI & Open WebUI
-### 3.4 🛡️ Guardrails & Hermes Agent
-### 3.5 ☁️ Cloud-Hosted & vast.ai
+### 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
+### 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
+### 3.3 ☁️ [vast.ai & LocalAI](ai-stack/03-vastai-localai.md)
+### 3.4 🛡️ [Guardrails & Lionheart Skill](ai-stack/04-guardrails-heartbeatskill.md)
 
 <font color=#005F6A size=+5><b>The Luxurious Python Stack</b></font>
 
 ## 4. 💎 Luxurious Python Stack
-### 4.1 📚 Stack Description
-### 4.2 🤖 Agent Guide Blueprint
-### 4.3 👷 Daily Commands Reference
-### 4.4 🏗️ Skill - *luxuspythonstack/*
-### 4.5 🔧 Scripts - *luxuspythonstack.sh*
+### 4.1 📚 [Stack Description](luxuspythonstack.md)
+### 4.2 🤖 [Agent Guide Blueprint](skills/luxuspythonstack/references/blueprint-AGENTS.md)
+### 4.3 👷 [Daily Commands Reference](skills/luxuspythonstack/references/daily-commands.md)
+### 4.4 🏗️ [Skill - *luxuspythonstack/*](skills/luxuspythonstack/SKILL.md)
+### 4.5 🔧 [Scripts - *luxuspythonstack.sh*](luxuspythonstack.sh)
 
 ## License
 
