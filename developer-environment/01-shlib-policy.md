@@ -109,7 +109,7 @@ Files in `~/.shlib/exports/` are exported as environment variables on shell star
 
 All export files should be `chmod 600` to prevent other users from reading secrets.
 
-* **The Three Snippets (exact content in .zshrc)**
+* **The Three Snippets**
 
 ```shell
 # >>>>>> SHLIB for zsh
@@ -125,6 +125,36 @@ export SHLIB_LIB_DIR="$HOME/.shlib/shlibs"
 [ -d "$SHLIB_LIB_DIR" ] && for s in "$SHLIB_LIB_DIR"/[0-9][0-9]*(N); do \
     [ -f "$s" ] && source "$s"; done
 # <<<<<< SHLIB for zsh
+```
+
+* **The exact content in .zshrc**
+
+```shell
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# >>>>>> SHLIB for zsh
+# Shlib lock check (To avoid the power level warning, simply place this block before the power level code block)
+SHLIB_RC_FILE="$HOME/.zshrc"; SHLIB_LOCK_FILE="$HOME/.zshrc.lock"
+[ -f "$SHLIB_LOCK_FILE" ] && ! cmp -s "$SHLIB_RC_FILE" "$SHLIB_LOCK_FILE" && diff -u --color=always "$SHLIB_LOCK_FILE" "$SHLIB_RC_FILE"
+
+# Exports all filenames in the folder as environment variables with the file content as the value.
+export SHLIB_EXPORTS_DIR="$HOME/.shlib/exports"
+[ -d "$SHLIB_EXPORTS_DIR" ] && for f in "$SHLIB_EXPORTS_DIR"/*(N); do [ -f "$f" ] && export "$(basename "$f")"="$(cat "$f")"; done
+
+# Executes (sorted) all scripts in SHLIB_LIB_DIR that start with two digits.
+export SHLIB_LIB_DIR="$HOME/.shlib/shlibs"
+[ -d "$SHLIB_LIB_DIR" ] && for s in "$SHLIB_LIB_DIR"/[0-9][0-9]*(N); do [ -f "$s" ] && source "$s"; done
+# <<<<<< SHLIB for zsh
+
+# direnv hook (MUST BE AT THE ABSOLUTE END)
+if command -v direnv > /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
 ```
 
 These are the ONLY lines that should be in `.zshrc` besides the p10k instant prompt preamble and the direnv hook.

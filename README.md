@@ -12,7 +12,7 @@
 
 <tr align=center><td colspan=5>🧠 AI Stack<br></td></tr>
 
-<tr align=center><td colspan=5><table><tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>☁️ vast.ai<br>LocalAI</td><td>🛡️ Guardrails<br>Heartbeat Skill</td></tr></table></td></tr>
+<tr align=center><td colspan=5><table><tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>☁️ vast.ai<br>LocalAI</td><td>🛡️ Guardrails<br>Heartbeating Skill</td></tr></table></td></tr>
 
 <tr align=center><td colspan=5>🛠️ Developer Environment<br></td></tr>
 
@@ -72,7 +72,7 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
 ### 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
 ### 3.3 ☁️ [vast.ai & LocalAI](ai-stack/03-vastai-localai.md)
-### 3.4 🛡️ [Guardrails & Lionheart Skill](ai-stack/04-guardrails-heartbeatskill.md)
+### 3.4 🛡️ [Guardrails & Heartbeating Skill (Lionheart)](ai-stack/04-guardrails-heartbeatskill.md)
 
 <font color=#005F6A size=+5><b>The Luxurious Python Stack</b></font>
 
