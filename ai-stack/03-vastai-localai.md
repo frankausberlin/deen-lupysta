@@ -8,3 +8,7 @@ There should be descriptions here for:
 * using the vast.ai CLI tool
 * setup, tips, configuration
 * example: deepseek-v4-fast (openweights model)
+
+
+### VastAI and LocalAI
+
