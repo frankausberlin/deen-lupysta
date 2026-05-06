@@ -31,7 +31,7 @@ sudo nala install -y \
 sudo nala install -y \
   build-essential cmake make pkg-config libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev libncurses-dev libffi-dev liblzma-dev \
-  libxml2-dev libxmlsec1-dev tk-dev libyaml-dev \
+  libxml2-dev libxmlsec1-dev tk-dev libyaml-dev libfuse2t64 \
   python3-openssl python3-venv python3-pip
 
 # Multimedia & Image Processing
