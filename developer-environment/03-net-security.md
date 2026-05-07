@@ -96,8 +96,6 @@ Do this after install docker (chapter 1.4).
 
 Docker manipulates iptables directly and bypasses UFW rules. Container ports published with `-p` may be reachable from outside even with UFW enabled. 
 
-*Note: Newer Ubuntu versions (24.04/26.04) default to `nftables`, but the `ufw-docker` script requires the legacy iptables backend. We need to switch alternatives first.*
-
 Install `ufw-docker` to fix the bypass:
 
 ```shell
