@@ -129,7 +129,7 @@ All export files should be `chmod 600` to prevent other users from reading secre
 │   ├── 10-deenlupysta.sh
 │   ├── 15-original-zshrc.sh
 │   ├── ...
-│   ├── <nr>-<name> (or as link: ln -s <path-to-script> ~/.shlib/slibs/<nr>-<name>)
+│   ├── <nr>-<name> (or as link: ln -s <path-to-script> ~/.shlib/shlibs/<nr>-<name>)
 │   └── ...
 ├── README.md (link --> ~/gits/deen-lupysta/developer-environment/01-shlib-policy.md)
 └── .zshrc (link --> ~/.zshrc)
