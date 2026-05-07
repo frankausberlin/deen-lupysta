@@ -40,10 +40,12 @@ ssh-copy-id -o "IdentitiesOnly=yes" -i ~/.ssh/id_ed25519.pub user@host
 * SSH Hardening (`/etc/ssh/sshd_config.d/99-custom-hardening.conf`)
 
 ```ini
+cat <<EOF | sudo tee /etc/ssh/sshd_config.d/99-custom-hardening.conf > /dev/null
 PubkeyAuthentication yes
+KbdInteractiveAuthentication no
 PasswordAuthentication no
 PermitRootLogin no
-KbdInteractiveAuthentication no
+AllowUsers $USER
 PermitEmptyPasswords no
 MaxAuthTries 3
 ClientAliveInterval 300
@@ -52,9 +54,11 @@ X11Forwarding no
 KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org
 Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
-```
+EOF
 
-Validate config before reloading: `sudo sshd -t && sudo systemctl reload ssh`
+# Validate config before reloading
+sudo sshd -t && sudo systemctl reload ssh
+```
 
 #### Firewall (UFW)
 
@@ -68,7 +72,8 @@ sudo ufw --force enable
 #### fail2ban 
 
 * `/etc/fail2ban/jail.local`
-```ini
+```shell
+cat <<'EOF' | sudo tee /etc/fail2ban/jail.local > /dev/null
 [sshd]
 enabled = true
 backend = systemd
@@ -77,6 +82,8 @@ filter = sshd
 maxretry = 5
 bantime = 3600
 findtime = 600
+EOF
+sudo systemctl restart fail2ban
 ```
 
 ```shell
