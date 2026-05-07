@@ -101,17 +101,13 @@ Docker manipulates iptables directly and bypasses UFW rules. Container ports pub
 Install `ufw-docker` to fix the bypass:
 
 ```shell
-# 1. Switch to iptables-legacy for ufw-docker compatibility
-sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
-sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
-
-# 2. Download ufw-docker script
+# Download ufw-docker script
 sudo wget -O /usr/local/bin/ufw-docker \
-  https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker
+  [https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker](https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker)
 sudo chmod +x /usr/local/bin/ufw-docker
 
-# 3. Install and apply
-sudo ufw-docker install
+# Install and apply (LC_ALL=C forces English output so the script recognizes the UFW "active" status)
+sudo LC_ALL=C ufw-docker install
 sudo systemctl restart ufw
 ```
 
