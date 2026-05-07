@@ -4,7 +4,7 @@
 
 #### Docker Installation (Ubuntu)
 
-Never install `docker-desktop` under Linux — no CUDA support. Install Docker Engine directly.
+🤮 **Never install `docker-desktop` under Linux — no CUDA support. Install Docker Engine directly.**
 
 ```shell
 # Remove any existing Docker packages
