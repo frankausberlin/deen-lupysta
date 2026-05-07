@@ -52,7 +52,7 @@ sudo nala install gh && mkdir -p ~/gits && cd ~/gits
 git clone https://github.com/frankausberlin/deen-lupysta
 
 # The Deen Lupysta shlib: path and export tools, aliases, cw
-ln -s ~/gits/deen-lupysta/scripts/scripts/deenlupysta.sh ~/.shlib/shlibs/10-deenlupysta.sh
+ln -s $HOME/gits/deen-lupysta/scripts/scripts/deenlupysta.sh $HOME/.shlib/shlibs/10-deenlupysta.sh
 
 # Optional: I often open the entire .shlib folder in vsocde. For my convenience I created these links
 ln -s ~/.zshrc ~/.shlib/.zshrc
