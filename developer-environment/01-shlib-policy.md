@@ -1,4 +1,26 @@
-### 1.1 🧱 Shlib System / Package Manager Policy
+### 1.1 🧱 Shlib System, nala, zsh-1 & Install-Policy
+
+#### Nala
+
+```shell
+# use nala instead of apt
+sudo apt update && sudo apt install -y nala
+sudo nala update && sudo nala upgrade
+```
+
+#### Zshell Part 1
+
+In order to apply the shlib system directly to the zshell, it is installed at the very beginning of the installation process (.zshrc). The actual setup takes place in point 1.6 together with antipode and p10k.
+
+```shell
+# Install and switch to zsh
+sudo nala install -y zsh && chsh -s $(which zsh)
+# ⚠️ A full re-login (logout/login) is required so that login shells pick up zsh.
+# 'exec zsh' only replaces the current interactive shell, not the login session.
+# shlib it --> 10-zsh-config.sh
+# and insert: setopt INTERACTIVE_COMMENTS
+# ⚠️ This is important so that copy/paste works properly, without it the comment symbol '#' is not allowed
+```
 
 #### Shlib System
 

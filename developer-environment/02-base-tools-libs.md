@@ -1,46 +1,39 @@
 ### 1.2 🚀 Base Tools, Libs & Co.
 
 ```shell
-# home, sweet home
-mkdir -p ~/labor/tmp ~/gits ~/.shlib/exports ~/.shlib/shlibs
-
-# use nala instead of apt
-sudo apt update && sudo apt install -y nala
-sudo nala update && sudo nala upgrade
-
-# Install and switch to zsh
-sudo nala install -y zsh && chsh -s $(which zsh)
-# ⚠️ A full re-login (logout/login) is required so that login shells pick up zsh.
-# 'exec zsh' only replaces the current interactive shell, not the login session.
-# shlib it --> 10-zsh-config.sh
-# and insert: setopt INTERACTIVE_COMMENTS
-# ⚠️ This is important so that copy/paste works properly, without it the comment symbol '#' is not allowed
-
 # Core System Essentials
 sudo nala install -y \
   ca-certificates curl wget gnupg gpg software-properties-common \
   openssh-server fail2ban unattended-upgrades util-linux-extra net-tools \
   snapd 7zip xz-utils aria2 sqlite3
+```
 
+```shell
 # CLI Tools & Productivity
 sudo nala install -y \
   git gh tmux btop htop iotop nvtop fastfetch tree \
   ripgrep fzf zoxide jq tealdeer shellcheck shfmt
+```
 
+```shell
 # Build Essentials & Dev Libraries
 sudo nala install -y \
   build-essential cmake make pkg-config libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev libncurses-dev libffi-dev liblzma-dev \
   libxml2-dev libxmlsec1-dev tk-dev libyaml-dev libfuse2t64 \
   python3-openssl python3-venv python3-pip
+```
 
+```shell
 # Multimedia & Image Processing
 sudo nala install -y \
   ffmpeg imagemagick poppler-utils \
   portaudio19-dev libasound2-dev libsndfile1-dev \
   libavcodec-dev libavformat-dev libswscale-dev \
   libjpeg-dev libpng-dev libtiff-dev
+```
 
+```shell
 # Ubuntu Desktop / GUI (OPTIONAL — skip on headless systems like a Raspberry Pi or server)
 # Everything in this block assumes a GNOME desktop session.
 sudo nala install -y \
@@ -55,14 +48,18 @@ flatpak install -y flathub io.missioncenter.MissionCenter
 # Snap (avoid, prefer Flatpak)
 sudo systemctl enable --now snapd.socket
 sudo snap refresh
+```
 
+```shell
 # Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # Write to shlib: 15-homebrew.sh
 brew install gcc yazi lazyjournal lazydocker yq fd
 brew install just direnv
+```
 
+```shell
 # optional gnome extensions
 gsettings set org.gnome.shell disable-extension-version-validation true # for new ubuntu's
 # xdg-open https://extensions.gnome.org/extension/1653/tweaks-in-system-menu/
@@ -72,6 +69,9 @@ gsettings set org.gnome.shell disable-extension-version-validation true # for ne
 # optional embellishments
 # Damask wallpaper (nasa api-key: https://api.nasa.gov/)
 # xdg-open https://flathub.org/de/apps/app.drey.Damask
+```
+
+```shell
 
 # Fallout theme for grub
 # EXTRA WARNING
@@ -82,9 +82,11 @@ gsettings set org.gnome.shell disable-extension-version-validation true # for ne
 # The commands below are intentionally commented out. Uncomment ONLY after you have
 # reviewed the downloaded installer and pinned FALLOUT_GRUB_SHA to a known commit.
 # FALLOUT_GRUB_SHA="master"   # pin to a specific commit SHA for reproducibility
-# wget "https://github.com/shvchk/fallout-grub-theme/raw/${FALLOUT_GRUB_SHA}/install.sh" -O /tmp/fallout-grub-install.sh
-# less /tmp/fallout-grub-install.sh   # REVIEW BEFORE EXECUTING
-# bash /tmp/fallout-grub-install.sh
-# sudo nano /etc/default/grub --> change in GRUB_GFXMODE=1920x1080x32,auto
+wget "https://github.com/shvchk/fallout-grub-theme/raw/${FALLOUT_GRUB_SHA}/install.sh" -O /tmp/fallout-grub-install.sh
+less /tmp/fallout-grub-install.sh   # REVIEW BEFORE EXECUTING
+bash /tmp/fallout-grub-install.sh
+sudo nano /etc/default/grub --> change in GRUB_GFXMODE=1920x1080x32,auto
 # --> GRUB_TIMEOUT_STYLE=menu --> GRUB_TIMEOUT=5
+# reload grub
+sudo update-grub
 ```
