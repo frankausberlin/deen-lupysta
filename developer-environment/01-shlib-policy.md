@@ -14,7 +14,7 @@ In order to apply the shlib system directly to the zshell, it is installed at th
 
 ```shell
 # Install and switch to zsh
-sudo nala install -y zsh && chsh -s $(which zsh)
+sudo nala install -y zsh && chsh -s $(which zsh) # Select option 2: Recommended settings
 # ⚠️ A full re-login (logout/login) is required so that login shells pick up zsh.
 # 'exec zsh' only replaces the current interactive shell, not the login session.
 # shlib it --> 10-zsh-config.sh
