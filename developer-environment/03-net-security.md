@@ -103,7 +103,7 @@ Install `ufw-docker` to fix the bypass:
 ```shell
 # Download ufw-docker script
 sudo wget -O /usr/local/bin/ufw-docker \
-  [https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker](https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker)
+  https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker
 sudo chmod +x /usr/local/bin/ufw-docker
 
 # Install and apply (LC_ALL=C forces English output so the script recognizes the UFW "active" status)
