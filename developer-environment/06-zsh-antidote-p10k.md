@@ -7,16 +7,8 @@ Complete terminal setup: ZSH as shell, Antidote as plugin manager, Powerlevel10k
 #### 1. ZSH
 
 ```shell
-# Install and switch to zsh
-sudo nala install -y zsh && chsh -s $(which zsh)
-```
-
-A full re-login (logout/login) is required so that login shells pick up zsh. `exec zsh` only replaces the current interactive shell, not the login session.
-
-Add to `~/.shlib/shlibs/10-zsh-config.sh`:
-
-```shell
-setopt INTERACTIVE_COMMENTS
+# The installation and activation of Zsh were completed in Section 1.1.
+# sudo nala install -y zsh && chsh -s $(which zsh)
 ```
 
 #### 2. Fonts (MesloLGS NF)
