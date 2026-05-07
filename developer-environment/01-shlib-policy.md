@@ -54,6 +54,9 @@ git clone https://github.com/frankausberlin/deen-lupysta
 # The Deen Lupysta shlib: path and export tools, aliases, cw
 ln -s $HOME/gits/deen-lupysta/scripts/deenlupysta.sh $HOME/.shlib/shlibs/10-deenlupysta.sh
 
+# turn the current .zshrc into an shlib file
+mv ~/.zshrc ~/.shlib/shlibs/15-original-zshrc.sh
+
 # Optional: I often open the entire .shlib folder in vsocde. For my convenience I created these links
 ln -s ~/.zshrc ~/.shlib/.zshrc
 # Your quickly editable favorites
