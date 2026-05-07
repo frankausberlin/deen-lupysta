@@ -14,7 +14,7 @@ sudo nala update && sudo nala upgrade
 # Install and switch to zsh
 sudo nala install -y zsh && chsh -s $(which zsh) # Select option 2: Recommended settings
 # ⚠️ A full re-login (logout/login) is required so that login shells pick up zsh.
-# ⚠️ Insert: 'setopt INTERACTIVE_COMMENTS' 
+# ⚠️ Insert after relogin and genearation of the .zshrc: 'setopt INTERACTIVE_COMMENTS' 
 # This is important so that copy/paste works properly, without it the comment symbol '#' is not allowed
 ```
 
