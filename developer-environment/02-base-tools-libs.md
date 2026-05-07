@@ -59,7 +59,10 @@ sudo snap refresh
 # Homebrew - that takes a little while
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # Write to shlib: 15-homebrew.sh
+echo '[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' > 20-homebrew.sh'
+# install brew stuff
 brew install gcc yazi lazyjournal lazydocker yq fd
 brew install just direnv
 ```
