@@ -47,10 +47,9 @@ sudo ufw limit ssh       # SSH with brute-force protection
 sudo ufw --force enable
 ```
 
-#### fail2ban
+#### fail2ban (/etc/fail2ban/jail.local)
 
 ```ini
-# /etc/fail2ban/jail.local
 [sshd]
 enabled = true
 backend = systemd
