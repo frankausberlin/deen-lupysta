@@ -45,7 +45,7 @@ The numbering is freely selectable. However, it is recommended to stick to the n
 mkdir -p ~/.shlib/exports ~/.shilb/shlibs
 
 # To be on the safe side, exclude the contents of the export folder from Github
-echo  "# Ignore everything in this directory\n*\n# Except this file\n\!.gitignore" > ~/.shlib/exports
+echo  "# Ignore everything in this directory\n*\n# Except this file\n\!.gitignore" > ~/.shlib/exports/.gitignore
 
 # For Luxus Python Stack, replace path and number with yours
 ln -s ~/gits/deen-lupysta/luxuspythonstack.sh ~/.shlib/shlibs/80-luxuspythonstack.sh
