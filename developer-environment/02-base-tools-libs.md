@@ -1,6 +1,11 @@
 ### 1.2 🚀 Base Tools, Libs & Co.
 
 ```shell
+# Home, sweet home
+mkdir -p ~/bin ~/gits ~/labor/tmp
+```
+
+```shell
 # Core System Essentials
 sudo nala install -y \
   ca-certificates curl wget gnupg gpg software-properties-common \

@@ -60,7 +60,7 @@ git pull
 For a minimal setup, source the repository file directly in your `.zshrc` or `.bashrc`:
 
 ```shell
-source /path/to/deen-lupysta/luxuspythonstack.sh
+source /path/to/deen-lupysta/scripts/luxuspythonstack.sh
 ```
 
 ### shlib Integration
@@ -68,7 +68,7 @@ source /path/to/deen-lupysta/luxuspythonstack.sh
 If you use the [shlib system](developer-environment/01-shlib-policy.md), create a symlink in your shlib directory. Choose the two-digit prefix yourself according to your load order; `80` is only an example.
 
 ```shell
-ln -s /path/to/deen-lupysta/luxuspythonstack.sh \
+ln -s /path/to/deen-lupysta/scripts/scripts/scripts/luxuspythonstack.sh \
       /path/to/.shlib/shlibs/80-luxuspythonstack.sh
 ```
 

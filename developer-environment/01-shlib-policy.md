@@ -1,4 +1,4 @@
-### 1.1 🧱 Shlib System, nala, zsh-1 & Install-Policy
+### 1.1 🧱 Shlib System, nala, zsh-1 & Policies
 
 #### Nala
 
@@ -48,7 +48,7 @@ mkdir -p ~/.shlib/exports ~/.shilb/shlibs
 echo  "# Ignore everything in this directory\n*\n# Except this file\n\!.gitignore" > ~/.shlib/exports/.gitignore
 
 # For Luxus Python Stack, replace path and number with yours
-ln -s ~/gits/deen-lupysta/luxuspythonstack.sh ~/.shlib/shlibs/80-luxuspythonstack.sh
+ln -s ~/gits/deen-lupysta/scripts/scripts/luxuspythonstack.sh ~/.shlib/shlibs/80-luxuspythonstack.sh
 
 # Optional: I often open the entire .shlib folder in vsocde. For my convenience I created these links
 ln -s ~/.zshrc ~/.shlib/.zshrc
@@ -151,3 +151,10 @@ Simple guideline on how to install what.
 | Java | `sdk` (SDKMAN) | JDK versions + JVM tools |
 | Ruby | `gem` / `bundle` | CLI tools + project deps |
 
+#### Working Folder Policy
+
+* Use `cw` to switch to the current working directory
+* use `cw .` to make the current directory the working directory.
+
+⚠️ * These policies are recommendations. You are of course free to customize them. <br>
+It is only recommended that you set a system once and then stick to it.

@@ -10,8 +10,9 @@ _LUXUS_REAL_SOURCE="$(readlink -f "$_LUXUS_SOURCE" 2>/dev/null || printf '%s\n' 
 _LUXUS_SCRIPT_DIR="$(cd "$(dirname "$_LUXUS_REAL_SOURCE")" && pwd)"
 unset _LUXUS_SOURCE _LUXUS_REAL_SOURCE
 
-# cw - change to working folder or set working folder
-cw() { [[ "$1" == "." ]] && echo "$PWD" > "$HOME/.config/current_working_folder" || cd "$(cat "$HOME/.config/current_working_folder")"; }
+
+
+
 
 # ─── pyinit ───────────────────────────────────────────────────────────────────
 # Luxury Python Project Initializer — initialize a uv-based Python project.
@@ -717,6 +718,10 @@ JUST_DOCS_EOF
 
     unset -f _write_if_missing
 }
+
+
+
+
 
 # ─── jupyter-launcher ─────────────────────────────────────────────────────────
 # Canonical Jupyter Lab launcher for the Luxurious Python Stack.

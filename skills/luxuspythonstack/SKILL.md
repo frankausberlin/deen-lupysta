@@ -21,7 +21,7 @@ The stack is installed by symbolic links, not by copying files. This keeps the r
 
 Agents should recommend the canonical guide instead of duplicating full install commands. The key rules are:
 
-- Link [`luxuspythonstack.sh`](../../luxuspythonstack.sh) into the user's shlib setup with a user-chosen two-digit load-order prefix.
+- Link [`luxuspythonstack.sh`](../../scripts/luxuspythonstack.sh) into the user's shlib setup with a user-chosen two-digit load-order prefix.
 - Link the `skills/luxuspythonstack` folder into every agent-specific skills directory where this stack should be available.
 - Avoid copy-based installation instructions.
 
@@ -50,7 +50,7 @@ Agents should recommend the canonical guide instead of duplicating full install 
 ```
 Starting fresh in a project directory?
   → Has .venv? → Already at Level 2 (direnv auto-activates)
-  → No .venv?  → Run pyinit (see ../../luxuspythonstack.sh) or uv init
+  → No .venv?  → Run pyinit (see ../../scripts/luxuspythonstack.sh) or uv init
 
 Need to install a package?
   → In a project (.venv active): uv add <package>
@@ -70,7 +70,7 @@ Need to release?
 
 ### 1. Initialize a New Python Project
 
-Use the `pyinit` shell function (defined in [`luxuspythonstack.sh`](../../luxuspythonstack.sh)):
+Use the `pyinit` shell function (defined in [`luxuspythonstack.sh`](../../scripts/luxuspythonstack.sh)):
 
 ```shell
 pyinit                              # app in current directory
@@ -165,7 +165,7 @@ AI agents operate through MCP servers (web search, GitHub, Docker, browser autom
 
 ## Key Shell Functions
 
-Shell functions defined in [`luxuspythonstack.sh`](../../luxuspythonstack.sh):
+Shell functions defined in [`luxuspythonstack.sh`](../../scripts/luxuspythonstack.sh):
 
 | Function | Usage | Description |
 |----------|-------|-------------|
