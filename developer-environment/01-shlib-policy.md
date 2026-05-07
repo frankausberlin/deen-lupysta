@@ -42,13 +42,13 @@ The numbering is freely selectable. However, it is recommended to stick to the n
 
 ```shell
 # create folders
-mkdir -p ~/.shlib/exports ~/.shilb/shlibs
+mkdir -p ~/.shlib/exports ~/.shlib/shlibs ~/gits
 
 # To be on the safe side, exclude the contents of the export folder from Github
 echo  "# Ignore everything in this directory\n*\n# Except this file\n\!.gitignore" > ~/.shlib/exports/.gitignore
 
 # clone Deen Lupysta
-sudo nala install gh && mkdir -p ~/gits && cd ~/gits
+sudo nala install git && cd ~/gits
 git clone https://github.com/frankausberlin/deen-lupysta
 
 # The Deen Lupysta shlib: path and export tools, aliases, cw
