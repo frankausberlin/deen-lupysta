@@ -56,6 +56,7 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 1.4 📦️ [Docker & CUDA Toolkit](developer-environment/04-docker-cuda.md)
 ### 1.5 🌐 [Git, Code & SearXng](developer-environment/05-git-code-searxng.md)
 ### 1.6 🧿 [ZSH, Antidote & p10k](developer-environment/06-zsh-antidote-p10k.md)
+### 1.7 📋 [deenlupysta.sh](scripts/deenlupysta.sh)
 
 ## 2. 🗺️ Ecosystems
 ### 2.1 🟢 [Node.js (fnm + pnpm)](developer-environment/07-nodejs.md)
@@ -82,5 +83,5 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 4.2 🤖 [Agent Guide Blueprint](skills/luxuspythonstack/references/blueprint-AGENTS.md)
 ### 4.3 👷 [Daily Commands Reference](skills/luxuspythonstack/references/daily-commands.md)
 ### 4.4 🏗️ [Skill - *luxuspythonstack/*](skills/luxuspythonstack/SKILL.md)
-### 4.5 🔧 [Scripts - *luxuspythonstack.sh*](luxuspythonstack.sh)
+### 4.5 🔧 [Scripts - *luxuspythonstack.sh*](scripts/luxuspythonstack.sh)
 
