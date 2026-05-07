@@ -2,7 +2,7 @@
 
 ```shell
 # Home, sweet home
-mkdir -p ~/bin ~/gits ~/labor/tmp
+mkdir -p ~/bin ~/labor/tmp
 ```
 
 ```shell

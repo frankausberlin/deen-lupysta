@@ -47,14 +47,19 @@ mkdir -p ~/.shlib/exports ~/.shilb/shlibs
 # To be on the safe side, exclude the contents of the export folder from Github
 echo  "# Ignore everything in this directory\n*\n# Except this file\n\!.gitignore" > ~/.shlib/exports/.gitignore
 
-# For Luxus Python Stack, replace path and number with yours
-ln -s ~/gits/deen-lupysta/scripts/scripts/luxuspythonstack.sh ~/.shlib/shlibs/80-luxuspythonstack.sh
+# clone Deen Lupysta
+sudo nala install gh && mkdir -p ~/gits && cd ~/gits
+git clone https://github.com/frankausberlin/deen-lupysta
+
+# The Deen Lupysta shlib: path and export tools, aliases, cw
+ln -s ~/gits/deen-lupysta/scripts/scripts/deenlupysta.sh ~/.shlib/shlibs/10-deenlupysta.sh
 
 # Optional: I often open the entire .shlib folder in vsocde. For my convenience I created these links
 ln -s ~/.zshrc ~/.shlib/.zshrc
-ln -s ~/.p10k.zsh ~/.shlib/.p10k.zsh
 # Your quickly editable favorites
 ```
+
+
 
 * **Directory Structure**
 ```

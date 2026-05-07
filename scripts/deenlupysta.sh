@@ -112,9 +112,6 @@ exportadd() {
     esac
 }
 
-# set private bin path
-exportadd /home/frank/bin
-
 # Navigation
 alias l='cd ~/labor' # overwrites system l-alias, uncomment if want
 alias g='cd ~/gits'
@@ -135,3 +132,7 @@ alias losc="cw && suu && code ."
 
 # cw - change to working folder or set working folder
 cw() { [[ "$1" == "." ]] && echo "$PWD" > "$HOME/.config/current_working_folder" || cd "$(cat "$HOME/.config/current_working_folder")"; }
+
+# set private bin path
+exportadd ~/bin
+
