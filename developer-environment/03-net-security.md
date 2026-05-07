@@ -47,7 +47,7 @@ sudo ufw limit ssh       # SSH with brute-force protection
 sudo ufw --force enable
 ```
 
-#### fail2ban (/etc/fail2ban/jail.local)
+#### fail2ban (`/etc/fail2ban/jail.local`)
 
 ```ini
 [sshd]
