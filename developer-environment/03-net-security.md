@@ -107,7 +107,7 @@ sudo update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
 
 # 2. Download ufw-docker script
 sudo wget -O /usr/local/bin/ufw-docker \
-  [https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker](https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker)
+  https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker
 sudo chmod +x /usr/local/bin/ufw-docker
 
 # 3. Install and apply
