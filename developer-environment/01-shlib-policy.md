@@ -1,24 +1,5 @@
 ### 1.1 🧱 Shlib System / Package Manager Policy
 
-#### Package Manager Policy
-
-Simple guideline on how to install what.
-
-| Layer | Tool | Scope |
-|-------|------|-------|
-| OS / System | `apt` / `nala` | Core packages, system daemons, C-libraries, compilers |
-| GUI Apps | `flatpak` | Desktop applications (sandboxed) |
-| Modern CLI | `brew` | CLI tools + TUIs not in apt |
-| Python Global | `uv tool` | Python CLI utilities (ruff, basedpyright); `pipx` only as fallback if `uv` is unavailable |
-| Python Project | `uv add` / `uv sync` | ALL project dependencies |
-| Python Data Science | `mamba install` + `uv pip install` | Heavy C-extensions, CUDA, ML frameworks |
-| Node | `pnpm` | All JS/TS dependencies |
-| Rust | `cargo` | Rust binaries and project deps |
-| Go | `go install` | Go-based CLI tools |
-| Java | `sdk` (SDKMAN) | JDK versions + JVM tools |
-| Ruby | `gem` / `bundle` | CLI tools + project deps |
-
-
 #### Shlib System
 
 The Shlib (Shell Library) system keeps the `.zshrc` file clean and manageable by moving shell configuration into sorted, versioned files.
@@ -64,7 +45,7 @@ ln -s ~/.p10k.zsh ~/.shlib/.p10k.zsh
 │   ├── 05-aliases.sh
 │   ├── 10-zsh-config.sh
 │   ├── ...
-│   └── 80-luxuspythonstack.sh -> /path/to/deen-lupysta/luxuspythonstack.sh
+│   └── 80-luxuspythonstack.sh (link --> /path/to/deen-lupysta/luxuspythonstack.sh)
 ├── README.md
 ├── .zshrc (link --> ~/.zshrc)
 └── .p10k.zsh (link --> ~/.p10k.zsh)
@@ -129,3 +110,22 @@ if command -v direnv > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
 ```
+
+#### Package Manager Policy
+
+Simple guideline on how to install what.
+
+| Layer | Tool | Scope |
+|-------|------|-------|
+| OS / System | `apt` / `nala` | Core packages, system daemons, C-libraries, compilers |
+| GUI Apps | `flatpak` | Desktop applications (sandboxed) |
+| Modern CLI | `brew` | CLI tools + TUIs not in apt |
+| Python Global | `uv tool` | Python CLI utilities (ruff, basedpyright); `pipx` only as fallback if `uv` is unavailable |
+| Python Project | `uv add` / `uv sync` | ALL project dependencies |
+| Python Data Science | `mamba install` + `uv pip install` | Heavy C-extensions, CUDA, ML frameworks |
+| Node | `pnpm` | All JS/TS dependencies |
+| Rust | `cargo` | Rust binaries and project deps |
+| Go | `go install` | Go-based CLI tools |
+| Java | `sdk` (SDKMAN) | JDK versions + JVM tools |
+| Ruby | `gem` / `bundle` | CLI tools + project deps |
+
