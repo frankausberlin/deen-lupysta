@@ -10,21 +10,24 @@ sudo nala update && sudo nala upgrade
 
 #### Zshell Part 1
 
-In order to apply the shlib system directly to the zshell, it is installed at the very beginning of the installation process (.zshrc). The actual setup takes place in point 1.6 together with antipode and p10k.
-
 ```shell
 # Install and switch to zsh
 sudo nala install -y zsh && chsh -s $(which zsh) # Select option 2: Recommended settings
 # ⚠️ A full re-login (logout/login) is required so that login shells pick up zsh.
-# 'exec zsh' only replaces the current interactive shell, not the login session.
-# shlib it --> 10-zsh-config.sh
-# and insert: setopt INTERACTIVE_COMMENTS
-# ⚠️ This is important so that copy/paste works properly, without it the comment symbol '#' is not allowed
+# ⚠️ Insert: 'setopt INTERACTIVE_COMMENTS' 
+# This is important so that copy/paste works properly, without it the comment symbol '#' is not allowed
 ```
+
+The early installation and activation of zsh serves to use the shlib system from the very beginning and throughout the entire setup process.
+* Order within the `.zshrc` right from the start
+* A clearer overview of what has been inserted—and by whom
+* Direct access to useful tools and aliases from `deenlupysta.sh`
+
+⚠️ The actual setup of zsh takes place in point 1.6 together with antipode and p10k.
 
 #### Shlib System
 
-The Shlib (Shell Library) system keeps the `.zshrc` file clean and manageable by moving shell configuration into sorted, versioned files.
+The Shlib (Shell Library) system keeps the `.zshrc` file clean and manageable by moving shell configuration into sorted, versioned files. 
 
 * **Architecture**
 
@@ -52,67 +55,21 @@ sudo nala install git && cd ~/gits
 git clone https://github.com/frankausberlin/deen-lupysta
 
 # The Deen Lupysta shlib: path and export tools, aliases, cw
-ln -s $HOME/gits/deen-lupysta/scripts/deenlupysta.sh $HOME/.shlib/shlibs/10-deenlupysta.sh
+ln -s ~/gits/deen-lupysta/scripts/deenlupysta.sh ~/.shlib/shlibs/10-deenlupysta.sh
 
-# turn the current .zshrc into an shlib file
+# We'll use this text here as the README.
+ln -s ~/gits/deen-lupysta/developer-environment/01-shlib-policy.md ~/.shlib/README.md
+
+# turn the current .zshrc into an shlib file (ensure that "setopt INTERACTIVE_COMMENTS" is included).
 mv ~/.zshrc ~/.shlib/shlibs/15-original-zshrc.sh
 
 # Optional: I often open the entire .shlib folder in vsocde. For my convenience I created these links
 ln -s ~/.zshrc ~/.shlib/.zshrc
-# Your quickly editable favorites
 ```
-
-
-
-* **Directory Structure**
-```
-~/.shlib/
-├── exports/          # Secrets as env vars
-│   ├── GITHUB_TOKEN
-│   ├── PYPI_TOKEN
-│   └── ...
-├── shlibs/           # Sorted shell scripts
-│   ├── 05-aliases.sh
-│   ├── 10-zsh-config.sh
-│   ├── ...
-│   └── 80-luxuspythonstack.sh (link --> /path/to/deen-lupysta/luxuspythonstack.sh)
-├── README.md
-├── .zshrc (link --> ~/.zshrc)
-└── .p10k.zsh (link --> ~/.p10k.zsh)
-```
-
-* **Lock Mechanism**
-
-After cleaning `.zshrc` and moving configuration to shlib files, create a lock:
-
-```shell
-cp ~/.zshrc ~/.zshrc.lock
-```
-
-On each shell start, the lock snippet compares `.zshrc` against `.zshrc.lock`. If different, a diff is shown — this catches installers modifying `.zshrc` without permission.
-
-To update the lock after intentional changes: `cp ~/.zshrc ~/.zshrc.lock`.
-
-Optional convenience alias — add to `~/.shlib/shlibs/05-aliases.sh`:
-
-```shell
-alias shliblock='cp ~/.zshrc ~/.zshrc.lock && echo "✔ shlib lock updated"'
-```
-
-* **Exports System**
-
-Files in `~/.shlib/exports/` are exported as environment variables on shell start. The filename becomes the variable name, the file content (trimmed) becomes the value.
-
-```shell
-# echo "ghp_xxx" > ~/.shlib/exports/GITHUB_TOKEN
-# Result: export GITHUB_TOKEN="ghp_xxx"
-```
-
-All export files should be `chmod 600` to prevent other users from reading secrets.
-
 
 * **The exact content in .zshrc with the three snippets in the middle.**
 
+Insert in .zshrc (`nano ~/.zshrc`)
 ```shell
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -141,6 +98,43 @@ if command -v direnv > /dev/null; then
 fi
 ```
 
+* **Lock Mechanism**
+
+After cleaning `.zshrc` and moving configuration to shlib files, create a lock:
+
+```shell
+cp ~/.zshrc ~/.zshrc.lock # or use the alias 'shliblock' from deenlupysta.sh after 'exec zsh'
+```
+
+* **Exports System**
+
+Files in `~/.shlib/exports/` are exported as environment variables on shell start. The filename becomes the variable name, the file content (trimmed) becomes the value.
+
+```shell
+# echo "ghp_xxx" > ~/.shlib/exports/GITHUB_TOKEN
+# Result: export GITHUB_TOKEN="ghp_xxx"
+```
+
+All export files should be `chmod 600` to prevent other users from reading secrets.
+
+
+* **Directory Structure**
+```
+~/.shlib/
+├── exports/          # Secrets as env vars
+│   ├── GITHUB_TOKEN
+│   ├── PYPI_TOKEN
+│   └── ...
+├── shlibs/           # Sorted shell scripts
+│   ├── 10-deenlupysta.sh
+│   ├── 15-original-zshrc.sh
+│   ├── ...
+│   ├── <nr>-<name> (or as link: ln -s <path-to-script> ~/.shlib/slibs/<nr>-<name>)
+│   └── ...
+├── README.md (link --> ~/gits/deen-lupysta/developer-environment/01-shlib-policy.md)
+└── .zshrc (link --> ~/.zshrc)
+```
+
 #### Package Manager Policy
 
 Simple guideline on how to install what.
@@ -164,5 +158,5 @@ Simple guideline on how to install what.
 * Use `cw` to switch to the current working directory
 * use `cw .` to make the current directory the working directory.
 
-⚠️ * These policies are recommendations. You are of course free to customize them. <br>
-It is only recommended that you set a system once and then stick to it.
+⚠️ **These policies are recommendations. You are of course free to customize them. <br>
+It is only recommended that you set a system once and then stick to it.**
