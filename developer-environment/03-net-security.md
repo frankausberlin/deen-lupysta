@@ -92,6 +92,8 @@ sudo systemctl restart fail2ban
 
 #### Docker + UFW
 
+Do this after install docker (chapter 1.4).
+
 Docker manipulates iptables directly and bypasses UFW rules. Container ports published with `-p` may be reachable from outside even with UFW enabled. Install `ufw-docker` to fix:
 
 ```shell

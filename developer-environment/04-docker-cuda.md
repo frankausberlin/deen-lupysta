@@ -31,7 +31,7 @@ sudo nala install docker-ce docker-ce-cli containerd.io docker-buildx-plugin doc
 
 # Add user to docker group and reboot
 sudo usermod -aG docker $USER
-sudo reboot
+sudo reboot # ⚠️ after reboot, you can do the ufw patch
 ```
 
 Verify: `docker run --rm hello-world`
@@ -60,8 +60,7 @@ jq '. + {"log-driver":"json-file","log-opts":{"max-size":"10m","max-file":"3"}}'
 
 sudo systemctl restart docker
 ```
-
-Verify: `sudo docker run --rm --gpus all ubuntu nvidia-smi`
+Verify: `docker run --rm --gpus all ubuntu nvidia-smi`
 
 #### Portainer (optional)
 
