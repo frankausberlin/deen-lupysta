@@ -113,7 +113,7 @@ sudo chmod +x /usr/local/bin/ufw-docker
 # 3. Install and apply
 sudo ufw-docker install
 sudo systemctl restart ufw
-
+```
 
 #### Security Best Practices
 
