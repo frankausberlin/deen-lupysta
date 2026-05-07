@@ -63,7 +63,7 @@ sudo snap refresh
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Write to shlib: 20-homebrew.sh
-echo '[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' > 20-homebrew.sh
+echo '[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' > ~/.shlib/shlibs/20-homebrew.sh
 
 # install brew stuff
 brew install gcc yazi lazyjournal lazydocker yq fd
@@ -83,21 +83,23 @@ gsettings set org.gnome.shell disable-extension-version-validation true # for ne
 ```
 
 ```shell
-
 # Fallout theme for grub
-# EXTRA WARNING
-#   This script runs as root, fetches code from a third-party GitHub repo and writes directly
-#   into /etc/default/grub. Inspect the script BEFORE executing it, and pin to a known commit
-#   SHA instead of `master` whenever possible. Skip this step entirely if you are unsure.
-# sudo nano /etc/default/grub -> GRUB_TIMEOUT_STYLE=menu, GRUB_TIMEOUT=5, GRUB_GFXMODE=1920x1080,auto
-# The commands below are intentionally commented out. Uncomment ONLY after you have
-# reviewed the downloaded installer and pinned FALLOUT_GRUB_SHA to a known commit.
-# FALLOUT_GRUB_SHA="master"   # pin to a specific commit SHA for reproducibility
-wget "https://github.com/shvchk/fallout-grub-theme/raw/${FALLOUT_GRUB_SHA}/install.sh" -O /tmp/fallout-grub-install.sh
-less /tmp/fallout-grub-install.sh   # REVIEW BEFORE EXECUTING
+
+# download theme installer
+wget -P /tmp https://github.com/shvchk/fallout-grub-theme/raw/master/install.sh
+
+# review
+less /tmp/fallout-grub-install.sh 
+
+# install
 bash /tmp/fallout-grub-install.sh
-sudo nano /etc/default/grub --> change in GRUB_GFXMODE=1920x1080x32,auto
-# --> GRUB_TIMEOUT_STYLE=menu --> GRUB_TIMEOUT=5
+
+# change grub config
+sudo nano /etc/default/grub 
+# --> GRUB_GFXMODE=1920x1080x32,auto
+# --> GRUB_TIMEOUT_STYLE=menu 
+# --> GRUB_TIMEOUT=5
+
 # reload grub
 sudo update-grub
 ```

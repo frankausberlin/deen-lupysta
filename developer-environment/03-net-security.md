@@ -13,12 +13,28 @@ sudo systemctl enable --now ssh
 * Client Side — Generate Key & Copy
 
 ```shell
+# generate client key
 ssh-keygen -t ed25519
+
+# if it is permitted
 ssh-copy-id user@host
+
+# if it is not permitted
+# 1. On the client: copy ~/.ssh/id_ed25519.pub via mail, colab, usb stick or other way
+# 2. On the server:
+# if not exists: mkdir -p ~/.ssh && chmod 700 ~/.ssh 
+# echo "YOUR_COPYED_KEY" >> ~/.ssh/authorized_keys
+# chmod 600 ~/.ssh/authorized_keys
+
 # For Termux or different ports:
 ssh-copy-id -p 8022 user@host
+
 # If "Too many authentication failures":
 ssh-copy-id -o "IdentitiesOnly=yes" -i ~/.ssh/id_ed25519.pub user@host
+
+# if you have reinstalled your system or delete the client key, remove outdated host entries
+# ssh-keygen -R 'host_or_ip'
+# ssh-keygen -R '[host_or_ip]:8022'
 ```
 
 * SSH Hardening (`/etc/ssh/sshd_config.d/99-custom-hardening.conf`)
