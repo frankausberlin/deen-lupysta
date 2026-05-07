@@ -1,5 +1,9 @@
 ### Github, VSCode, SearXNG
 
+* manipulated files: .gitignore_global
+* created folders: ~/.searxng/, ~/.searxng/config/, ~/.searxng/data/
+* created files: settings.yml
+
 #### Github:
 ```shell
 # Create global .gitignore (enter your agent folders, .env, venv etc. here)

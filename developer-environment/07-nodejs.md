@@ -6,8 +6,8 @@ We use **fnm** (Fast Node Manager) instead of nvm (written in Rust, no shell slo
 # Install fnm (without shell modifications)
 curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
 
-# Integrate into shlib (30-nodejs-config.sh):
-cat << 'EOF' >> ~/.shlib/shlibs/30-nodejs-config.sh
+# Integrate into shlib (35-nodejs-config.sh):
+cat << 'EOF' >> ~/.shlib/shlibs/35-nodejs-config.sh
 
 # --- Node / fnm ---
 export FNM_PATH="$HOME/.local/share/fnm"

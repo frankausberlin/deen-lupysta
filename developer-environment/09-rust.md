@@ -7,7 +7,7 @@ We use **rustup**, the official toolchain installer, to manage Rust completely c
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Make Rust environment available for ZSH via Shlib (not .zshrc!)
-cat << 'EOF' > ~/.shlib/shlibs/40-rust.sh
+cat << 'EOF' > ~/.shlib/shlibs/45-rust.sh
 # --- Rust / Cargo ---
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 EOF

@@ -1,5 +1,7 @@
 ### Network & Security
 
+* generated files: id_ed25519.pub, id_ed25519, 99-custom-hardening.conf, jail.local
+
 #### SSH Setup
 
 * Server Side — Enable Service

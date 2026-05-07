@@ -1,5 +1,7 @@
 ### Docker & CUDA Toolkit
 
+* manipulated files: docker.sources, daemon.json
+
 #### Docker Installation (Ubuntu)
 
 Never install `docker-desktop` under Linux — no CUDA support. Install Docker Engine directly.

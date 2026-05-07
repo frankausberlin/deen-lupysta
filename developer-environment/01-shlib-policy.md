@@ -1,5 +1,9 @@
 ### 1.1 🧱 Shlib System, nala, zsh-1 & Policies
 
+* generated folders:  ~/.shlib, ~/.shlib/exports, ~/.shlib/shlibs, ~/gits
+* generated shlibs: 10-deenlupysta.sh (link), 15-original-zshrc.sh
+* generated files: .zshrc (shlib'ed version), .zshrc (link), README.md (link), .zshrc.lock
+
 #### Nala
 
 ```shell
