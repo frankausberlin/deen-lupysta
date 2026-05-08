@@ -36,6 +36,9 @@ brew install llmfit
 ```shell
 # Install latest (official script)
 curl -fsSL https://opencode.ai/install | bash
+
+# remove path insert from .zshrc and shlib it
+cp ~/.zshrc.lock ~/.zshrc && echo "export PATH=/home/frank/.opencode/bin:$PATH" > ~/.shlib/shlibs/70-opencode.sh
 ```
 
 * Claude
