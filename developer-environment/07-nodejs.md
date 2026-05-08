@@ -3,11 +3,11 @@
 We use **fnm** (Fast Node Manager) instead of nvm (written in Rust, no shell slowdown). As package manager we use **pnpm** (symlink system saves disk space).
 
 ```shell
-# Install fnm (without shell modifications)
+# 1. Install fnm (without shell modifications)
 curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
 
-# Integrate into shlib (35-nodejs-config.sh):
-cat << 'EOF' >> ~/.shlib/shlibs/35-nodejs-config.sh
+# 2. write shlib
+cat << 'EOF' > ~/.shlib/shlibs/35-nodejs-config.sh
 
 # --- Node / fnm ---
 export FNM_PATH="$HOME/.local/share/fnm"
@@ -18,26 +18,33 @@ fi
 
 # --- pnpm ---
 export PNPM_HOME="$HOME/.local/share/pnpm"
+
+# PNPM_HOME
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
+
+# PNPM_HOME/bin (pnpm v10+)
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
 EOF
 
-# Reload ZSH so that fnm is available
+# 3. reload
 exec zsh
 
-# Install Node LTS and set as default
+# 4. Install Node LTS and set as default
 fnm install --lts && fnm use lts-latest && fnm default lts-latest
 
-# Enable Corepack (enables all shims including pnpm)
+# 5. Enable Corepack (enables all shims including pnpm)
 corepack enable
 
-# Install global tools
+# 6. Install global tools
 pnpm add -g @kilocode/cli
-pnpm approve-builds -g
 pnpm add -g pm2
 
-# Set up PM2 as a systemd service
+# 7. Set up PM2 as a systemd service
 pm2 startup systemd
 ```

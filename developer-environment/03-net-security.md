@@ -71,8 +71,8 @@ sudo ufw --force enable
 
 #### fail2ban 
 
-* `/etc/fail2ban/jail.local`
 ```shell
+# write /etc/fail2ban/jail.local
 cat <<'EOF' | sudo tee /etc/fail2ban/jail.local > /dev/null
 [sshd]
 enabled = true
@@ -83,10 +83,8 @@ maxretry = 5
 bantime = 3600
 findtime = 600
 EOF
-sudo systemctl restart fail2ban
-```
 
-```shell
+# restart fail2ban
 sudo systemctl restart fail2ban
 ```
 
