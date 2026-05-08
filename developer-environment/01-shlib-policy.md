@@ -45,6 +45,29 @@ Three components in `.zshrc`:
 
 The numbering is freely selectable. However, it is recommended to stick to the numbering from the developer environment and the ai stack.
 
+* **PATH Hygiene**
+
+Never put a copied full `PATH` snapshot into a shlib file, especially not in late files such as `70-*.sh`.
+This breaks tools that create shell-local paths, for example `fnm`, because old `/run/user/<uid>/fnm_multishells/<PID>_<timestamp>/bin` entries disappear after the shell exits.
+A later `export PATH="..."` can overwrite the fresh paths from earlier shlib files and make `node`, `npm`, `corepack`, `npx`, or `pnpm` vanish again.
+
+Also never store backups directly in `~/.shlib/shlibs/` if their filename still starts with two digits.
+The shlib loader sources every matching file, so `35-nodejs-config.sh.bak-*` or `70-opencode.sh.bak-*` will still be executed.
+Put backups outside the sourced directory, for example in `~/.shlib/backups/`.
+
+Only add single directories with guarded additions:
+
+```shell
+# preferred: helper from deenlupysta.sh
+exportadd "$HOME/.local/bin"
+
+# or explicit guarded PATH addition
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+```
+
 * **Setup**
 
 ```shell
@@ -121,6 +144,30 @@ Files in `~/.shlib/exports/` are exported as environment variables on shell star
 
 All export files should be `chmod 600` to prevent other users from reading secrets.
 
+* **Troubleshooting PATH and fnm**
+
+Use this whenever `pnpm`, `node`, `npm`, `npx`, or `corepack` suddenly disappear after they were already installed:
+
+```shell
+# Find stale fnm multishell paths.
+grep -R "fnm_multishells" ~/.shlib/shlibs 2>/dev/null || true
+
+# Find suspicious copied full PATH exports that do not reference the current $PATH.
+grep -R -E '^export PATH=([^"$]|"[^$]*")' ~/.shlib/shlibs 2>/dev/null || true
+
+# Inspect the active PATH as one entry per line.
+printf '%s\n' "$PATH" | tr ':' '\n' | nl -ba
+
+# The persistent fnm default path should exist after the Node setup.
+ls -la ~/.local/share/fnm/aliases/default/bin
+
+# If direct execution works but command lookup fails, a later shlib file overwrote PATH.
+~/.local/share/fnm/aliases/default/bin/node --version
+~/.local/share/fnm/aliases/default/bin/pnpm --version
+```
+
+If a late shlib file contains a copied full `export PATH="..."` without referring to the current `$PATH`, replace it with guarded single-directory additions.
+Do not keep `/run/user/.../fnm_multishells/...` entries anywhere in shlib files.
 
 * **Directory Structure**
 ```

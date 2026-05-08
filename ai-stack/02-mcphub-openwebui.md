@@ -5,10 +5,30 @@
 > ⚠️ **Pitfalls with node over `fnm`**
 > `fnm` activates node per shell via an *ephemeral* directory: `/run/user/<uid>/fnm_multishells/<PID>_<timestamp>/bin`.
 > This path disappears as soon as the shell ends — absolutely **unsuitable** for a systemd service.
-> The script below detects and uses `fnm` the **persistent** symlink instead
+> The script below detects and uses the **persistent** `fnm` symlink instead:
 > `~/.local/share/fnm/aliases/default/bin`, which always points to the current default node version.
+> If `pnpm` is missing here, go back to the Node setup and check for late shlib files that export copied full `PATH` snapshots.
 
 ```shell
+# 0) preflight: Node/pnpm must work before MCPHub installation
+for cmd in node npm corepack pnpm npx; do
+  command -v "$cmd" || { echo "❌ missing: $cmd — fix the Node.js setup first"; return 1 2>/dev/null || exit 1; }
+done
+
+NODE_DEFAULT_BIN=$(readlink -f "$HOME/.local/share/fnm/aliases/default/bin" 2>/dev/null || true)
+[[ -n "$NODE_DEFAULT_BIN" && -x "$NODE_DEFAULT_BIN/node" ]] || { echo "❌ persistent fnm default node path missing"; return 1 2>/dev/null || exit 1; }
+
+if printf '%s\n' "$PATH" | tr ':' '\n' | grep -q 'fnm_multishells'; then
+  echo "⚠️ Current interactive PATH contains fnm_multishells. That is OK for a shell, but never use it in systemd."
+fi
+
+if grep -R "fnm_multishells" ~/.shlib/shlibs 2>/dev/null; then
+  echo "⚠️ Review these shlib lines. Remove stale fnm_multishells paths before continuing."
+fi
+if grep -R -E '^export PATH=([^"$]|"[^$]*")' ~/.shlib/shlibs 2>/dev/null; then
+  echo "⚠️ Review these shlib lines. Remove copied full PATH snapshots before continuing."
+fi
+
 # 1) install mcphub global via pnpm
 pnpm add -g @samanhappy/mcphub
 
@@ -20,14 +40,18 @@ HUGGINGFACE_TOKEN=$HUGGINGFACE_TOKEN
 EOF
 chmod 600 ~/.mcphub.env
 
-# 3. Robust paths: prefer fnm-default, otherwise fallback to system node (prevents /run/user/...)
-NODE_BIN=$(readlink -f "$HOME/.local/share/fnm/aliases/default/bin" 2>/dev/null)
+# 3. Robust paths: prefer persistent fnm default paths, never /run/user/.../fnm_multishells/...
+NODE_BIN="$NODE_DEFAULT_BIN"
 [ -z "$NODE_BIN" ] && NODE_BIN=$(command -v node | grep -v "fnm_multishells" | xargs dirname 2>/dev/null)
-[[ -z "$NODE_BIN" || ! -x "$NODE_BIN/node" ]] && { echo "❌ No node path found"; return 1 2>/dev/null || exit 1; }
-PNPM_BIN="$(pnpm bin -g 2>/dev/null || echo "$HOME/.local/share/pnpm")"
-UVX_BIN="$(dirname "$(command -v uvx 2>/dev/null || echo /home/$USER/.local/bin/uvx)")"
+[[ -z "$NODE_BIN" || ! -x "$NODE_BIN/node" ]] && { echo "❌ No persistent node path found"; return 1 2>/dev/null || exit 1; }
+
+PNPM_BIN="$(pnpm bin -g 2>/dev/null || true)"
+[ -z "$PNPM_BIN" ] && PNPM_BIN="$HOME/.local/share/pnpm/bin"
+[[ "$PNPM_BIN" == *fnm_multishells* ]] && { echo "❌ pnpm global bin is ephemeral: $PNPM_BIN"; return 1 2>/dev/null || exit 1; }
+
+UVX_BIN="$(dirname "$(command -v uvx 2>/dev/null || echo "$HOME/.local/bin/uvx")")"
 MCPHUB_EXEC="$PNPM_BIN/mcphub"
-[ ! -x "$MCPHUB_EXEC" ] && { echo "❌ mcphub not found"; return 1 2>/dev/null || exit 1; }
+[ ! -x "$MCPHUB_EXEC" ] && { echo "❌ mcphub not found: $MCPHUB_EXEC"; return 1 2>/dev/null || exit 1; }
 SERVICE_PATH="$NODE_BIN:$PNPM_BIN:$UVX_BIN:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin"
 
 # 4) write service unit
@@ -153,9 +177,13 @@ claude mcp add --transport http colab-mcp http://localhost:3000/mcp/colab-mcp
 
 #### Open WebUI
 
+Open WebUI is a Python application here and is run through `uvx`, not through `pnpm`.
+The Node/pnpm checks above are still required for MCPHub and for the many `npx`-based MCP servers imported later.
+
 ```shell
-# 1) install open-webui
-pnpm add -g open-webui
+# 1) preflight: uvx must be available
+command -v uvx || { echo "❌ missing uvx — finish the Python setup first"; return 1 2>/dev/null || exit 1; }
+UVX_EXEC="$(command -v uvx)"
 
 # 2) write service unit
 sudo tee /etc/systemd/system/open-webui.service > /dev/null <<EOF
@@ -168,7 +196,7 @@ Type=simple
 User=$USER
 Environment="PATH=$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin"
 Environment="DATA_DIR=$HOME/.open-webui"
-ExecStart=$HOME/.local/bin/uvx --python 3.11 open-webui@latest serve --port 8081
+ExecStart=$UVX_EXEC --python 3.11 open-webui@latest serve --port 8081
 Restart=always
 RestartSec=5
 WorkingDirectory=$HOME
