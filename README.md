@@ -12,7 +12,7 @@
 
 <tr align=center><td colspan=5>🧠 AI Stack<br></td></tr>
 
-<tr align=center><td colspan=5><table><tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>☁️ vast.ai<br>LocalAI</td><td>🛡️ Guardrails<br>Heartbeating Skill</td></tr></table></td></tr>
+<tr align=center><td colspan=5><table><tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>🛡️ Guardrails<br>Lionheart</td><td>☁️ vast.ai<br>LocalAI</td></tr></table></td></tr>
 
 <tr align=center><td colspan=5>🛠️ Developer Environment<br></td></tr>
 
@@ -56,7 +56,7 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 1.4 📦️ [Docker & CUDA Toolkit](developer-environment/04-docker-cuda.md)
 ### 1.5 🌐 [Git, Code & SearXng](developer-environment/05-git-code-searxng.md)
 ### 1.6 🧿 [ZSH, Antidote & p10k](developer-environment/06-zsh-antidote-p10k.md)
-### 1.7 📋 [deenlupysta.sh](scripts/deenlupysta.sh)
+### 1.7 📋 [Script Library deenlupysta.sh](scripts/deenlupysta.sh)
 
 ## 2. 🗺️ Ecosystems
 ### 2.1 🟢 [Node.js (fnm + pnpm)](developer-environment/07-nodejs.md)
@@ -72,8 +72,8 @@ Never run scripts or script snippets without carefully reviewing them.
 ## 3. 🧠 AI Stack
 ### 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
 ### 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
-### 3.3 ☁️ [vast.ai & LocalAI](ai-stack/03-vastai-localai.md) *(🚧 WIP)*
-### 3.4 🛡️ [Guardrails & Heartbeating Skill (Lionheart)](ai-stack/04-guardrails-heartbeatskill.md) *(🚧 WIP)*
+### 3.3 🛡️ [Guardrails & Heartbeat-Agents)](ai-stack/03-guardrails-heartbeatagents.md) *(🚧 WIP)*
+### 3.4 ☁️ [vast.ai & LocalAI](ai-stack/04-vastai-localai.md) *(🚧 WIP)*
 
 ---
 <font color=#005F6A size=+5><b>The Luxurious Python Stack</b></font>
