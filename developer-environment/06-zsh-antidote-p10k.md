@@ -93,25 +93,48 @@ cat << 'EOF' >> ~/.shlib/shlibs/30-zsh-p10k.sh
 function prompt_my_jupyter() {
   # Where Jupyter on Linux logs its active server processes
   local runtime_dir="${XDG_DATA_HOME:-$HOME/.local/share}/jupyter/runtime"
-    # Find all server JSONs (the '(N)' prevents errors if none exist)
+  # Find all server JSONs (the '(N)' prevents errors if none exist)
   local json_files=("$runtime_dir"/(jpserver|nbserver)-*.json(N))
-    # If no server is running at all -> abort immediately (costs 0 performance)
+  # If no JSON files at all -> abort immediately (costs 0 performance)
   if (( ${#json_files} == 0 )); then
     return
   fi
+
   local is_jupyter_dir=false
-  # Read the released paths from the running JSONs quickly using awk
-  # The Zsh syntax ${(@f)$(...)} converts the rows directly into an array
-  local server_dirs=("${(@f)$(cat "${json_files[@]}" 2>/dev/null | awk -F'"' '/"(root_dir|notebook_dir)"/ {print $4}' | sort -u)}")
-  # Check whether the current directory ($PWD) is a (sub)folder of a running server
+  local active_dirs=()
+
+  # Check each JSON file: only consider servers whose PID is still alive
+  local json_file
+  for json_file in "${json_files[@]}"; do
+    # Extract PID from filename (e.g. jpserver-17343.json -> 17343)
+    local pid="${json_file##*-}"
+    pid="${pid%.json}"
+    # Verify the process is still running (kill -0 returns 0 if alive)
+    if kill -0 "$pid" 2>/dev/null; then
+      # Read root_dir from this active server
+      local server_dir
+      server_dir=$(grep -o '"root_dir"[[:space:]]*:[[:space:]]*"[^\}]*"' "$json_file" 2>/dev/null | head -1 | cut -d'"' -f4)
+      if [[ -n "$server_dir" ]]; then
+        active_dirs+=("$server_dir")
+      fi
+    fi
+  done
+
+  # If no active servers remain after PID check -> abort
+  if (( ${#active_dirs} == 0 )); then
+    return
+  fi
+
+  # Check whether the current directory ($PWD) is a (sub)folder of an active server
   local server_dir
-  for server_dir in "${server_dirs[@]}"; do
+  for server_dir in "${active_dirs[@]}"; do
     if [[ "$PWD" == "$server_dir" || "$PWD" == "$server_dir/"* ]]; then
       is_jupyter_dir=true
       break
     fi
   done
-  # Hit! Server is running and we are within its sphere of influence.
+
+  # Hit! Active server is running and we are within its sphere of influence.
   if $is_jupyter_dir; then
     p10k segment -f 208 -i '' -t 'jupyter'
   fi
