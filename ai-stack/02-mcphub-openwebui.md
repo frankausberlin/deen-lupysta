@@ -209,9 +209,9 @@ EOF
 sudo systemctl daemon-reload && sudo systemctl enable --now open-webui.service
 ```
 
-* I recommend adding a few mcp servers for internet research.
-> add searxng, context7, mcp-deepwiki and stackexchange<br>
-> --> mcphub admin settings --> settings --> integrations --> add tool-server connection (open api)
+* I recommend adding a few mcp servers for internet research.<br>
+  add searxng, context7, mcp-deepwiki and stackexchange<br>
+  > --> mcphub admin settings --> settings --> integrations --> add tool-server connection (open api)
 
 #### RAG in Open WebUI
 
@@ -231,27 +231,24 @@ rsync -av --delete --exclude='.git/' --exclude='ignore/' "$SOURCE_DIR" "$TARGET_
 alias deensync="rsync -av --delete --exclude='.git/' --exclude='ignore/' $HOME/gits/deen-lupysta/ $HOME/labor/synced-deen-lupysta/"
 ```
 
+
 2. Pimp the RAG
 
-* In order to achieve good results, we adapt the standard configuration (under admin area / settings / documents)
-* We use bge-m3 as an embedding model with 8192 token context length.
-* As a rerank model we use BAAI/bge-reranker-v2-m3 also with 8192 context length.
+   * In order to achieve good results, we adapt the standard configuration (under admin area / settings / documents)
+   * We use bge-m3 as an embedding model with 8192 token context length.
+   * As a rerank model we use BAAI/bge-reranker-v2-m3 also with 8192 context length.
 
-2.1 text splitter --> token / chunk size = 5000 / chunk overlap = 500
-
-2.2 choose bge-m3 (ollama) or BAAI/bge-m3 (default) as embedding model
-
-2.3 activate hybrid search to perform a keyword search in addition to the vector search
-
-2.4 write BAAI/bge-reranker-v2-m3 in the field and make sure that the default engine is selected.
-
-2.5 Reranking Batch Size = 10 / Top k = 10 / Top k Rerank = 3
-
-2.6 Set Relevance Threshold to 0.0 (or empty) and balance the BM25 weight slider to 0.5 (Semantic / Lexical).
+   2.1 text splitter --> token / chunk size = 5000 / chunk overlap = 500<br>
+   2.2 choose bge-m3 (ollama) or BAAI/bge-m3 (default) as embedding model<br>
+   2.3 activate hybrid search to perform a keyword search in addition to the vector search<br>
+   2.4 write BAAI/bge-reranker-v2-m3 in the field and make sure that the default engine is selected.<br>
+   2.5 Reranking Batch Size = 10 / Top k = 10 / Top k Rerank = 3<br>
+   2.6 Set Relevance Threshold to 0.0 (or empty) and balance the BM25 weight slider to 0.5 (Semantic / Lexical).
 
 3. Talk to Deen Lupysta
 
-3.1 Create a new knowledge and synchronize the clean folder ($HOME/labor/synced-deen-lupysta/)
-3.2 Start a new chat and add Deen Lupysta as knowledge. That's it.
+    3.1 Create a new knowledge and synchronize the clean folder ($HOME/labor/synced-deen-lupysta/)<br>
+    3.2 Start a new chat and add Deen Lupysta as knowledge. That's it.
 
-> ⚠️ To trigger synchronization in Open WebUI, click on the '+' plus in the corresponding collection and select 'Synchronize Folder'.
+  > ⚠️ To trigger synchronization in Open WebUI, click on the '+' plus in the corresponding collection and select 'Synchronize Folder'.
+
