@@ -238,10 +238,15 @@ alias deensync="rsync -av --delete --exclude='.git/' --exclude='ignore/' $HOME/g
 * As a rerank model we use BAAI/bge-reranker-v2-m3 also with 8192 context length.
 
 2.1 text splitter --> token / chunk size = 5000 / chunk overlap = 500
+
 2.2 choose bge-m3 (ollama) or BAAI/bge-m3 (default) as embedding model
+
 2.3 activate hybrid search to perform a keyword search in addition to the vector search
+
 2.4 write BAAI/bge-reranker-v2-m3 in the field and make sure that the default engine is selected.
+
 2.5 Reranking Batch Size = 10 / Top k = 10 / Top k Rerank = 3
+
 2.6 Set Relevance Threshold to 0.0 (or empty) and balance the BM25 weight slider to 0.5 (Semantic / Lexical).
 
 3. Talk to Deen Lupysta
