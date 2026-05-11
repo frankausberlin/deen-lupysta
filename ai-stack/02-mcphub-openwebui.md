@@ -1,4 +1,4 @@
-### MCPHub and LiteLLM
+### MCPHub and Open WebUI
 
 #### MCPHub — Base Installation (fully functional)
 
@@ -213,3 +213,40 @@ sudo systemctl daemon-reload && sudo systemctl enable --now open-webui.service
 > add searxng, context7, mcp-deepwiki and stackexchange<br>
 > --> mcphub admin settings --> settings --> integrations --> add tool-server connection (open api)
 
+#### RAG in Open WebUI
+
+As an example to illustrate, let's set up this repository as a knowledge source for Open WebUI.
+
+1. We create a clean (syncronized) copy
+
+* Use rsync to deploy cloned github repos as a clean version (no .git/ etc.) and use in open webui as a synchronized knowledge folder.
+```shell
+SOURCE_DIR="$HOME/gits/deen-lupysta/"
+TARGET_DIR="$HOME/labor/synced-deen-lupysta/"
+
+mkdir -p "$TARGET_DIR"
+rsync -av --delete --exclude='.git/' --exclude='ignore/' "$SOURCE_DIR" "$TARGET_DIR"
+
+# the alias is in deenlupysta.sh (adjust directories if there are discrepancies)
+alias deensync="rsync -av --delete --exclude='.git/' --exclude='ignore/' $HOME/gits/deen-lupysta/ $HOME/labor/synced-deen-lupysta/"
+```
+
+2. Pimp the RAG
+
+* In order to achieve good results, we adapt the standard configuration (under admin area / settings / documents)
+* We use bge-m3 as an embedding model with 8192 token context length.
+* As a rerank model we use BAAI/bge-reranker-v2-m3 also with 8192 context length.
+
+2.1 text splitter --> token / chunk size = 5000 / chunk overlap = 500
+2.2 choose bge-m3 (ollama) or BAAI/bge-m3 (default) as embedding model
+2.3 activate hybrid search to perform a keyword search in addition to the vector search
+2.4 write BAAI/bge-reranker-v2-m3 in the field and make sure that the default engine is selected.
+2.5 Reranking Batch Size = 10 / Top k = 10 / Top k Rerank = 3
+2.6 Set Relevance Threshold to 0.0 (or empty) and balance the BM25 weight slider to 0.5 (Semantic / Lexical).
+
+3. Talk to Deen Lupysta
+
+3.1 Create a new knowledge and synchronize the clean folder ($HOME/labor/synced-deen-lupysta/)
+3.2 Start a new chat and add Deen Lupysta as knowledge. That's it.
+
+> ⚠️ To trigger synchronization in Open WebUI, click on the '+' plus in the corresponding collection and select 'Synchronize Folder'.
