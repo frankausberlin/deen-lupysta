@@ -20,7 +20,7 @@
 
 <tr align=center><td colspan=5>🧱 Shlib System / Policies / ZShell / Nala</td></tr><tr align=center><td colspan=5></td></tr></table>
 
-*I'm constantly installing and configuring Ubuntu on my laptop, PC, and Pi. However, since I'm just a simple programmer and not a system administrator, I've started storing the most important things in Colab notebooks so I can easily access everything via copy and paste.*
+*I'm constantly installing and configuring Ubuntu on my laptop, PC, and Pi. However, since I'm just a simple programmer and not a Lion (Linux Operator Nerd), I've started storing the most important things in Colab notebooks so I can easily access everything via copy and paste.*
 
 *That escalated a little...*</td></tr></table>
 
@@ -50,7 +50,7 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 1.4 📦️ [Docker & CUDA Toolkit](developer-environment/04-docker-cuda.md)
 ### 1.5 🌐 [Git, Code & SearXng](developer-environment/05-git-code-searxng.md)
 ### 1.6 🧿 [ZSH, Antidote & p10k](developer-environment/06-zsh-antidote-p10k.md)
-### 1.7 📋 [Script Library deenlupysta.sh](scripts/deenlupysta.sh)
+### 1.7 📋 [Shell Library deenlupysta.sh](scripts/deenlupysta.sh)
 
 ## 2. 🗺️ Ecosystems
 ### 2.1 🟢 [Node.js (fnm + pnpm)](developer-environment/07-nodejs.md)
