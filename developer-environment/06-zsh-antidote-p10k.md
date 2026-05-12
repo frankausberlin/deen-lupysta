@@ -1,18 +1,12 @@
-### ZSH, Antidote & Powerlevel10k
+### ZSH Part 2: Antidote & Powerlevel10k
+
+> Complete terminal setup: ZSH as shell, Antidote as plugin manager, Powerlevel10k as prompt.<br>
+> The installation and activation of Zsh were completed in Section 1.1 (Part 1).
 
 <img src="https://lh3.googleusercontent.com/d/1GWuo758MHQI1G9AdVX_lv9H8mXMmDrrA" width=800>
 
 * generated files: .zsh_plugins.txt, .p10k.zsh (link)
 * generated shlibs: 25-zsh-appearance.sh, 30-zsh-p10k.sh
-
-Complete terminal setup: ZSH as shell, Antidote as plugin manager, Powerlevel10k as prompt.
-
-#### 1. ZSH
-
-```shell
-# The installation and activation of Zsh were completed in Section 1.1.
-# sudo nala install -y zsh && chsh -s $(which zsh)
-```
 
 #### 2. Fonts (MesloLGS NF)
 

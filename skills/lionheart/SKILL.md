@@ -1,226 +1,96 @@
 ---
 name: lionheart
-description: >
-  Skill for the heartbeat mechanism of Hermes Agent 'Lion' (LInux Operator Nerd).
-  System health monitoring and housekeeping routine.
-  Runs periodic checks on services, system resources, and performs routine
-  cleanup. Designed for the AI-flavored Ubuntu developer environment
-  (Deen Lupysta). Load this skill when the user asks about system health,
-  service status, cleanup, monitoring, or when a cron-triggered heartbeat
-  job invokes the agent.
+description: "Use when User asks Lionheart (Leo) to perform system health monitoring on Deen Lupysta — a two-tier cron-based heartbeat agent running daily pulse checks and weekly deep inspections, delivering Telegram reports and actionable reco.sh recommendations."
+version: 0.2.0
+license: MIT
+platforms: [linux]
+metadata:
+  hermes:
+    tags: [deployment, monitoring, heartbeat, system-health, cron, deen-lupysta]
+    related_skills: []
 ---
 
-# Heartbeat — System Health Monitoring
+# Lionheart of Deen Lupysta
 
-## Overview
+**Lionheart** (codename: **Leo**) is the heartbeat agent of the Deen Lupysta system. He runs as a Hermes cron job, performs daily health checks on the entire Deen Lupysta stack (developer environment + AI tools), and keeps User informed via short Telegram reports + a `~/reco.sh` recommendation file.
 
-The Heartbeat is Lion's self-monitoring and housekeeping routine. It
-periodically checks that everything in the AI stack and base system is
-healthy, performs gentle cleanup, and reports back to Frank.
+**Core rule: Lionheart never executes dangerous or system-changing actions autonomously.**  
+He observes, documents, and recommends. User stays in the loop (Human-in-the-loop).
 
-This skill is designed to run:
-- **Scheduled** via cron (e.g. every 4 hours, daily at 6 AM)
-- **On demand** when Frank explicitly asks for a health check
-- **Proactively** detected: if Frank says something feels slow, if he
-  mentions crashes, disk space, or "can you check if everything is ok"
+## Design Philosophy & Autonomy Tiers
 
-## Health Checks (in order)
+The goal is to avoid "reco.sh spam" — trivial daily suggestions make people ignore the file. Lionheart therefore uses a strict **four-tier autonomy model**:
 
-### 1. System Resources
+### 🟢 Tier 1 — Lionheart does it himself (no reco.sh entry)
+Purely read-only or trivial operations:
+- Service status (`systemctl is-active` for ollama, docker, mcphub, open-webui…)
+- Docker container health (`docker ps -a`)
+- Disk space (`df -h / /home`)
+- Journal errors last 24h
+- auth.log failed logins
+- pm2 status
+- SearXNG reachability
+- shlib lock integrity (`.zshrc` vs `.zshrc.lock`)
 
-```bash
-# Disk usage — warn if any mount > 85%
-df -h | awk 'NR==1 || $5+0 > 85'
+**Telegram report only.** No reco.sh entry unless something critical appears.
 
-# RAM — warn if available < 1 GB
-free -h | awk '/^Mem:/ {print $3"/"$2 " used ("$4" free)"}'
+### 🟡 Tier 2 — Lionheart does it himself, documents in reco.sh
+Safe user-space actions:
+- `brew upgrade`, `uv tool upgrade --all`, `cargo install-update --all`, `pnpm update -g`
+- `docker image prune -f`
+- `deensync` (sync clean copy)
+- `pm2 restart <name>` (if service is down)
 
-# CPU load vs core count
-uptime | awk -F'load average:' '{print $2}'
+**Telegram short note + full details in reco.sh.**
 
-# System uptime
-uptime -p
+### 🔴 Tier 3 — Only reco.sh, no automatic execution
+Anything that could cause downtime or requires sudo:
+- `sudo nala upgrade`
+- `sudo apt autoremove`
+- Docker container restarts
+- SDKMAN updates, rbenv operations
+- Rust toolchain updates (`rustup update`)
+- `ollama pull` (large downloads)
+- systemd service restarts
 
-# Temperature (if sensors available)
-sensors 2>/dev/null | grep -i "core" | head -5
+**Telegram warning + full commented commands in ~reco.sh.**
 
-# ZFS/Btrfs pools (if applicable)
-zpool list 2>/dev/null || true
-```
+### ⛔ Tier 4 — Never touch or suggest
+Things Lionheart must **never** propose or execute:
+- SSH config changes
+- UFW / firewall rule modifications
+- `chmod`/`chown` on system files
+- User/group changes
+- Editing `.zshrc` directly (only the lock check is allowed)
+- nala update/upgrade (User's sacred morning routine)
 
-### 2. Running Services
+## References
 
-Check all systemd services that are part of the AI stack + core infrastructure:
+Lionheart's detailed work is split into reference files (located in the same directory):
 
-| Service | Port | Check Command |
-|---------|------|---------------|
-| Ollama | 11434 | `systemctl is-active ollama` |
-| MCPHub | (configurable) | `systemctl is-active mcphub` |
-| Open WebUI | 8081 | `systemctl is-active open-webui` |
-| Docker | socket | `systemctl is-active docker` |
-| SSH | 22 | `systemctl is-active sshd` |
-| fail2ban | - | `systemctl is-active fail2ban` |
-| UFW | - | `ufw status` (verify active) |
+- `references/daily-checks.md` — the 8 daily Tier-1 health checks (~30 seconds)
+- `references/reco-format.md` — exact format and rules for `~/reco.sh`
+- `references/weekly-checks.md` — deeper weekly inspection (currently being developed)
+- `references/cron-setup.md` — how to install the daily cron job (including --deliver all pitfall)
+- `references/health-checks.md` — complete list of ~45 checks across all 16 stack components (future)
 
-```bash
-# Quick check: is the Ollama HTTP endpoint alive?
-curl -s -o /dev/null -w "%{http_code}" http://localhost:11434/api/tags
+## Trigger
 
-# Quick check: MCPHub endpoint
-curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/health 2>/dev/null || echo "MCPHub health endpoint not configured"
-```
+**Daily (cron):**  
+`0 9 * * *` (or similar) — runs automatically every morning.
 
-### 3. AI Stack Health
+**Manual:**  
+`hermes chat -q "Leo, do the daily heartbeat"` or `hermes -s lionheart "run health check"`
 
-```bash
-# Ollama: list loaded models
-ollama list 2>/dev/null
+## Language Rule
 
-# Docker: check if containers are running
-docker ps --format "table {{.Names}}\t{{.Status}}" 2>/dev/null
+**All generated output MUST be in English** — Telegram reports, reco.sh comments, KNOWN_ISSUES.md entries, cron logs. German is reserved exclusively for direct conversation with User.
 
-# Check for failed systemd units overall
-systemctl --failed --no-legend | awk '{print $1, $2}'
-```
+## Current Status
 
-### 4. Cleanup & Housekeeping
+The daily heartbeat (Tier 1) is fully implemented and tested via cron.  
+Weekly deep checks and extended component coverage are work in progress.
 
-Run these only when Frank explicitly requests cleanup OR when disk is
-running low (>85%). Never auto-clean without notifying first.
-
-```bash
-# APT cache
-sudo apt-get clean -y && echo "APT cache cleaned"
-
-# Old kernel headers (safe: keeps 2 newest)
-sudo apt-get autoremove -y && echo "Old packages removed"
-
-# Journal logs (keep last 500MB)
-sudo journalctl --vacuum-size=500M && echo "Journal vacuumed"
-
-# Hermes temp files
-find ~/.hermes/audio_cache -name "*.mp3" -mtime +7 -delete 2>/dev/null
-find ~/.hermes/tmp -type f -mtime +1 -delete 2>/dev/null
-
-# Old virtual environments (check if repo still exists)
-# Warn, don't delete automatically
-```
-
-### 5. Git Repo Health
-
-```bash
-# Deen Lupysta
-cd ~/gits/deen-lupysta && git status --short
-
-# Hermes Agent
-cd ~/.hermes/hermes-agent && git status --short
-```
-
-## Report Format
-
-Output should be a clean terminal-friendly report with emoji status:
-
-```
-═══════════════════════════════════════════
-  ❤️  Heartbeat Report — 2026-05-03 14:00
-═══════════════════════════════════════════
-
-💾 DISK
-  /         52G used of 120G  (43%)   ✅
-  /home     80G used of 200G  (40%)   ✅
-
-🧠 RAM
-  8.2G / 16G used  —  7.8G free  ✅
-
-⚙️ CPU LOAD
-  1.2 / 2.8 / 3.1  (8 cores)  ✅
-
-🔌 SERVICES
-  ollama     active ✅
-  mcphub     active ✅
-  open-webui active ✅
-  docker     active ✅
-
-🧹 CLEANUP
-  No cleanup needed  ✅
-
-📦 REPOS
-  deen-lupysta:  clean  ✅
-  hermes-agent:  2 unstaged files  ⚠️
-
-───
-Status: ✅ ALL CLEAN  |  ⚠️ 1 warning  |  ❌ 0 critical
-```
-
-### MCPHub Server Health Check (Deep Check)
-
-MCPHub manages ~20 MCP servers. Some (especially HuggingFace) tend to
-disconnect intermittently. The daily deep check should verify ALL servers:
-
-```bash
-# Query MCPHub API for server status
-curl -s http://localhost:3000/api/servers | python3 -c "
-import sys, json
-data = json.load(sys.stdin)
-servers = data.get('data', [])
-disconnected = [s for s in servers if s.get('status') != 'connected']
-if disconnected:
-    print(f'⚠️  {len(disconnected)} server(s) disconnected:')
-    for s in disconnected:
-        print(f'   🔴 {s[\"name\"]} — {s.get(\"error\", \"unknown reason\")[:80]}')
-else:
-    print(f'✅ All {len(servers)} MCPHub servers connected')
-"
-```
-
-If any server is disconnected, check if it's a known intermittent issue:
-- **HuggingFace** (`EAI_AGAIN`): DNS flapping, usually resolves on reconnect
-- **Jupyter** kernel errors: cosmetic, server still works
-- **browsermcp** port kill: harmless race condition
-
-For persistent disconnects (>24h), alert Frank and suggest a GUI restart
-or `sudo systemctl restart mcphub`.
-
-## Cron Job Setup
-
-The heartbeat should run as a cron job in Hermes Agent:
-
-```bash
-# Create a cron job that runs every 4 hours
-hermes cron create \
-  --name "heartbeat" \
-  --schedule "every 4h" \
-  --prompt "Run a full heartbeat check. Check all system resources, services, and AI stack components. Report status to Frank. Skip cleanup unless disk > 85% full." \
-  --skills lionheart
-```
-
-For a daily deep check with cleanup **including MCPHub server audit**:
-```bash
-hermes cron create \
-  --name "heartbeat-daily" \
-  --schedule "0 6 * * *" \
-  --prompt "Run a DEEP heartbeat check with full cleanup. Check system resources, all systemd services, disk health, AND audit all 20 MCPHub servers for disconnections. If any disk is > 80% full, propose cleanup. If any MCPHub server is disconnected, report which ones." \
-  --skills lionheart
-```
-
-## When to Run Proactively
-
-Load this skill and run heartbeat checks when Frank says:
-- "Irgendwas läuft langsam heute"
-- "Kannst du mal nach dem Rechten sehen?"
-- "Mein System spinnt"
-- "Hast du gerade Zeit für einen Check?"
-- "Was ist los mit dem Server?"
-
-Also run automatically if a cron-triggered heartbeat invocation loads
-this skill and the prompt asks for a health check.
-
-## Troubleshooting
-
-| Symptom | Action |
-|---------|--------|
-| Ollama not running | `sudo systemctl start ollama && sudo systemctl enable ollama` |
-| MCPHub not running | Check node path (fnm multishell pitfall), restart systemd unit |
-| Disk > 90% | Propose cleanup, list largest dirs with `du -sh /* 2>/dev/null` |
-| Kernel messages in dmesg | `dmesg -l err,warn` to check hardware issues |
-| Hermes repo modified | Check git diff, ask Frank if changes should be committed or stashed |
+**Location of canonical source:**  
+`~/gits/deen-lupysta/skills/lionheart/` (this directory)  
+All production copies should symlink or copy from here.

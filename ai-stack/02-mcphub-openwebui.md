@@ -1,6 +1,8 @@
 ### MCPHub and Open WebUI
 
-#### MCPHub — Base Installation (fully functional)
+#### MCPHub 
+
+##### Base Installation (fully functional)
 
 > ⚠️ **Pitfalls with node over `fnm`**
 > `fnm` activates node per shell via an *ephemeral* directory: `/run/user/<uid>/fnm_multishells/<PID>_<timestamp>/bin`.
@@ -78,7 +80,7 @@ EOF
 sudo systemctl daemon-reload && sudo systemctl enable --now mcphub.service
 ```
 
-#### MCPHub - MCP-Server Collection
+##### MCP-Server Collection
 
 > ⚠️ Note: The filesystem mcp server is configured to access '/', which has advantages and disadvantages.<br>Change this if necessary. <br>
 > ⚠️ If you **don't want to install searxng**, delete the line and **use web-search-mcp**.<br>
@@ -131,7 +133,7 @@ sudo systemctl daemon-reload && sudo systemctl enable --now mcphub.service
 }
 ```
 
-#### MCPHub - Client Integration
+##### Client Integration
 
 ```shell
 # for kilocode -> extension settings -> agent behaviour -> mcp servers -> edit global mcp
@@ -180,6 +182,8 @@ claude mcp add --transport http colab-mcp http://localhost:3000/mcp/colab-mcp
 Open WebUI is a Python application here and is run through `uvx`, not through `pnpm`.
 The Node/pnpm checks above are still required for MCPHub and for the many `npx`-based MCP servers imported later.
 
+##### Install as service
+
 ```shell
 # 1) preflight: uvx must be available
 command -v uvx || { echo "❌ missing uvx — finish the Python setup first"; return 1 2>/dev/null || exit 1; }
@@ -213,7 +217,25 @@ sudo systemctl daemon-reload && sudo systemctl enable --now open-webui.service
   add searxng, context7, mcp-deepwiki and stackexchange<br>
   > --> mcphub admin settings --> settings --> integrations --> add tool-server connection (open api)
 
-#### RAG in Open WebUI
+##### Websearch in Open WebUI
+
+* Of course I use the already installed searxng.<br>
+select searxng as engine and enter this url: http://localhost:8080/search
+
+* ⚠️ Make sure 'Bypass Embedding and Retrieval' is enabled and 'Bypass Web Loader' is disabled.
+
+* We use firecrawl as a web crawler<br>
+select firecrawl as engine and enter this: url: http://localhost:3002 / api key: 'dummy'
+```shell
+# clone and run firecrawl
+cd ~/gits && git clone https://github.com/mendableai/firecrawl.git && cd firecrawl && docker compose up -d
+```
+
+* You can pimp firecrawl a bit by setting some environment variables. However, the exact setup would go beyond the scope of this guide, so I would just like to mention it here.<br>
+SEARXNG_ENGINES, SEARXNG_ENDPOINT, SEARXNG_CATEGORIES, OPENAI_BASE_URL, OPENAI_API_KEY, MODEL_NAME, OLLAMA_BASE_URL, MODEL_EMBEDDING_NAME
+
+
+##### RAG in Open WebUI
 
 As an example to illustrate, let's set up this repository as a knowledge source for Open WebUI.
 
@@ -230,7 +252,6 @@ rsync -av --delete --exclude='.git/' --exclude='ignore/' "$SOURCE_DIR" "$TARGET_
 # the alias is in deenlupysta.sh (adjust directories if there are discrepancies)
 alias deensync="rsync -av --delete --exclude='.git/' --exclude='ignore/' $HOME/gits/deen-lupysta/ $HOME/labor/synced-deen-lupysta/"
 ```
-
 
 2. Pimp the RAG
 

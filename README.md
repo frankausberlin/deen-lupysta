@@ -18,17 +18,11 @@
 
 <tr align=center><td>🐧Ubuntu<br>Base-System</td><td>🛡️Network<br>Security</td><td>📦Docker<br>Cuda</td><td>👾Git, Code<br>SearXNG</td><td>🌎Eco<br>Systems</td></tr>
 
-<tr align=center><td colspan=5>🧱 Shlib System / Policies / ZShell / Nala</td></tr><tr align=center><td colspan=5></td></tr>
-</table>
-
+<tr align=center><td colspan=5>🧱 Shlib System / Policies / ZShell / Nala</td></tr><tr align=center><td colspan=5></td></tr></table>
 
 *I'm constantly installing and configuring Ubuntu on my laptop, PC, and Pi. However, since I'm just a simple programmer and not a system administrator, I've started storing the most important things in Colab notebooks so I can easily access everything via copy and paste.*
 
-*That escalated a little...*
-
-</td></tr></table>
-
-
+*That escalated a little...*</td></tr></table>
 
 # The AI-flavored Developer Environment & Luxurious Python Stack 
 
@@ -72,7 +66,7 @@ Never run scripts or script snippets without carefully reviewing them.
 ## 3. 🧠 AI Stack
 ### 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
 ### 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
-### 3.3 🛡️ [Guardrails & Heartbeat-Agents)](ai-stack/03-guardrails-heartbeatagents.md) *(🚧 WIP)*
+### 3.3 🛡️ [Guardrails & Heartbeat-Agents)](ai-stack/03-guard-hermes-lion.md) *(🚧 WIP)*
 ### 3.4 ☁️ [vast.ai & LocalAI](ai-stack/04-vastai-localai.md) *(🚧 WIP)*
 
 ---
