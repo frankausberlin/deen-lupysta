@@ -28,6 +28,18 @@
 
 consists of the installation instructions for the developer environment with an AI stack that integrates seamlessly into the Luxurious Python Stack. Python is optional; it also works with other languages ​​(python happens to be my first choice).
 
+* A collection of installation cheat sheets
+* The Shell Library System (shlib) - simple but efficient
+* Set up a secure Ubuntu system, monitored and maintained by Lionheart
+* Multi-stage concept for Python development in the area of data science and classic CI/CD projects
+* Setting up an AI system with Rag and real-time conversation based on Open WebUI
+* The MCPHub self-hosts a toolbox for agents and Open WebUI
+* Skill for programming agents (luxury python stack)
+* Host and integrate LLMs yourself with LocalAI and VastAI
+* Setting up security concepts (guardrails) for heartbeat agents
+
+*Das Repository hier ist auf keinen Fall als strikte Anleitung zu sehen. Es ist nur ein möglicher Pfad von vielen, sehr stark geprägt von meinen Vorlieben. Betrachte es als Kiste voll unterschiedlicher Blueprints, die du nach belieben kombinieren, anpassen und austauschen kannst.*
+
 ---
 
 <table><tr><td><font size=+5>🚨</font></td><td><font color=red><b>Important note:</b></font>
@@ -66,7 +78,7 @@ Never run scripts or script snippets without carefully reviewing them.
 ## 3. 🧠 AI Stack
 ### 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
 ### 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
-### 3.3 🛡️ [Guardrails & Heartbeat-Agents](ai-stack/03-guard-hermes-lion.md)
+### 3.3 🛡️ [Guardrails & Heartbeat-Agents](ai-stack/03-guard-hermes-lion.md) *(🚧 WIP)*
 ### 3.4 🦁 [Lionheart - The Linux Operator Nerd Skill for Heartbeat Agents](skills/lionheart/SKILL.md) *(🚧 WIP)*
 ### 3.5 ☁️ [vast.ai & LocalAI](ai-stack/04-vastai-localai.md) *(🚧 WIP)*
 
