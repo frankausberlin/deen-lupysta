@@ -32,6 +32,7 @@ consists of the installation instructions for the developer environment with an 
 * The Shell Library System (shlib) - simple but efficient
 * Set up a secure Ubuntu system, monitored and maintained by Lionheart
 * Multi-stage concept for Python development in the area of data science and classic CI/CD projects
+* A comfortable data science mamba environment with cuda support for pytorch, tensorflow, numba and jax.
 * Setting up an AI system with Rag and real-time conversation based on Open WebUI
 * The MCPHub self-hosts a toolbox for agents and Open WebUI
 * Skill for programming agents (luxury python stack)
