@@ -38,7 +38,7 @@ consists of the installation instructions for the developer environment with an 
 * Host and integrate LLMs yourself with LocalAI and VastAI
 * Setting up security concepts (guardrails) for heartbeat agents
 
-*Das Repository hier ist auf keinen Fall als strikte Anleitung zu sehen. Es ist nur ein möglicher Pfad von vielen, sehr stark geprägt von meinen Vorlieben. Betrachte es als Kiste voll unterschiedlicher Blueprints, die du nach belieben kombinieren, anpassen und austauschen kannst.*
+*The repository here should in no way be seen as a strict guide. It's just one possible path among many, very much influenced by my preferences. Think of it as a box full of different blueprints that you can mix, match, and swap as you wish.*
 
 ---
 
