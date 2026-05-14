@@ -67,7 +67,7 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
 ### 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
 ### 3.3 🛡️ [Guardrails & Heartbeat-Agents](ai-stack/03-guard-hermes-lion.md)
-### 3.4 🦁 [Lionheart - The Linux Operator Nerd Skill for the heartbeat agent](skills/lionheart/SKILL.md)
+### 3.4 🦁 [Lionheart - The Linux Operator Nerd Skill for Heartbeat Agents](skills/lionheart/SKILL.md) *(🚧 WIP)*
 ### 3.5 ☁️ [vast.ai & LocalAI](ai-stack/04-vastai-localai.md) *(🚧 WIP)*
 
 ---

@@ -163,6 +163,7 @@ AGENTS.md
 - `SESSION.md` (gitignored, volatile): overwritten each session with current state
 - `JOURNAL.md` (gitignored, append-only): accumulated session history
 - Session workflow: read → work → check → commit → update session files
+- Skill **luxuspythonstack** for coding agents.
 
 ## Level Interactions
 
@@ -335,6 +336,10 @@ Implemented feature X. Added tests. Fixed bug Y.
 ```
 
 Never overwrite — provides historical debugging context.
+
+## Skill luxuspythonstack
+
+The skill enables coding agents to develop projects according to the specifications of the luxury Python stack. The document describes the level architecture, routine processes, all the rules. It also has the shell scripts jupyter-launcher and pyinit.
 
 ## Session Workflow
 

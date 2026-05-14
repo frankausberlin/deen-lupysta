@@ -44,11 +44,11 @@ ls -s ~/gits/deen-lupysta/skills/lionheart ~/.hermes/skills/autonomous-ai-agents
 
 * Skill structure
 ```shell
-skills                         # The skill folder of Deen Lupysta
+skills
 ├── lionheart                  # the skill folder
 │   ├── references             # references as md's
 │   │   ├── daily-checks.md    # Instructions for the short daily check with report templates
-│   │   ├── reco-format.md     # Instructions for the short daily check with report templates
+│   │   ├── reco-format.md     # Template for executable recommendations for action with detailed comments
 │   │   └── weekly-checks.md   # instructions for the detailed weekly check with report templates
 │   └── SKILL.md               # the actual skill
 └── ...
