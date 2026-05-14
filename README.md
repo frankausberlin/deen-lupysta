@@ -92,5 +92,6 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 4.3 👷 [Daily Commands Reference](skills/luxuspythonstack/references/daily-commands.md)
 ### 4.4 🏗️ [Skill - *luxuspythonstack/*](skills/luxuspythonstack/SKILL.md)
 ### 4.5 🔧 [Scripts - *luxuspythonstack.sh*](scripts/luxuspythonstack.sh)
+### 4.6 📋 [Scripts - dsdash.ipynb](scripts/dsdash.ipynb)
 
 

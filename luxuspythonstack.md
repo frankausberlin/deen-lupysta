@@ -3,8 +3,11 @@
 The Luxurious Python Stack is a combination of tools, scripts, aliases, and rules for efficient, conflict-free Python development. Its five-level architecture separates concerns into distinct layers, each with specific tools and mechanisms.
 
 * For AI Agents
-> The [skill](skills/luxuspythonstack/SKILL.md) provides structured instructions for AI coding agents working on projects initialized with this stack.
+    > * The [skill](skills/luxuspythonstack/SKILL.md) provides structured instructions for AI coding agents working on projects initialized with this stack.
 
+* For Data Science
+    > * The jupyter notebook [dsdash](scripts/dsdash.ipynb) contains some useful code snippets (Cuda test, Ollama Model Explorer).
+    > * The data science environment includes cuda support for pytorch, tensorflow, numba, jax.
 
 # Installation
 
@@ -21,7 +24,7 @@ The Luxurious Python Stack requires the following installed at the system level:
 | `basedpyright` | Strict type checking | `uv tool install basedpyright` |
 | `mamba` | Data science environments (Level 1) | Miniforge installer |
 
-For a full Ubuntu setup guide, see the [developer environment](developer-environment/) section.
+For a full Ubuntu Python setup, do the [python install guide](developer-environment/08-python.md). 
 
 ### direnv Hook
 
