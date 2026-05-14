@@ -49,6 +49,5 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 * Hermes Agent
 ```shell
-# Install latest (official script)
-curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
+# instructions in chapter Guardrails & Heartbeat-Agents
 ```

@@ -79,10 +79,12 @@ enabled = true
 backend = systemd
 port = ssh
 filter = sshd
-maxretry = 5
+maxretry = 3
 bantime = 3600
-findtime = 600
+findtime = 3600
+banaction = ufw
 EOF
+
 
 # restart fail2ban
 sudo systemctl restart fail2ban
