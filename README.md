@@ -12,7 +12,7 @@
 
 <tr align=center><td colspan=5>🧠 AI Stack<br></td></tr>
 
-<tr align=center><td colspan=5><table><tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>🛡️ Guardrails<br>Lionheart</td><td>☁️ vast.ai<br>LocalAI</td></tr></table></td></tr>
+<tr align=center><td colspan=5><table><tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>🛡️ Lionheart<br>Hermes, LiteLLM</td><td>☁️ vast.ai<br>LocalAI, OpenLIT</td></tr></table></td></tr>
 
 <tr align=center><td colspan=5>🛠️ Developer Environment<br></td></tr>
 
@@ -79,7 +79,7 @@ Never run scripts or script snippets without carefully reviewing them.
 ## 3. 🧠 AI Stack
 ### 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
 ### 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
-### 3.3 🛡️ [Guardrails & Heartbeat-Agents](ai-stack/03-guard-hermes-lion.md) *(🚧 WIP)*
+### 3.3 🛡️ [LiteLLM & Hermes](ai-stack/03-litellm-hermes.md) *(🚧 WIP)*
 ### 3.4 🦁 [Lionheart - The Linux Operator Nerd Skill for Heartbeat Agents](skills/lionheart/SKILL.md) *(🚧 WIP)*
 ### 3.5 ☁️ [vast.ai & LocalAI](ai-stack/04-vastai-localai.md) *(🚧 WIP)*
 

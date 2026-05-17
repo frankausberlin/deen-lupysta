@@ -9,6 +9,14 @@ There should be descriptions here for:
 * setup, tips, configuration
 * example: deepseek-v4-fast (openweights model)
 
+openlit
+
+https://github.com/openlit/openlit
+
 
 ### VastAI and LocalAI
 
+#### LocalAI
+
+* Tipps:
+    > * cuda free with 'x' 
