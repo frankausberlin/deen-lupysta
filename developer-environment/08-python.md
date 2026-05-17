@@ -84,6 +84,20 @@ rm Miniforge3-*.sh
 exec zsh
 ```
 
+# --- Global Jupyter Fix for Google Colab ---
+# Disables RTC extensions globally (~/.jupyter) to prevent WebSocket crashes 
+# with Colab. Survives volatile environment wipe-and-recreate cycles.
+mkdir -p ~/.jupyter && cat << 'EOF' > ~/.jupyter/jupyter_server_config.json
+{
+  "ServerApp": {
+    "jpserver_extensions": {
+      "jupyter_server_documents": false,
+      "jupyter_server_ydoc": false
+    }
+  }
+}
+EOF
+
 #### Data Science Mamba Environment
 
 * ⚠️ Using ipywidgets 7.7.1 for colab runtime compatibility.

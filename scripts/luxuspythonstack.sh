@@ -778,6 +778,10 @@ jupyter-launcher() {
     #     Disables Real-Time Collaboration (RTC). Without this, JupyterLab enters
     #     a 404 loop trying to open the "globalAwareness" room, which blocks the
     #     server. Safe to disable when collaboration is not needed.
+    #     NOTE: To prevent WebSocket crashes with Google Colab (TypeError on strings),
+    #     the underlying server extensions (jupyter_server_documents and 
+    #     jupyter_server_ydoc) are globally disabled via ~/.jupyter/jupyter_server_config.json
+    #     during the initial Mamba system setup.
     #
     # --FileIdManager.file_id_manager_class=jupyter_server.fileid.manager.ArbitraryFileIdManager
     #     Fixes the recurring "File ID error". By default Jupyter uses a local
@@ -908,7 +912,7 @@ jupyter-launcher() {
     echo "  colab mode   : $([ $_jl_colab    -eq 1 ] && echo yes || echo no)"
     echo ""
 
-    # ── Launch Jupyter Lab with the assembled argument list ───────────────────
+    # ─── Launch Jupyter with the assembled argument list ───────────────────────
     jupyter lab "${_jl_args[@]}"
 }
 
