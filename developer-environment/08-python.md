@@ -77,13 +77,6 @@ act() { [ "$#" -ne 0 ] && echo $1 > ~/.startenv && mamba activate $1; }
 alias allowuv='echo "layout uv" > .envrc && direnv allow'
 EOF
 
-# Clean up installation file
-rm Miniforge3-*.sh
-
-# Reload shell so that Conda and UV are activated
-exec zsh
-```
-
 # --- Global Jupyter Fix for Google Colab ---
 # Disables RTC extensions globally (~/.jupyter) to prevent WebSocket crashes 
 # with Colab. Survives volatile environment wipe-and-recreate cycles.
@@ -97,6 +90,13 @@ mkdir -p ~/.jupyter && cat << 'EOF' > ~/.jupyter/jupyter_server_config.json
   }
 }
 EOF
+
+# Clean up installation file
+rm Miniforge3-*.sh
+
+# Reload shell so that Conda and UV are activated
+exec zsh
+```
 
 #### Data Science Mamba Environment
 
