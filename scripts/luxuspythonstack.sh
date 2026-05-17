@@ -724,104 +724,193 @@ JUST_DOCS_EOF
 
 
 # ─── jupyter-launcher ─────────────────────────────────────────────────────────
-# Canonical Jupyter Lab launcher for the Luxurious Python Stack.
+# Flexible Jupyter Lab launcher with optional Colab integration and port selection.
 #
-# Usage:
-#   jupyter-launcher                 # ~/labor, token enabled
-#   jupyter-launcher .               # current directory
-#   jupyter-launcher ~/notebooks     # explicit notebook directory
-#   jupyter-launcher -x              # no token / no XSRF check (local-only)
-#   jupyter-launcher --colab         # allow Google Colab origin (uses http_over_ws)
-#   jupyter-launcher -p 9000         # custom port
+# Usage: jupyter-launcher [-n] [-c] [-p PORT] [folder]
 #
-# Personal defaults belong in the `jl` alias, for example:
-#   alias jl='jupyter-launcher --colab -x'
+#   -n          Tokenless mode: disables password/token authentication.
+#               Useful for local development or when Google Colab should connect
+#               without a token.
+#
+#   -c          Colab mode: adds the Google Colab CORS/XSRF arguments so that
+#               colab.research.google.com can connect to this local server.
+#               Can be combined with -n (token is then also disabled).
+#
+#   -p PORT     Use an alternative port instead of the default 8888.
+#               Example: jupyter-launcher -p 9999
+#
+#   folder      Optional path to use as the notebook directory (--notebook-dir).
+#               Use '.' to refer to the current working directory.
+#               If omitted, ~/labor is used as the default.
+#
+# Examples:
+#   jupyter-launcher                     # default: port 8888, ~/labor, token required
+#   jupyter-launcher -n                  # tokenless, ~/labor
+#   jupyter-launcher -c                  # Colab-compatible, ~/labor, token required
+#   jupyter-launcher -n -c              # tokenless + Colab-compatible, ~/labor
+#   jupyter-launcher -n -c .            # tokenless + Colab, current directory
+#   jupyter-launcher -p 9999 myproject  # custom port, ./myproject as notebook-dir
+#   jupyter-launcher -n -c -p 9999 .   # all options combined
+#
+# Personal alias suggestion: alias jl='jupyter-launcher -n -c'
 jupyter-launcher() {
-    local _notebook_dir="$HOME/labor"
-    local _port=8888
-    local _args=(--no-browser --ip=127.0.0.1 --ServerApp.port_retries=0)
-    local _colab_mode=false
-    local _disable_xsrf=false
-    local _disable_token=false
 
-    [[ ${EUID:-$(id -u)} -eq 0 ]] && _args+=(--allow-root)
+    # ─── FLAG ARGUMENT DOCUMENTATION ──────────────────────────────────────────
+    # --no-browser
+    #     Prevents Jupyter from automatically opening a browser window on start.
+    #
+    # --ip=127.0.0.1
+    #     Binds the server strictly to localhost (security: not reachable from LAN).
+    #
+    # --port=PORT
+    #     Sets the port for the local Jupyter instance (default: 8888).
+    #
+    # --ServerApp.port_retries=0
+    #     Aborts immediately if the chosen port is already in use, instead of
+    #     silently falling back to the next port (e.g. 8889). This prevents
+    #     accidental multi-instance confusion.
+    #
+    # --notebook-dir=PATH
+    #     Sets the root directory shown in the Jupyter file browser.
+    #
+    # ─── BUGFIX: FILE-ID ERRORS AND INFINITE LOOPS ────────────────────────────
+    # --YDocExtension.disable_rtc=True
+    #     Disables Real-Time Collaboration (RTC). Without this, JupyterLab enters
+    #     a 404 loop trying to open the "globalAwareness" room, which blocks the
+    #     server. Safe to disable when collaboration is not needed.
+    #
+    # --FileIdManager.file_id_manager_class=jupyter_server.fileid.manager.ArbitraryFileIdManager
+    #     Fixes the recurring "File ID error". By default Jupyter uses a local
+    #     SQLite database for file IDs which frequently gets corrupted or loses
+    #     track of paths. The ArbitraryFileIdManager keeps IDs in memory only -
+    #     files can be opened again without DB corruption issues.
+    #
+    # ─── GOOGLE COLAB INTEGRATION (only when -c is set) ───────────────────────
+    # --ServerApp.allow_origin='https://colab.research.google.com'
+    #     Allows Colab to access this local server via CORS.
+    #
+    # --ServerApp.allow_remote_access=True
+    #     Required for any external origin to be permitted at all.
+    #
+    # --ServerApp.disable_check_xsrf=True
+    #     Prevents the server from treating Colab requests as malicious
+    #     cross-site request forgery (XSRF) attacks.
+    #
+    # ─── TOKENLESS MODE (only when -n is set) ─────────────────────────────────
+    # --ServerApp.token=''
+    #     Disables the password/token prompt entirely.
+    #
+    # --ServerApp.allow_credentials=True
+    #     Required when Colab (or any client) needs to connect without a token.
+    # ──────────────────────────────────────────────────────────────────────────
 
-    while [[ $# -gt 0 ]]; do
-        case "$1" in
-            -n|--no-token)
-                _disable_xsrf=true
-                _disable_token=true
+    # ── Default values for all configurable options ───────────────────────────
+    local _jl_tokenless=0      # -n flag: 1 = disable token authentication
+    local _jl_colab=0          # -c flag: 1 = add Colab CORS/XSRF arguments
+    local _jl_port="8888"      # -p PORT: port number (default 8888)
+    local _jl_folder=""        # positional: notebook-dir path (empty = use default)
+
+    # ── Parse optional flags with getopts ─────────────────────────────────────
+    # getopts processes flags one at a time; OPTIND tracks the position so we
+    # can shift to the remaining positional argument (the optional folder) afterward.
+    local OPTIND=1
+    local _jl_opt
+    while getopts ":ncp:" _jl_opt; do
+        case "$_jl_opt" in
+            n)
+                # Tokenless mode: no password/token required
+                _jl_tokenless=1
                 ;;
-            -c|--colab)
-                _colab_mode=true
-                _disable_xsrf=true
-                _args+=(
-                    --ServerApp.allow_origin='https://colab.research.google.com'
-                    --ServerApp.allow_remote_access=True
-                    --ServerApp.jpserver_extensions="{'jupyter_server_documents':False}"
-                )
+            c)
+                # Colab mode: enable Google Colab CORS/XSRF arguments
+                _jl_colab=1
                 ;;
-            -p|--port)
-                _port="$2"
-                shift
+            p)
+                # Custom port: OPTARG holds the value that follows -p
+                _jl_port="$OPTARG"
                 ;;
-            .)
-                _notebook_dir="$PWD"
-                ;;
-            -*)
-                echo -e "\e[31mUnknown option: $1\e[0m" >&2
+            :)
+                # A flag that requires an argument was given without one (e.g. -p with no number)
+                echo "jupyter-launcher: option -${OPTARG} requires an argument." >&2
                 return 1
                 ;;
-            *)
-                _notebook_dir="$1"
+            \?)
+                # An unknown flag was passed; print usage hint and abort
+                echo "jupyter-launcher: unknown option -${OPTARG}." >&2
+                echo "Usage: jupyter-launcher [-n] [-c] [-p PORT] [folder]" >&2
+                return 1
                 ;;
         esac
-        shift
     done
 
-    # Deduplizierte Flags gezielt nur einmal anhängen
-    if $_disable_xsrf; then
-        _args+=(--ServerApp.disable_check_xsrf=True)
-    fi
-    
-    if $_disable_token; then
-        _args+=(--ServerApp.token='' --ServerApp.allow_credentials=True)
-    fi
+    # Shift past the flags so that "$1" now refers to the optional folder argument
+    shift $(( OPTIND - 1 ))
 
-    # Port anhängen
-    _args+=(--port="$_port")
-
-    # Target Directory erstellen, falls es nicht existiert
-    mkdir -p "$_notebook_dir"
-
-    local _env_msg="${CONDA_DEFAULT_ENV:-${VIRTUAL_ENV:-system/none}}"
-    local _jupyter_bin
-    _jupyter_bin="$(command -v jupyter 2>/dev/null || true)"
-
-    if [[ -z "$_jupyter_bin" ]]; then
-        echo -e "\e[31mError: jupyter executable not found in PATH.\e[0m" >&2
-        local _suggested_env=$(cat ~/.startenv 2>/dev/null || echo base)
-        echo -e "Did you forget to activate it? Try: \e[33mact $_suggested_env\e[0m" >&2
-        return 1
-    fi
-
-    echo -e "\n\e[95m🚀 Jupyter Lab is launching\e[0m"
-    echo -e "URL:          \e[1;3;34mhttp://localhost:${_port}/lab/\e[0m"
-    echo -e "Notebook-dir: \e[1;3;34m$_notebook_dir\e[0m"
-    echo -e "Environment:  \e[1;3;34m$_env_msg\e[0m"
-    echo -e "Instance:     \e[1;3;34m$_jupyter_bin\e[0m"
-    
-    if $_colab_mode; then
-        echo -e "Colab Hook:   \e[1;3;32mhttp://localhost:${_port}/\e[0m (Copy this to Colab local runtime)\n"
+    # ── Resolve the notebook directory ────────────────────────────────────────
+    if [[ $# -ge 1 ]]; then
+        # A folder argument was provided. '.' is explicitly valid and resolves to
+        # the current working directory via pwd.
+        if [[ "$1" == "." ]]; then
+            _jl_folder="$(pwd)"
+        else
+            # Expand to an absolute path so Jupyter always sees a clean path,
+            # regardless of how the user typed it (relative or absolute).
+            _jl_folder="$(realpath -m "$1")"
+        fi
+        # Create the directory if it does not exist yet, so Jupyter does not error.
+        mkdir -p "$_jl_folder"
     else
-        echo ""
+        # No folder argument: fall back to the standard workspace directory.
+        _jl_folder="$HOME/labor"
+        mkdir -p "$_jl_folder"
     fi
 
-    jupyter lab "${_args[@]}" --notebook-dir="$_notebook_dir"
+    # ── Build the argument list incrementally ─────────────────────────────────
+    # Using an array avoids quoting pitfalls and makes conditional flag injection
+    # clean and readable.
+    local -a _jl_args=(
+        --no-browser
+        --ip=127.0.0.1
+        "--port=${_jl_port}"
+        --ServerApp.port_retries=0
+        "--notebook-dir=${_jl_folder}"
+        # Disable real-time collaboration to prevent the globalAwareness 404 loop
+        --YDocExtension.disable_rtc=True
+        # Use in-memory file ID manager to avoid SQLite corruption errors
+        --FileIdManager.file_id_manager_class=jupyter_server.fileid.manager.ArbitraryFileIdManager
+    )
+
+    # ── Conditionally append tokenless-mode arguments ─────────────────────────
+    if [[ $_jl_tokenless -eq 1 ]]; then
+        _jl_args+=(
+            --ServerApp.token=''
+            # allow_credentials is required for credential-bearing requests (e.g. from Colab)
+            --ServerApp.allow_credentials=True
+        )
+    fi
+
+    # ── Conditionally append Colab-integration arguments ──────────────────────
+    if [[ $_jl_colab -eq 1 ]]; then
+        _jl_args+=(
+            # Grant Colab cross-origin access to this local server
+            "--ServerApp.allow_origin=https://colab.research.google.com"
+            --ServerApp.allow_remote_access=True
+            # Disable XSRF check so Colab requests are not rejected as attacks
+            --ServerApp.disable_check_xsrf=True
+        )
+    fi
+
+    # ── Print a summary so the user knows exactly what will start ─────────────
+    echo "Starting Jupyter Lab:"
+    echo "  notebook-dir : $_jl_folder"
+    echo "  port         : $_jl_port"
+    echo "  tokenless    : $([ $_jl_tokenless -eq 1 ] && echo yes || echo no)"
+    echo "  colab mode   : $([ $_jl_colab    -eq 1 ] && echo yes || echo no)"
+    echo ""
+
+    # ── Launch Jupyter Lab with the assembled argument list ───────────────────
+    jupyter lab "${_jl_args[@]}"
 }
 
-#alias jl='jupyter-launcher'
-
-# customize according to preference
+# Standard alias for quick access (tokenless + Colab mode, default directory)
 alias jl='jupyter-launcher -n -c'
-
