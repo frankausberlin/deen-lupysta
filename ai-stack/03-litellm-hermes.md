@@ -1,5 +1,5 @@
 
-### LiteLLM|OpenLIT & Hermes
+### LiteLLM & Hermes
 
 *(🚧 WIP)*
 
@@ -22,6 +22,8 @@ The exact description can be found in [Lionheart Skill](../skills/lionheart/SKIL
 * LiteLLM was recently the target of a serious supply chain attack on PyPI (versions 1.82.7 and 1.82.8 contained a credential stealer that targeted .env files, SSH keys and cloud credentials).
 * Hardening recommendation: The official Docker image (ghcr.io/berriai/litellm) was not affected by the compromised PyPI packages and provides secure isolation. When installing via pip, a secure, current version must be pinned (>= 1.83.0).
 
+
+#### LiteLLM
 
 
 #### Hermes Agent

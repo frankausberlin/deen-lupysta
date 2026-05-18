@@ -35,9 +35,10 @@ consists of the installation instructions for the developer environment with an 
 * A comfortable data science mamba environment with cuda support for pytorch, tensorflow, numba and jax.
 * Setting up an AI system with Rag and real-time conversation based on Open WebUI
 * The MCPHub self-hosts a toolbox for agents and Open WebUI
-* Skill for programming agents (luxury python stack)
-* Host and integrate LLMs yourself with LocalAI and VastAI
+* Skill for coding agents (luxury python stack)
+* Host and integrate LLMs yourself with LocalAI and VastAI, monitored by OpenLIT
 * Setting up security concepts (guardrails) for heartbeat agents
+* Routing strategies, resiliency and cost control for agent models with LiteLLM
 
 *The repository here should in no way be seen as a strict guide. It's just one possible path among many, very much influenced by my preferences. Think of it as a box full of different blueprints that you can mix, match, and swap as you wish.*
 
@@ -54,7 +55,14 @@ Never run scripts or script snippets without carefully reviewing them.
 </td></tr></table>
 
 ---
-<font color=#005F6A size=+5><b>The Developer Environment</b></font>
+
+```shell
+▀▛▘▌       ▛▀▖         ▜               ▛▀▘      ▗                    ▐  
+ ▌ ▛▀▖▞▀▖  ▌ ▌▞▀▖▌ ▌▞▀▖▐ ▞▀▖▛▀▖▞▀▖▙▀▖  ▙▄ ▛▀▖▌ ▌▄ ▙▀▖▞▀▖▛▀▖▛▚▀▖▞▀▖▛▀▖▜▀ 
+ ▌ ▌ ▌▛▀   ▌ ▌▛▀ ▐▐ ▛▀ ▐ ▌ ▌▙▄▘▛▀ ▌    ▌  ▌ ▌▐▐ ▐ ▌  ▌ ▌▌ ▌▌▐ ▌▛▀ ▌ ▌▐ ▖
+ ▘ ▘ ▘▝▀▘  ▀▀ ▝▀▘ ▘ ▝▀▘ ▘▝▀ ▌  ▝▀▘▘    ▀▀▘▘ ▘ ▘ ▀▘▘  ▝▀ ▘ ▘▘▝ ▘▝▀▘▘ ▘ ▀ 
+```
+
 
 ## 1. 🐧 Base System
 ### 1.1 🧱 [Shlib System / Package Manager Policy](developer-environment/01-shlib-policy.md)
@@ -74,17 +82,28 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 2.6 💎 [Ruby (rbenv & bundler)](developer-environment/12-ruby.md)
 
 ---
-<font color=#005F6A size=+5><b>The AI Stack</b></font>
+```shell
+▀▛▘▌       ▞▀▖▜▘     ▞▀▖▐        ▌  
+ ▌ ▛▀▖▞▀▖  ▙▄▌▐  ▄▄▖ ▚▄ ▜▀ ▝▀▖▞▀▖▌▗▘
+ ▌ ▌ ▌▛▀   ▌ ▌▐      ▖ ▌▐ ▖▞▀▌▌ ▖▛▚ 
+ ▘ ▘ ▘▝▀▘  ▘ ▘▀▘     ▝▀  ▀ ▝▀▘▝▀ ▘ ▘
+```
 
 ## 3. 🧠 AI Stack
 ### 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
 ### 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
 ### 3.3 🛡️ [LiteLLM & Hermes](ai-stack/03-litellm-hermes.md) *(🚧 WIP)*
 ### 3.4 🦁 [Lionheart - The Linux Operator Nerd Skill for Heartbeat Agents](skills/lionheart/SKILL.md) *(🚧 WIP)*
-### 3.5 ☁️ [vast.ai & LocalAI](ai-stack/04-vastai-localai.md) *(🚧 WIP)*
+### 3.5 ☁️ [Vast.AI, LocalAI & OpenLIT](ai-stack/04-vastai-localai.md) *(🚧 WIP)*
 
 ---
-<font color=#005F6A size=+5><b>The Luxurious Python Stack</b></font>
+```shell
+▀▛▘▌       ▌              ▗            ▛▀▖   ▐  ▌          ▞▀▖▐        ▌  
+ ▌ ▛▀▖▞▀▖  ▌  ▌ ▌▚▗▘▌ ▌▙▀▖▄ ▞▀▖▌ ▌▞▀▘  ▙▄▘▌ ▌▜▀ ▛▀▖▞▀▖▛▀▖  ▚▄ ▜▀ ▝▀▖▞▀▖▌▗▘
+ ▌ ▌ ▌▛▀   ▌  ▌ ▌▗▚ ▌ ▌▌  ▐ ▌ ▌▌ ▌▝▀▖  ▌  ▚▄▌▐ ▖▌ ▌▌ ▌▌ ▌  ▖ ▌▐ ▖▞▀▌▌ ▖▛▚ 
+ ▘ ▘ ▘▝▀▘  ▀▀▘▝▀▘▘ ▘▝▀▘▘  ▀▘▝▀ ▝▀▘▀▀   ▘  ▗▄▘ ▀ ▘ ▘▝▀ ▘ ▘  ▝▀  ▀ ▝▀▘▝▀ ▘ ▘
+```
+
 
 ## 4. 💎 Luxurious Python Stack
 ### 4.1 📚 [Stack Description](luxuspythonstack.md)
@@ -93,5 +112,6 @@ Never run scripts or script snippets without carefully reviewing them.
 ### 4.4 🏗️ [Skill - *luxuspythonstack/*](skills/luxuspythonstack/SKILL.md)
 ### 4.5 🔧 [Scripts - *luxuspythonstack.sh*](scripts/luxuspythonstack.sh)
 ### 4.6 📋 [Scripts - dsdash.ipynb](scripts/dsdash.ipynb)
+
 
 

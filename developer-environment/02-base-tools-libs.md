@@ -18,7 +18,7 @@ sudo nala install -y \
 ```shell
 # CLI Tools & Productivity
 sudo nala install -y \
-  git gh tmux btop htop iotop nvtop fastfetch tree \
+  git gh tmux btop htop iotop nvtop fastfetch tree hwinfo \
   ripgrep fzf zoxide jq tealdeer shellcheck shfmt
 ```
 
