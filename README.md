@@ -1,11 +1,8 @@
-<table><tr align=center><td><a href='https://suno.com/playlist/dea7acde-5886-407a-8193-db889a2af569'><table width=800><tr><td>
+<table><tr><td align=right><img src="https://lh3.googleusercontent.com/d/1JdavIkcaCKkXrqiJtGHpAMvXAp73Z8tA" width=1000><br>ai-flawored</td></tr>
 
-![][deenpic]
+<tr align=center><td><table>
 
-[deenpic]: https://lh3.googleusercontent.com/d/1JdavIkcaCKkXrqiJtGHpAMvXAp73Z8tA "Linux Punk Songs"
-</td></tr></table></a></td></tr>
-
-<tr align=center><td><table><tr align=center><td colspan=5>💎 Luxurious Python Stack<br></td></tr>
+<tr align=center><td colspan=5>💎 Luxurious Python Stack<br></td></tr>
 
 <tr><td align=center>💻 Global<br>System</td><td align=center>🔬 Mamba<br>Jupyter</td><td align=center>🗂️ Projects<br>pyproject.toml</td>
 <td align=center>🏢 CI/CD<br>Justfile</td><td align=center>🤖 AI Agents <br> SKILL.md</td></tr>
