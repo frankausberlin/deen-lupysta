@@ -34,11 +34,12 @@ fi
 # 1) install mcphub global via pnpm
 pnpm add -g @samanhappy/mcphub
 
-# 2) secrets you need
+# 2) settings & secrets you need
 cat > ~/.mcphub.env <<EOF
 GITHUB_TOKEN=$GITHUB_TOKEN
 STACKOVERFLOW_API_KEY=$STACKOVERFLOW_API_KEY
 HUGGINGFACE_TOKEN=$HUGGINGFACE_TOKEN
+HOST=0.0.0.0
 EOF
 chmod 600 ~/.mcphub.env
 
@@ -70,6 +71,7 @@ EnvironmentFile=$HOME/.mcphub.env
 ExecStart=$MCPHUB_EXEC
 Restart=always
 RestartSec=5
+TimeoutStopSec=5s
 WorkingDirectory=$HOME
 
 [Install]
@@ -78,6 +80,9 @@ EOF
 
 # 5) enable & start
 sudo systemctl daemon-reload && sudo systemctl enable --now mcphub.service
+
+# 6) firewall for docker
+sudo ufw allow from 172.16.0.0/12 to any port 3000 proto tcp
 ```
 
 ##### MCP-Server Collection
@@ -118,6 +123,7 @@ sudo systemctl daemon-reload && sudo systemctl enable --now mcphub.service
         "mcp-deepwiki":       {"command": "npx", "args": ["-y", "mcp-deepwiki"], "disabled": true},
         "stackexchange":      {"command": "npx", "args": ["-y", "@notalk-tech/stackoverflow-mcp"], "env": {"STACKOVERFLOW_API_KEY": "${STACKOVERFLOW_API_KEY}"}, "disabled": true},
         "sequentialthinking": {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"], "disabled": true},
+        "memory":             {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-memory"]},
         "filesystem":         {"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/"], "disabled": true},
         "desktop-commander":  {"command": "npx", "args": ["-y","@wonderwhy-er/desktop-commander"], "disabled": true},
         "mcp-server-docker":  {"command": "uvx", "args": ["mcp-server-docker"], "env": {"DOCKER_HOST": "unix:///var/run/docker.sock"}, "disabled": true},
@@ -133,6 +139,14 @@ sudo systemctl daemon-reload && sudo systemctl enable --now mcphub.service
 }
 ```
 
+>💡 Proposal for a logical grouping
+> * research-core: searxng, web-search-mcp, context7, mcp-deepwiki, stackexchange
+> * sysadmin-ops: filesystem, desktop-commander, mcp-server-docker, cloudflare
+> * dev-studio: github, jupyter, colab-mcp, huggingface, stackexchange
+> * web-automation: fastplaywright, browsermcp
+> * cognitive-boost: sequentialthinking, memory
+
+
 ##### Client Integration
 
 ```shell
@@ -145,6 +159,7 @@ sudo systemctl daemon-reload && sudo systemctl enable --now mcphub.service
         "searxng": {"type": "streamable-http", "url": "http://localhost:3000/mcp/searxng"},
         "web-search-mcp": {"type": "streamable-http", "url": "http://localhost:3000/mcp/web-search-mcp"},
         "sequentialthinking": {"type": "streamable-http", "url": "http://localhost:3000/mcp/sequentialthinking"},
+        "memory": {"type": "streamable-http", "url": "http://localhost:3000/mcp/memory"},
         "mcp-deepwiki": {"type": "streamable-http", "url": "http://localhost:3000/mcp/mcp-deepwiki"},
         "stackexchange": {"type": "streamable-http", "url": "http://localhost:3000/mcp/stackexchange"},
         "fastplaywright": {"type": "streamable-http", "url": "http://localhost:3000/mcp/fastplaywright"},
@@ -165,6 +180,7 @@ claude mcp add --transport http github http://localhost:3000/mcp/github
 claude mcp add --transport http searxng http://localhost:3000/mcp/searxng
 claude mcp add --transport http web-search-mcp http://localhost:3000/mcp/web-search-mcp
 claude mcp add --transport http sequentialthinking http://localhost:3000/mcp/sequentialthinking
+claude mcp add --transport http sequentialthinking http://localhost:3000/mcp/memory
 claude mcp add --transport http mcp-deepwiki http://localhost:3000/mcp/mcp-deepwiki
 claude mcp add --transport http stackexchange http://localhost:3000/mcp/stackexchange
 claude mcp add --transport http fastplaywright http://localhost:3000/mcp/fastplaywright
@@ -250,7 +266,7 @@ mkdir -p "$TARGET_DIR"
 rsync -av --delete --exclude='.git/' --exclude='ignore/' "$SOURCE_DIR" "$TARGET_DIR"
 
 # the alias is in deenlupysta.sh (adjust directories if there are discrepancies)
-alias deensync="rsync -av --delete --exclude='.git/' --exclude='ignore/' $HOME/gits/deen-lupysta/ $HOME/labor/synced-deen-lupysta/"
+alias deensync="rsync -av --delete --exclude='.ipynb_checkpoints/ --exclude='.git/' --exclude='ignore/' $HOME/gits/deen-lupysta/ $HOME/labor/synced-deen-lupysta/"
 ```
 
 2. Pimp the RAG
@@ -272,4 +288,6 @@ alias deensync="rsync -av --delete --exclude='.git/' --exclude='ignore/' $HOME/g
     3.2 Start a new chat and add Deen Lupysta as knowledge. That's it.
 
   > ⚠️ To trigger synchronization in Open WebUI, click on the '+' plus in the corresponding collection and select 'Synchronize Folder'.
+
+##### Models in Open WebUI
 

@@ -32,7 +32,7 @@ mkdir -p ~/.litellm && cd ~/.litellm
 # This is just an example configuration (syntax blueprint). Models can be customized as desired.
 cat << 'EOF' > config.yaml
 model_list:
-  # -----------------------------------------------------------------🔒 Fail-safety Models
+  # --------------------------------------------------------🔒 Fail-safety Models
   # 🟢 TIER 1: Daily Tasks
   - model_name: daily-agent
     litellm_params:
@@ -45,8 +45,8 @@ model_list:
       model: openrouter/deepseek/deepseek-v4-pro
       api_key: os.environ/OPENROUTER_API_KEY
 
-  # -----------------------------------------------------------------📍 Stand alone models
-  # -----------------------------------------------------------------   ki: kilo / or: openrouter / la: localai / ol: ollama
+  # -- ki: kilo / or: openrouter / la: localai / ol: ollama
+  # --------------------------------------------------------📍 Stand alone models
   - model_name: or-openrouter-free
     litellm_params:
       model: openrouter/free
@@ -123,6 +123,7 @@ docker network connect bridge litellm && docker restart litellm
 # maintain
 docker logs -f litellm
 curl http://127.0.0.1:4040/health  
+docker restart litellm
 ```
 
 

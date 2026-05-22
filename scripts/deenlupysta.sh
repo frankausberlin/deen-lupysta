@@ -137,4 +137,4 @@ cw() { [[ "$1" == "." ]] && echo "$PWD" > "$HOME/.config/current_working_folder"
 exportadd ~/bin
 
 # deensync: Synchronizes the deen-lupysta repository to a target directory, excluding .git and ignore folders.
-alias deensync="rsync -av --delete --exclude='.git/' --exclude='ignore/' $HOME/gits/deen-lupysta/ $HOME/labor/synced-deen-lupysta/"
+alias deensync="rsync -av --delete --exclude='.ipynb_checkpoints/ --exclude='.git/' --exclude='ignore/' $HOME/gits/deen-lupysta/ $HOME/labor/synced-deen-lupysta/"
