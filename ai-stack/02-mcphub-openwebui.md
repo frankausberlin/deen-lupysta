@@ -1,88 +1,119 @@
 ### MCPHub and Open WebUI
 
-#### MCPHub 
+#### MCPHub
+
+##### System vs. User services — why MCPHub runs as a **user service**
+
+The AI stack mixes two kinds of services and it matters which type each one runs as.
+
+
+<table>
+  <tr>
+    <td>Type </td>
+    <td>Started by</td>
+    <td>Inherits GUI session?</td>
+    <td>Inherits user toolchains<br>(<code>fnm</code>, <code>mamba</code>, <code>uv</code>)?</td>
+    <td>Use for…</td>
+  </tr>
+  <tr>
+    <td><strong>System service</strong> root (<code>/etc/systemd/system/</code>)</td>
+    <td>systemd at boot</td>
+    <td><b>⛔ no</b></td>
+    <td><b>⛔ no</b><br>only <code>Environment=</code> declared in the unit</td>
+    <td>Headless daemons (without a logged-in user):<br> <code>searxng</code>, <code>litellm</code>, <code>localai</code>, <code>ollama</code>, <code>docker</code>, <code>open-webui</code></td>
+  </tr>
+  <tr>
+    <td><strong>User service</strong> (<code>~/.config/systemd/user/</code>)</td>
+    <td>systemd on user login</td>
+    <td><b>✅ yes</b><br>(<code>DISPLAY</code>, <br><code>DBUS_SESSION_BUS_ADDRESS</code>, <br><code>WAYLAND_DISPLAY</code>, <br><code>XDG_RUNTIME_DIR</code><br>imported from the desktop session)</td>
+    <td>⚠️ partly<br><b>✅ yes</b><code>$HOME</code>, <code>$USER</code>, GUI vars<br><b>⛔ no</b> the interactive shell PATH (<code>fnm</code>, <code>mamba</code>, <code>uv</code> hooks), must be added with <code>Environment=PATH=…</code></td>
+    <td>Anything that needs the user's browser or desktop session: <code>mcphub</code></td>
+  </tr>
+</table>
+
+
+
+MCPHub is special because some of the MCP servers it proxies need access to the user's desktop:
+
+- [`colab-mcp`](https://github.com/googlecolab/colab-mcp) calls `webbrowser.open_new()` to launch a Colab tab in the user's default browser. In a system-service context this fails silently with `webbrowser.Error: could not locate runnable browser` — the tool call then runs into its 60-second timeout.
+- [`fastplaywright`](https://github.com/tontoko/fast-playwright-mcp) and similar tools may need a real X/Wayland session for headed mode.
+- All MCP servers invoked through `npx` / `uvx` need a working PATH for `node` and `uvx`. The user service makes this trivial by pointing at `fnm`'s **persistent** default symlink (`~/.local/share/fnm/aliases/default/bin`) which always resolves to the active node version — no ephemeral `fnm_multishells` paths and no shell-init dance.
+
+> ⚠️ User services stop when the user logs out unless `loginctl enable-linger` is set. With linger enabled the service keeps running, but the GUI bridge is not available without an active graphical login — so `colab-mcp` will still fail in that mode. For a typical workstation: just let the service start with the desktop session.
+
+> ⚠️ Why an explicit `PATH=` is still needed in the unit: systemd-user only inherits `PATH` from the desktop login process, which uses the standard system PATH. The shell's `fnm`-loaded PATH only exists in interactive shells. We therefore put the persistent fnm/pnpm/uv bin directories explicitly into the unit — but that's just one line, not 20.
 
 ##### Base Installation (fully functional)
 
-> ⚠️ **Pitfalls with node over `fnm`**
-> `fnm` activates node per shell via an *ephemeral* directory: `/run/user/<uid>/fnm_multishells/<PID>_<timestamp>/bin`.
-> This path disappears as soon as the shell ends — absolutely **unsuitable** for a systemd service.
-> The script below detects and uses the **persistent** `fnm` symlink instead:
-> `~/.local/share/fnm/aliases/default/bin`, which always points to the current default node version.
-> If `pnpm` is missing here, go back to the Node setup and check for late shlib files that export copied full `PATH` snapshots.
-
 ```shell
-# 0) preflight: Node/pnpm must work before MCPHub installation
-for cmd in node npm corepack pnpm npx; do
-  command -v "$cmd" || { echo "❌ missing: $cmd — fix the Node.js setup first"; return 1 2>/dev/null || exit 1; }
+# 0) preflight: Node/pnpm and uvx must be available in the interactive shell
+for cmd in node npm corepack pnpm npx uvx; do
+  command -v "$cmd" || { echo "❌ missing: $cmd — fix Node.js or Python setup first"; return 1 2>/dev/null || exit 1; }
 done
 
-NODE_DEFAULT_BIN=$(readlink -f "$HOME/.local/share/fnm/aliases/default/bin" 2>/dev/null || true)
-[[ -n "$NODE_DEFAULT_BIN" && -x "$NODE_DEFAULT_BIN/node" ]] || { echo "❌ persistent fnm default node path missing"; return 1 2>/dev/null || exit 1; }
-
-if printf '%s\n' "$PATH" | tr ':' '\n' | grep -q 'fnm_multishells'; then
-  echo "⚠️ Current interactive PATH contains fnm_multishells. That is OK for a shell, but never use it in systemd."
-fi
-
-if grep -R "fnm_multishells" ~/.shlib/shlibs 2>/dev/null; then
-  echo "⚠️ Review these shlib lines. Remove stale fnm_multishells paths before continuing."
-fi
-if grep -R -E '^export PATH=([^"$]|"[^$]*")' ~/.shlib/shlibs 2>/dev/null; then
-  echo "⚠️ Review these shlib lines. Remove copied full PATH snapshots before continuing."
-fi
-
-# 1) install mcphub global via pnpm
+# 1) install mcphub globally via pnpm
 pnpm add -g @samanhappy/mcphub
 
-# 2) settings & secrets you need
+# 2) secrets file (mcphub expands ${VAR} from EnvironmentFile)
 cat > ~/.mcphub.env <<EOF
 GITHUB_TOKEN=$GITHUB_TOKEN
 STACKOVERFLOW_API_KEY=$STACKOVERFLOW_API_KEY
 HUGGINGFACE_TOKEN=$HUGGINGFACE_TOKEN
-HOST=0.0.0.0
+HOST=127.0.0.1
 EOF
 chmod 600 ~/.mcphub.env
 
-# 3. Robust paths: prefer persistent fnm default paths, never /run/user/.../fnm_multishells/...
-NODE_BIN="$NODE_DEFAULT_BIN"
-[ -z "$NODE_BIN" ] && NODE_BIN=$(command -v node | grep -v "fnm_multishells" | xargs dirname 2>/dev/null)
-[[ -z "$NODE_BIN" || ! -x "$NODE_BIN/node" ]] && { echo "❌ No persistent node path found"; return 1 2>/dev/null || exit 1; }
+# 3) locate mcphub binary (resolved against pnpm's global bin, follows fnm version switches)
+MCPHUB_EXEC="$(pnpm bin -g)/mcphub"
+[ -x "$MCPHUB_EXEC" ] || { echo "❌ mcphub not found at $MCPHUB_EXEC"; return 1 2>/dev/null || exit 1; }
 
-PNPM_BIN="$(pnpm bin -g 2>/dev/null || true)"
-[ -z "$PNPM_BIN" ] && PNPM_BIN="$HOME/.local/share/pnpm/bin"
-[[ "$PNPM_BIN" == *fnm_multishells* ]] && { echo "❌ pnpm global bin is ephemeral: $PNPM_BIN"; return 1 2>/dev/null || exit 1; }
-
-UVX_BIN="$(dirname "$(command -v uvx 2>/dev/null || echo "$HOME/.local/bin/uvx")")"
-MCPHUB_EXEC="$PNPM_BIN/mcphub"
-[ ! -x "$MCPHUB_EXEC" ] && { echo "❌ mcphub not found: $MCPHUB_EXEC"; return 1 2>/dev/null || exit 1; }
-SERVICE_PATH="$NODE_BIN:$PNPM_BIN:$UVX_BIN:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin"
-
-# 4) write service unit
-sudo tee /etc/systemd/system/mcphub.service > /dev/null <<EOF
+# 4) write USER-level service unit
+#    PATH is set explicitly using the *persistent* fnm symlink, which always points to
+#    the active node version. No fnm_multishells. No sudo needed for any of this.
+mkdir -p ~/.config/systemd/user
+cat > ~/.config/systemd/user/mcphub.service <<'EOF'
 [Unit]
 Description=MCPHub Server
-After=network.target
+After=graphical-session.target
+PartOf=graphical-session.target
 
 [Service]
 Type=simple
-User=$USER
-Environment="PATH=$SERVICE_PATH"
-EnvironmentFile=$HOME/.mcphub.env
-ExecStart=$MCPHUB_EXEC
-Restart=always
+Environment="PATH=%h/.local/share/fnm/aliases/default/bin:%h/.local/share/pnpm:%h/.local/bin:/usr/local/bin:/usr/bin:/bin"
+EnvironmentFile=%h/.mcphub.env
+ExecStart=%h/.local/share/pnpm/mcphub
+Restart=on-failure
 RestartSec=5
 TimeoutStopSec=5s
-WorkingDirectory=$HOME
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
 EOF
 
-# 5) enable & start
-sudo systemctl daemon-reload && sudo systemctl enable --now mcphub.service
+# 5) enable & start as user
+systemctl --user daemon-reload && systemctl --user enable --now mcphub.service
 
-# 6) firewall for docker
-sudo ufw allow from 172.16.0.0/12 to any port 3000 proto tcp
+# 6) firewall: mcphub only listens on 127.0.0.1, no inbound rule needed
+#    (set HOST=0.0.0.0 in ~/.mcphub.env and add a ufw rule only if you really need remote access)
+```
+
+> 💡 **Logs without sudo**: `journalctl --user -u mcphub.service -f`
+> 💡 **Restart after env or unit changes**: `systemctl --user daemon-reload && systemctl --user restart mcphub.service`
+
+##### Migration from a previous system-level installation
+
+If you already have an `mcphub.service` under `/etc/systemd/system/`, switch it over once:
+
+```shell
+# stop and disable the old system unit
+sudo systemctl disable --now mcphub.service
+sudo rm /etc/systemd/system/mcphub.service
+sudo systemctl daemon-reload
+
+# remove the (now unnecessary) ufw rule if it was ever added
+sudo ufw delete allow from 172.16.0.0/12 to any port 3000 proto tcp 2>/dev/null || true
+
+# then run the user-service install block above
 ```
 
 ##### MCP-Server Collection

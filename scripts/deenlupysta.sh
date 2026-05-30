@@ -122,9 +122,6 @@ alias t='cd ~/labor/tmp'
 alias suu="sudo nala update && sudo nala upgrade -y && sudo nala autoremove -y && sudo nala clean && flatpak update -y && sudo snap refresh"
 alias rlb="exec zsh"
 
-# SHLIB
-alias shliblock="cp ~/.zshrc ~/.zshrc.lock"
-
 # "Firsties" – morning routines
 alias los="cw && suu"
 alias losj="cw && suu && jl ."
@@ -133,8 +130,9 @@ alias losc="cw && suu && code ."
 # cw - change to working folder or set working folder
 cw() { [[ "$1" == "." ]] && echo "$PWD" > "$HOME/.config/current_working_folder" || cd "$(cat "$HOME/.config/current_working_folder")"; }
 
-# set private bin path
-exportadd ~/bin
+# SHLIB lock and restore
+shliblock() { [[ "$1" == "R" ]] && cp ~/.zshrc.lock ~/.zshrc || cp ~/.zshrc ~/.zshrc.lock; }
 
 # deensync: Synchronizes the deen-lupysta repository to a target directory, excluding .git and ignore folders.
 alias deensync="rsync -av --delete --exclude='.ipynb_checkpoints/ --exclude='.git/' --exclude='ignore/' $HOME/gits/deen-lupysta/ $HOME/labor/synced-deen-lupysta/"
+

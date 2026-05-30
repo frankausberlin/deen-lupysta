@@ -128,8 +128,14 @@ The Luxurious Python Stack separates concerns into five distinct layers. Each le
 - Always active unless a `.venv` exists at the current location (superseded by direnv)
 - **Startup:** `act <envname>` activates the environment and saves it to `~/.startenv` (absolute path in home directory)
 - **Volatile:** The rule is "no updates, just delete and recreate"
-- **Naming convention:** `ds12` = "data science Python 3.12"
+- **Naming convention:**<br> 
+    - `ds12` = "data science Python 3.12"
+    - `_ds12` = "ds12 with normal ipywidgets>=8.0"
+- **The ipywidget dillema:**<br>
+    Ipywidgets only work in colab in version <8.0. However, these are no longer supported by the current jupyter version.<br>
+    The solution: I provide two versions of the data science environment for each Python version: a version with ipywidgets that can be used as a local runtime for Colab and a version that renders the widgets correctly in the local Jupyter (localhost:8888/lab).
 - `uv pip install` is used for speed inside Mamba environments (intentionally not under Mamba's control)
+
 
 ## Level 2: Projects
 

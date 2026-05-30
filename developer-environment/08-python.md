@@ -112,7 +112,7 @@ mamba   create -y -n $ENV_NAME python=$py google-colab cuda-toolkit && mamba act
 uv pip  install torch torchvision scikit-learn jax jupyterlab jupytext jupyter_http_over_ws jupyter-ai jupyterlab-github fastai\
         numba langchain langchain-openai langchain-ollama transformers evaluate accelerate nltk tf-keras hrid huggingface-hub\
         rouge_score datasets unstructured opencv-python soundfile nbdev llama-index 'tensorflow[and-cuda]' setuptools wheel mcp\
-        graphviz xeus-python PyPDF2 ipywidgets==7.7.1
+        graphviz PyPDF2 ipywidgets==7.7.1
 jupyter labextension enable jupyter_http_over_ws && echo $ENV_NAME > ~/.startenv
 python  -m ipykernel install --user --name $ENV_NAME --display-name $ENV_NAME
 # _______________________________________use_'act'_instead_of_'mamba_activate'_____________________________________________________

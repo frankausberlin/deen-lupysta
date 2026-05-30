@@ -18,7 +18,7 @@ sudo nala install -y \
 ```shell
 # CLI Tools & Productivity
 sudo nala install -y \
-  git gh tmux btop htop iotop nvtop fastfetch tree hwinfo \
+  git gh tmux btop htop iotop nvtop fastfetch tree hwinfo s-tui \
   ripgrep fzf zoxide jq tealdeer shellcheck shfmt
 ```
 
@@ -45,7 +45,7 @@ sudo nala install -y \
 # Everything in this block assumes a GNOME desktop session.
 sudo nala install -y \
   guake flatpak gnome-software-plugin-flatpak \
-  gnome-shell-extension-manager libgtk-3-dev
+  gnome-shell-extension-manager libgtk-3-dev gnome-browser-connector
 
 # Flatpak (desktop only)
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
