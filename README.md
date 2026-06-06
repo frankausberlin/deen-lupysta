@@ -8,7 +8,7 @@
 
 <tr align=center><td colspan=5>🧠 AI Stack<br></td></tr>
 
-<tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>🎓 Hermes<br>Lionheart</td><td>🛡️ LiteLLM<br>VibeKanban</td><td>☁️ vast.ai<br>LocalAI, OpenLIT</td></tr>
+<tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>🎓 Hermes<br>Lionheart</td><td>🛡️ LiteLLM<br>Vibe-Kanban</td><td>☁️ vast.ai<br>LocalAI, OpenLIT</td></tr>
 
 <tr align=center><td colspan=5>🛠️ Developer Environment<br></td></tr>
 
@@ -85,15 +85,15 @@ Never run scripts or script snippets without carefully reviewing them.
  ▌ ▌ ▌▛▀   ▌ ▌ ▐   ▖ ▌▐ ▖▞▀▌▌ ▖▛▚ 
  ▘ ▘ ▘▝▀▘  ▘ ▘ ▀▘  ▝▀  ▀ ▝▀▘▝▀ ▘ ▘
 
- <tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>🎓 Hermes<br>Lionheart</td><td>🛡️ LiteLLM<br>VibeKanban</td><td>☁️ vast.ai<br>LocalAI, OpenLIT</td></tr>
+ <tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>🎓 Hermes<br>Lionheart</td><td>🛡️ LiteLLM<br>Vibe-Kanban</td><td>☁️ vast.ai<br>LocalAI, OpenLIT</td></tr>
 
 ```
 
 ## 3. 🧠 AI Stack
 ### 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
 ### 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
-### 3.3 🛡️ [Hermes & Lionheart](ai-stack/03-hermes-lion.md) *(🚧 WIP)*
-### 3.4 🦁 [LiteLLM & VibeKanban](ai-stack/04-litellm-vibekanban.md) *(🚧 WIP)*
+### 3.3 🎓 [Hermes & Lionheart](ai-stack/03-hermes-lion.md) *(🚧 WIP)*
+### 3.4 🛡️ [LiteLLM & Vibe-Kanban](ai-stack/04-litellm-vibekanban.md) *(🚧 WIP)*
 ### 3.5 ☁️ [Vast.AI, LocalAI & OpenLIT](ai-stack/05-vastai-localai.md) *(🚧 WIP)*
 
 ---
@@ -116,16 +116,16 @@ Never run scripts or script snippets without carefully reviewing them.
 ---
 
 
-## 5. Overwiev Responsibilities
+## 5. Overview Responsibilities
 
 ### 5.1 Software Architecture
 
 <table><tr align=center><td width="20%"><b>Software</b><br><font size=-2>github stars ⭐ june 26</font></td><td><b>Responsibility</b><br>&nbsp;</td></tr><tr><td><b>Ollama</b><br>173k ⭐</td><td>Ollama is a simple inference engine and is used for
 
-* Embedding and reranking models
-* OCR, vision and translation models</li>
+* Embedding & reranking models (e.g. `qwen3-embedding:0.6b`)
+* OCR, vision and translation models (e.g. `translategemma`)
 * Chat and agent models are unlikely to run on ollama.
-</td></tr><tr><td><b>Agents</b><br>OpenCode 169k ⭐<br>Claude 130k ⭐<br>KiloCode 20k ⭐</td><td>Agents use tools, have skills, complete tasks and chat with humans or other agents
+</td></tr><tr><td><b>Agents</b><br>OpenCode 169k ⭐<br>Claude 130k ⭐<br>Kilo Code 20k ⭐</td><td>Agents use tools, have skills, complete tasks and chat with humans or other agents
 
 * Autonomous codebase manipulation & task execution
 * System health monitoring & automated routines
@@ -145,12 +145,13 @@ Never run scripts or script snippets without carefully reviewing them.
 * Configurable web crawler (e.g. Firecrawl)
 * Realtime audio conversation with local models (ollama or localai)
 * Offers the complete Deen Lupysta repo as a knowledge base.
-</td></tr><tr><td><b>Hermes</b><br>178k ⭐</td><td>The self-improving, autonomous agent with heartbeat mechanism (cronjob, webhook)
+</td></tr><tr><td><b>Hermes</b><br>178k ⭐</td><td>The autonomous agent with heartbeat mechanism (cronjob, webhook)
 
 * Use the Lionheart Skill to maintain the Deen Lupysta system
 * Creates regular system diagnostics
-* Monitored by LiteLLM: Guradrails and cost control
+* Monitored by LiteLLM: Guardrails and cost control
 * Communicates with the user via telegram, cli or desktop app
+
 </td></tr><tr><td><b>LiteLLM</b><br>49.1k ⭐</td><td>OpenAI compatible Proxy Server (LLM Gateway) to call LLMs
 
 * Manages external and local models
@@ -159,10 +160,11 @@ Never run scripts or script snippets without carefully reviewing them.
 * Secures LLM calls with Guradrails
 </td></tr><tr><td><b>VibeKanban</b><br>26.8k ⭐</td><td>VibeKanban handles a kanban board and branches for autonomous agents
 
+> ⚠️ **Sunsetting notice (April 2026):** The company bloop has shut down. The project continues as community-maintained open source (Apache-2.0). Remote services are limited; local-only architecture is the recommended deployment. Expect slower release cadence and self-hosted deployments.
 * Parallel orchestration lets multiple agents work in parallel or in chains (sequences).
 * Git & project integration with branches for tasks
 * Bidirectional MCP
-  * As a client, it passes tools (from mcphub or litellm) to the agents. 
+  * As a client, it passes tools (from mcphub or litellm) to the agents.
   * As a server, it provides the Kanban board itself as an MCP resource
 * Autonomous agents can independently create tasks or query the status of the board.
 </td></tr><tr><td><b>LocalAI</b><br>46.6k ⭐</td><td>LocalAI is a composable AI stack for running models locally and is used in two scenarios:

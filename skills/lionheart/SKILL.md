@@ -70,7 +70,7 @@ Lionheart's detailed work is split into reference files (located in the same dir
 
 - `references/daily-checks.md` — the 8 daily Tier-1 health checks (~30 seconds)
 - `references/reco-format.md` — exact format and rules for `~/reco.sh`
-- `references/weekly-checks.md` — deeper weekly inspection (currently being developed)
+- `references/weekly-checks.md` — 21 deeper weekly inspection checks (✅ implemented, 2-5 min runtime)
 - `references/cron-setup.md` — how to install the daily cron job (including --deliver all pitfall)
 - `references/health-checks.md` — complete list of ~45 checks across all 16 stack components (future)
 
