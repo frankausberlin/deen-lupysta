@@ -1,20 +1,11 @@
 ## LiteLLM & Vibe-Kanban
 
-LiteLLM fulfills several tasks in the AI stack:
-> * Cost control for all providers (openrouter, kilo, opencode zen)
-> * Reliability through model routing
-> * Agent security through guardrails for autonomous agents
-> * Routing strategies (e.g. use openrouter free until the quota is exhausted and then use ollama xyz)
-
-
-🚨 Important security notice (March 2026):
-* LiteLLM was recently the target of a serious supply chain attack on PyPI (versions 1.82.7 and 1.82.8 contained a credential stealer that targeted .env files, SSH keys and cloud credentials).
-* Hardening recommendation: The official Docker image (ghcr.io/berriai/litellm) was not affected by the compromised PyPI packages and provides secure isolation. When installing via pip, a secure, current version must be pinned (>= 1.83.0).
-* To be on the safe side, we use digest pinning at this point.
-
-
-
 #### LiteLLM
+
+> 🚨 Important security notice (March 2026):
+> * LiteLLM was recently the target of a serious supply chain attack on PyPI (versions 1.82.7 and 1.82.8 contained a credential stealer that targeted .env files, SSH keys and cloud credentials).
+> * Hardening recommendation: The official Docker image (ghcr.io/berriai/litellm) was not affected by the compromised PyPI packages and provides secure isolation. When installing via pip, a secure, current version must be pinned (>= 1.83.0).
+> * To be on the safe side, we use digest pinning at this point.
 
 ```shell
 # 1. Create configuration directory

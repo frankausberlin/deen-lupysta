@@ -158,15 +158,19 @@ Never run scripts or script snippets without carefully reviewing them.
 * Provides a unified interface for AI applications
 * Track spend, set budgets per virtual key/user
 * Secures LLM calls with Guradrails
+* Reliability through model routing
+* Routing strategies <br>
+  e.g. use openrouter free until the quota is exhausted and then use kilo free
 </td></tr><tr><td><b>VibeKanban</b><br>26.8k ⭐</td><td>VibeKanban handles a kanban board and branches for autonomous agents
 
-> ⚠️ **Sunsetting notice (April 2026):** The company bloop has shut down. The project continues as community-maintained open source (Apache-2.0). Remote services are limited; local-only architecture is the recommended deployment. Expect slower release cadence and self-hosted deployments.
 * Parallel orchestration lets multiple agents work in parallel or in chains (sequences).
 * Git & project integration with branches for tasks
 * Bidirectional MCP
   * As a client, it passes tools (from mcphub or litellm) to the agents.
   * As a server, it provides the Kanban board itself as an MCP resource
 * Autonomous agents can independently create tasks or query the status of the board.
+
+> ⚠️ **Sunsetting notice (April 2026):** The company bloop has shut down. The project continues as community-maintained open source (Apache-2.0). Remote services are limited; local-only architecture is the recommended deployment. Expect slower release cadence and self-hosted deployments.
 </td></tr><tr><td><b>LocalAI</b><br>46.6k ⭐</td><td>LocalAI is a composable AI stack for running models locally and is used in two scenarios:
 
 1. Local
