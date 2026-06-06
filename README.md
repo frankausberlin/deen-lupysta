@@ -84,9 +84,6 @@ Never run scripts or script snippets without carefully reviewing them.
  ▌ ▛▀▖▞▀▖  ▙▄▌ ▐   ▚▄ ▜▀ ▝▀▖▞▀▖▌▗▘
  ▌ ▌ ▌▛▀   ▌ ▌ ▐   ▖ ▌▐ ▖▞▀▌▌ ▖▛▚ 
  ▘ ▘ ▘▝▀▘  ▘ ▘ ▀▘  ▝▀  ▀ ▝▀▘▝▀ ▘ ▘
-
- <tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>🎓 Hermes<br>Lionheart</td><td>🛡️ LiteLLM<br>Vibe-Kanban</td><td>☁️ vast.ai<br>LocalAI, OpenLIT</td></tr>
-
 ```
 
 ## 3. 🧠 AI Stack
