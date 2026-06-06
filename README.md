@@ -1,5 +1,4 @@
 <table><tr><td align=right><img src="https://lh3.googleusercontent.com/d/1JdavIkcaCKkXrqiJtGHpAMvXAp73Z8tA" width=1000><br>ai-flawored</td></tr>
-
 <tr align=center><td><table>
 
 <tr align=center><td colspan=5>💎 Luxurious Python Stack<br></td></tr>
@@ -85,13 +84,16 @@ Never run scripts or script snippets without carefully reviewing them.
  ▌ ▛▀▖▞▀▖  ▙▄▌ ▐   ▚▄ ▜▀ ▝▀▖▞▀▖▌▗▘
  ▌ ▌ ▌▛▀   ▌ ▌ ▐   ▖ ▌▐ ▖▞▀▌▌ ▖▛▚ 
  ▘ ▘ ▘▝▀▘  ▘ ▘ ▀▘  ▝▀  ▀ ▝▀▘▝▀ ▘ ▘
+
+ <tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>🎓 Hermes<br>Lionheart</td><td>🛡️ LiteLLM<br>VibeKanban</td><td>☁️ vast.ai<br>LocalAI, OpenLIT</td></tr>
+
 ```
 
 ## 3. 🧠 AI Stack
 ### 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
 ### 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
-### 3.3 🛡️ [LiteLLM, Hermes & Lionheart](ai-stack/03-litellm-hermes.md) *(🚧 WIP)*
-### 3.4 🦁 [VibeKanban & OhMyOpenAgent](ai-stack/04-vibekanban-omo.md) *(🚧 WIP)*
+### 3.3 🛡️ [Hermes & Lionheart](ai-stack/03-hermes-lion.md) *(🚧 WIP)*
+### 3.4 🦁 [LiteLLM & VibeKanban](ai-stack/04-litellm-vibekanban.md) *(🚧 WIP)*
 ### 3.5 ☁️ [Vast.AI, LocalAI & OpenLIT](ai-stack/05-vastai-localai.md) *(🚧 WIP)*
 
 ---
