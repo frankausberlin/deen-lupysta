@@ -120,7 +120,7 @@ Never run scripts or script snippets without carefully reviewing them.
 
 ### 5.1 Software Architecture
 
-<table><tr align=center><td width="20%"><b>Software</b><br><font size=-2>github stars ⭐ june 26</font></td><td><b>Responsibility</b><br>&nbsp;</td></tr><tr><td><b>Ollama</b><br>173k ⭐</td><td>Ollama is a simple inference engine and is used for
+<table><tr align=center><td width="25%"><b>Software</b><br><font size=-2>github stars ⭐ june 26</font></td><td><b>Responsibility</b><br>&nbsp;</td></tr><tr><td><b>Ollama</b><br>173k ⭐</td><td>Ollama is a simple inference engine and is used for
 
 * Embedding & reranking models (e.g. `qwen3-embedding:0.6b`)
 * OCR, vision and translation models (e.g. `translategemma`)
