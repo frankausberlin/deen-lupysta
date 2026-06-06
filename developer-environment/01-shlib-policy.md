@@ -67,8 +67,10 @@ ln -s ~/gits/deen-lupysta/developer-environment/01-shlib-policy.md ~/.shlib/READ
 # turn the current .zshrc into an shlib file (ensure that "setopt INTERACTIVE_COMMENTS" is included).
 mv ~/.zshrc ~/.shlib/shlibs/15-original-zshrc.sh
 
-# Optional: I often open the entire .shlib folder in vsocde. For my convenience I created these links
+# Optional: I view the .shlib folder as a kind of dashboard that gives me access to the most interesting config files via file links(single point of reference)
+# e.g.
 ln -s ~/.zshrc ~/.shlib/.zshrc
+ln -s ~/.config/Code/User/globalStorage/kilocode.kilo-code/settings/mcp_settings.json ~/.shlib/kilo_mcps.json
 ```
 
 * **The exact content in .zshrc with the three snippets in the middle.**

@@ -134,5 +134,5 @@ cw() { [[ "$1" == "." ]] && echo "$PWD" > "$HOME/.config/current_working_folder"
 shliblock() { [[ "$1" == "R" ]] && cp ~/.zshrc.lock ~/.zshrc || cp ~/.zshrc ~/.zshrc.lock; }
 
 # deensync: Synchronizes the deen-lupysta repository to a target directory, excluding .git and ignore folders.
-alias deensync="rsync -av --delete --exclude='.ipynb_checkpoints/ --exclude='.git/' --exclude='ignore/' $HOME/gits/deen-lupysta/ $HOME/labor/synced-deen-lupysta/"
+alias deensync="rsync -av --delete --exclude='.ipynb_checkpoints/' --exclude='.git/' --exclude='ignore/' \$HOME/gits/deen-lupysta/ \$HOME/labor/synced-deen-lupysta/"
 

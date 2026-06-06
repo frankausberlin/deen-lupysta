@@ -156,7 +156,7 @@ API_SERVER_KEY=key_for_use_in_open_webui
 * Let the lionheart pound.
 ```shell
 # link the skill
-ls -s ~/gits/deen-lupysta/skills/lionheart ~/.hermes/skills/autonomous-ai-agents/lionheart
+ln -s ~/gits/deen-lupysta/skills/lionheart ~/.hermes/skills/autonomous-ai-agents/lionheart
 
 # Start hermes and prompt: Use your lionheart skill and set up your daily and weekly heartbeat.
 ```
