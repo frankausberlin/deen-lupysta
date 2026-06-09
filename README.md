@@ -31,10 +31,11 @@ consists of the installation instructions for the developer environment with an 
 * A comfortable data science mamba environment with cuda support for pytorch, tensorflow, numba and jax.
 * Setting up an AI system with Rag and real-time conversation based on Open WebUI
 * The MCPHub self-hosts a toolbox for agents and Open WebUI
-* Skill for coding agents (luxury python stack)
-* Host and integrate LLMs yourself with LocalAI and VastAI, monitored by OpenLIT
+* Swarm and CI/CD ready skill for coding agents (luxury python stack)
 * Setting up security concepts (guardrails) for heartbeat agents
 * Routing strategies, resiliency and cost control for agent models with LiteLLM
+* Manages software development of agent swarms using vibe-kanban
+* Host and integrate LLMs yourself with LocalAI and VastAI, monitored by OpenLIT
 
 ***The repository here should in no way be seen as a strict guide. It's just one possible path among many, very much influenced by my preferences. Think of it as a box full of different blueprints that you can mix, match, and swap as you wish.***
 
@@ -106,9 +107,12 @@ Never run scripts or script snippets without carefully reviewing them.
 ## 4.1 📚 [Stack Description](luxuspythonstack.md)
 ## 4.2 🤖 [Agent Guide Blueprint](skills/luxuspythonstack/references/blueprint-AGENTS.md)
 ## 4.3 👷 [Daily Commands Reference](skills/luxuspythonstack/references/daily-commands.md)
-## 4.4 🏗️ [Skill - *luxuspythonstack/*](skills/luxuspythonstack/SKILL.md)
-## 4.5 🔧 [Scripts - *luxuspythonstack.sh*](scripts/luxuspythonstack.sh)
-## 4.6 📋 [Scripts - dsdash.ipynb](scripts/dsdash.ipynb)
+## 4.4 💓 [Cron Setup (Heartbeat)](skills/luxuspythonstack/references/cron-setup.md)
+## 4.5 📜 [reco.sh Format Specification](skills/luxuspythonstack/references/reco-format.md)
+## 4.6 ⛑️ [Health Checks](skills/luxuspythonstack/references/health-checks.md)
+## 4.7 🏗️ [Skill - *luxuspythonstack/*](skills/luxuspythonstack/SKILL.md)
+## 4.8 🔧 [Scripts - *luxuspythonstack.sh*](scripts/luxuspythonstack.sh)
+## 4.9 📋 [Scripts - dsdash.ipynb](scripts/dsdash.ipynb)
 
 ---
 
@@ -272,10 +276,3 @@ Never run scripts or script snippets without carefully reviewing them.
   </tr>
 </table>
 
-
-
- Hermes & Lionheart
-
-
-There are several options available to communicate with Lionheart including CLI, Open WebUI, Telegram<br>
-The exact description can be found in [Lionheart Skill](../skills/lionheart/SKILL.md).

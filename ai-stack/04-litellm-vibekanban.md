@@ -161,9 +161,125 @@ curl -s "http://127.0.0.1:4040/spend?start_date=$(date -u +%Y-%m-%d)" \
 
 **⚠️ Sunsetting notice (April 2026):** The company bloop has shut down. Vibe-Kanban continues as community-maintained open source (Apache-2.0). Remote services are limited; local-only architecture is the recommended deployment. Expect a slower release cadence and self-hosted deployments. See [sunset announcement](https://www.vibekanban.com/blog/shutdown).
 
-WIP — installation, configuration, and integration notes coming soon.
+#### Variants — what we're picking (and why)
 
-Key responsibilities (mirrored from README Section 5.1):
+Vibe-Kanban ships two install paths:
+
+| Path | Command | Best for |
+|------|---------|----------|
+| **Local desktop** (single-user) | `npx vibe-kanban` | Personal machine, no auth, no DB — opens a Tauri desktop app |
+| **Remote / Cloud** (multi-user) | `docker compose` on `crates/remote/` | Self-hosted shared Kanban with auth, projects, real-time sync (ElectricSQL) |
+
+For Deen Lupysta we pick the **Remote / Cloud compose stack** with **bootstrap local auth** (no OAuth, no external account needed) — we want a real server (HTTP API + persistent DB + sync) so that other agents and the desktop client can connect to it later, but we keep it single-tenant.
+
+#### Light profile — what's in the stack
+
+The default `docker-compose.yml` in `crates/remote/` already comes in three optional profiles. We run the **base stack only**:
+
+* `remote-db` — Postgres 16 (logical replication enabled for ElectricSQL)
+* `electric` — ElectricSQL sync engine (internal, no host port)
+* `remote-server` — Axum HTTP API + React SPA (port `8081` inside the container)
+
+Excluded profiles (deliberately not started):
+
+* `relay` — relay/tunnel daemon for remote SSH workspace access. Adds a Rust build, port `8082`, plus a wildcard TLS hostname. Not needed for local agent orchestration.
+* `attachments` — Azurite blob storage for issue file uploads. Disabled; we don't attach files to issues.
+
+If you ever need either, see the [optional profiles section](https://github.com/BloopAI/vibe-kanban/blob/main/crates/remote/README.md#optional-profiles) in the upstream README.
+
+#### Port & directory decisions (and why)
+
+| What | Default | Deen Lupysta | Reason |
+|------|---------|--------------|--------|
+| Web UI / API port | `3000` (host) → `8081` (container) | **`3001` → `8081`** | Port `3000` is taken by the **MCPHub user service** (see [02-mcphub-openwebui](02-mcphub-openwebui.md)). |
+| Postgres host port | `5433` (debug) | `5433` (default) | No collision; leave for `psql` debugging. |
+| Relay port | `8082` | not used | Relay profile is disabled. |
+| Repo path | n/a | `~/gits/vibe-kanban` | Standard `~/gits/` policy. |
+
+#### Installation
+
+```shell
+# 1. clone (if not already present)
+cd ~/gits && git clone https://github.com/BloopAI/vibe-kanban.git && cd vibe-kanban
+
+# 2. install shlib — gives us the `vk` manager (start/stop/logs/token/etc.)
+ln -s ~/gits/deen-lupysta/scripts/vibe-kanban.sh ~/.shlib/shlibs/72-vibe-kanban.sh
+
+# 3. generate two secrets
+JWT_SECRET=$(openssl rand -base64 48)
+ELECTRIC_PW=$(openssl rand -base64 24)
+
+# 4. create .env.remote (single shared admin, no OAuth, port 3001)
+cat > ~/gits/vibe-kanban/crates/remote/.env.remote <<EOF
+# required
+VIBEKANBAN_REMOTE_JWT_SECRET=$JWT_SECRET
+ELECTRIC_ROLE_PASSWORD=$ELECTRIC_PW
+
+# host port override (avoids mcphub on :3000)
+REMOTE_SERVER_PORTS=127.0.0.1:3001:8081
+PUBLIC_BASE_URL=http://localhost:3001
+
+# bootstrap local auth — set BOTH to enable a single shared admin
+SELF_HOST_LOCAL_AUTH_EMAIL=admin@deen-lupysta.local
+SELF_HOST_LOCAL_AUTH_PASSWORD=change-me-to-a-strong-password
+
+# oauth intentionally left blank (we use local auth)
+GITHUB_OAUTH_CLIENT_ID=
+GITHUB_OAUTH_CLIENT_SECRET=
+GOOGLE_OAUTH_CLIENT_ID=
+GOOGLE_OAUTH_CLIENT_SECRET=
+
+# optional integrations — all off
+LOOPS_EMAIL_API_KEY=
+VITE_RELAY_API_BASE_URL=
+EOF
+chmod 600 ~/gits/vibe-kanban/crates/remote/.env.remote
+
+# 5. first start — builds the Rust + Node image (one-time ~5-10 min on this box)
+vk up
+```
+
+> 💡 **Subsequent starts** are near-instant because Docker caches the build layers. The `remote-server` image rebuilds only when you change source files or pull a new commit.
+>
+> 💡 **`vk` shlib** is the single point of contact: `vk up`, `vk down`, `vk logs`, `vk status`, `vk health`, `vk open`, `vk token`, `vk reset`. Run `vk help` for the full list.
+
+#### Verify it works
+
+```shell
+# 1) all three containers healthy?
+vk status
+# NAMES                       STATUS                   PORTS
+# remote-electric-1           Up X minutes (healthy)
+# remote-remote-server-1      Up X minutes (healthy)   127.0.0.1:3001->8081/tcp
+# remote-remote-db-1          Up X minutes (healthy)   0.0.0.0:5433->5432/tcp
+
+# 2) health endpoint returns JSON
+vk health                              # → 200
+curl -sS http://localhost:3001/v1/health
+# {"status":"ok","version":"0.1.27"}
+
+# 3) login works → JWT issued + personal org auto-created
+curl -sS -X POST http://localhost:3001/v1/auth/local/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@deen-lupysta.local","password":"change-me-to-a-strong-password"}' \
+  | python3 -m json.tool | head -5
+# { "access_token": "eyJ…", "refresh_token": "eyJ…" }
+
+# 4) use the access_token to call a protected endpoint
+TOKEN=$(vk token)
+curl -sS -H "Authorization: Bearer $TOKEN" http://localhost:3001/v1/identity | python3 -m json.tool
+# { "user_id": "…", "username": null, "email": "admin@deen-lupysta.local" }
+
+# 5) open the web UI
+vk open
+```
+
+> ⚠️ **API gotchas** (only relevant if you script the API directly — the web UI hides these):
+> * `POST /v1/projects` requires `color` in **HSL format** (`"142 71% 45%"`), not hex.
+> * `POST /v1/issues` requires `status_id` (column UUID) and `sort_order` (float). The web UI creates both for you.
+> * All mutations return `{ "data": …, "txid": <postgres_xid> }` so Electric can sync. Don't unwrap the wrong field.
+
+#### Key responsibilities (from README Section 5.1)
 
 * Kanban board + git worktree branches for autonomous agents
 * Parallel orchestration: multiple agents in parallel or chained (sequence)
@@ -173,10 +289,30 @@ Key responsibilities (mirrored from README Section 5.1):
   * As **server**: exposes the Kanban board itself as an MCP resource
 * Autonomous agents can independently create tasks or query board status
 
+#### Maintenance
+
+```shell
+# tail logs (all services or a single one)
+vk logs                  # all
+vk logs remote-server    # one service
+
+# rebuild the server image (after a `git pull`)
+vk build && vk up
+
+# full reset — ⚠️ drops DB + Electric state, keeps .env.remote
+vk reset
+
+# stop without losing data
+vk down
+```
+
+> 🔄 **Updates:** `cd ~/gits/vibe-kanban && git pull && vk build && vk up`. The compose file references `crates/remote/`, so a fresh `git pull` is the only upgrade path — there is no image registry we pull from in this setup.
+
 Lionheart health checks (planned, see `health-checks.md`):
-* service status (container / process)
-* MCP server reachability
-* local vs remote mode warning
+* service status (container / process) — covered by `vk status` / `vk health`
+* MCP server reachability — pending the MCP client/server wiring
+* local vs remote mode warning — n/a in this single-tenant deployment
+
 
 
 
