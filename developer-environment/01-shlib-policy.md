@@ -1,10 +1,10 @@
-### 1.1 🧱 Shlib System, nala, zsh-1 & Policies
+## 1.1 🧱 Shlib System, nala, zsh-1 & Policies
 
 * generated folders:  ~/.shlib, ~/.shlib/exports, ~/.shlib/shlibs, ~/gits
 * generated shlibs: 10-deenlupysta.sh (link), 15-original-zshrc.sh
 * generated files: .zshrc (shlib'ed version), .zshrc (link), README.md (link), .zshrc.lock
 
-#### Nala
+### Nala
 
 ```shell
 # use nala instead of apt
@@ -12,7 +12,7 @@ sudo apt update && sudo apt install -y nala
 sudo nala update && sudo nala upgrade
 ```
 
-#### Zshell Part 1
+### Zshell Part 1
 
 ```shell
 # Install and switch to zsh
@@ -29,7 +29,7 @@ The early installation and activation of zsh serves to use the shlib system from
 
 ⚠️ The actual setup of zsh takes place in point 1.6 together with antipode and p10k.
 
-#### Shlib System
+### Shlib System
 
 The Shlib (Shell Library) system keeps the `.zshrc` file clean and manageable by moving shell configuration into sorted, versioned files. 
 
@@ -139,9 +139,9 @@ All export files should be `chmod 600` to prevent other users from reading secre
 ├── README.md (link --> ~/gits/deen-lupysta/developer-environment/01-shlib-policy.md)
 └── .zshrc (link --> ~/.zshrc)
 ```
-#### Policies
+### Policies
 
-##### Package Manager Policy
+#### Package Manager Policy
 
 Simple guideline on how to install what.
 
@@ -159,7 +159,7 @@ Simple guideline on how to install what.
 | Java | `sdk` (SDKMAN) | JDK versions + JVM tools |
 | Ruby | `gem` / `bundle` | CLI tools + project deps |
 
-##### Working Folder Policy
+#### Working Folder Policy
 
 * Use `cw` to switch to the current working directory
 * use `cw .` to make the current directory the working directory.

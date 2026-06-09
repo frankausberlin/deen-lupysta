@@ -1,4 +1,4 @@
-### 💎 Ruby (rbenv & bundler)
+## 💎 Ruby (rbenv & bundler)
 
 ```shell
 # System dependencies for compiling Ruby:

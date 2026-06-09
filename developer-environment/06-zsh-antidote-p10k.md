@@ -1,4 +1,4 @@
-### ZSH Part 2: Antidote & Powerlevel10k
+## ZSH Part 2: Antidote & Powerlevel10k
 
 > Complete terminal setup: ZSH as shell, Antidote as plugin manager, Powerlevel10k as prompt.<br>
 > The installation and activation of Zsh were completed in Section 1.1 (Part 1).
@@ -8,7 +8,7 @@
 * generated files: .zsh_plugins.txt, .p10k.zsh (link)
 * generated shlibs: 25-zsh-appearance.sh, 30-zsh-p10k.sh
 
-#### 2. Fonts (MesloLGS NF)
+### 2. Fonts (MesloLGS NF)
 
 ```shell
 mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts
@@ -25,13 +25,13 @@ For Guake:
 3. Unset "Use system fixed width font"
 4. Set font to MesloLGS NF Regular
 
-#### 3. Antidote Plugin Manager
+### 3. Antidote Plugin Manager
 
 ```shell
 git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
 ```
 
-#### 4. Plugin Selection
+### 4. Plugin Selection
 
 ```shell
 cat << 'EOF' > ~/.zsh_plugins.txt
@@ -45,7 +45,7 @@ hlissner/zsh-autopair
 EOF
 ```
 
-#### 5. Integration into shlib
+### 5. Integration into shlib
 
 ```shell
 cat << 'EOF' >> ~/.shlib/shlibs/25-zsh-appearance.sh
@@ -73,7 +73,7 @@ EOF
 
 Restart terminal. Powerlevel10k will guide through the configuration wizard on first startup.
 
-#### 6. p10k Config in shlib
+### 6. p10k Config in shlib
 
 After p10k wizard configuration, move auto-generated config into shlib:
 

@@ -61,22 +61,22 @@ Never run scripts or script snippets without carefully reviewing them.
 ```
 
 
-## 1. 🐧 Base System
-### 1.1 🧱 [Shlib System / Package Manager Policy](developer-environment/01-shlib-policy.md)
-### 1.2 🚀 [Base Tools, Libs & Co.](developer-environment/02-base-tools-libs.md)
-### 1.3 🔒 [Network & security](developer-environment/03-net-security.md)
-### 1.4 📦️ [Docker & CUDA Toolkit](developer-environment/04-docker-cuda.md)
-### 1.5 🌐 [Git, Code & SearXng](developer-environment/05-git-code-searxng.md)
-### 1.6 🧿 [ZSH, Antidote & p10k](developer-environment/06-zsh-antidote-p10k.md)
-### 1.7 📋 [Shell Library deenlupysta.sh](scripts/deenlupysta.sh)
+# 1. 🐧 Base System
+## 1.1 🧱 [Shlib System / Package Manager Policy](developer-environment/01-shlib-policy.md)
+## 1.2 🚀 [Base Tools, Libs & Co.](developer-environment/02-base-tools-libs.md)
+## 1.3 🔒 [Network & security](developer-environment/03-net-security.md)
+## 1.4 📦️ [Docker & CUDA Toolkit](developer-environment/04-docker-cuda.md)
+## 1.5 🌐 [Git, Code & SearXng](developer-environment/05-git-code-searxng.md)
+## 1.6 🧿 [ZSH, Antidote & p10k](developer-environment/06-zsh-antidote-p10k.md)
+## 1.7 📋 [Shell Library deenlupysta.sh](scripts/deenlupysta.sh)
 
-## 2. 🗺️ Ecosystems
-### 2.1 🟢 [Node.js (fnm + pnpm)](developer-environment/07-nodejs.md)
-### 2.2 🐍 [Python (uv, mamba, direnv)](developer-environment/08-python.md)
-### 2.3 🦀 [Rust (rustup & cargo)](developer-environment/09-rust.md)
-### 2.4 🐹 [Go (Go Toolchain)](developer-environment/10-go.md)
-### 2.5 ☕ [Java (SDKMAN!)](developer-environment/11-java.md)
-### 2.6 💎 [Ruby (rbenv & bundler)](developer-environment/12-ruby.md)
+# 2. 🗺️ Ecosystems
+## 2.1 🟢 [Node.js (fnm + pnpm)](developer-environment/07-nodejs.md)
+## 2.2 🐍 [Python (uv, mamba, direnv)](developer-environment/08-python.md)
+## 2.3 🦀 [Rust (rustup & cargo)](developer-environment/09-rust.md)
+## 2.4 🐹 [Go (Go Toolchain)](developer-environment/10-go.md)
+## 2.5 ☕ [Java (SDKMAN!)](developer-environment/11-java.md)
+## 2.6 💎 [Ruby (rbenv & bundler)](developer-environment/12-ruby.md)
 
 ---
 ```shell
@@ -86,12 +86,12 @@ Never run scripts or script snippets without carefully reviewing them.
  ▘ ▘ ▘▝▀▘  ▘ ▘ ▀▘  ▝▀  ▀ ▝▀▘▝▀ ▘ ▘
 ```
 
-## 3. 🧠 AI Stack
-### 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
-### 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
-### 3.3 🎓 [Hermes & Lionheart](ai-stack/03-hermes-lion.md) *(🚧 WIP)*
-### 3.4 🛡️ [LiteLLM & Vibe-Kanban](ai-stack/04-litellm-vibekanban.md) *(🚧 WIP)*
-### 3.5 ☁️ [Vast.AI, LocalAI & OpenLIT](ai-stack/05-vastai-localai.md) *(🚧 WIP)*
+# 3. 🧠 AI Stack
+## 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
+## 3.2 🔌 [Mcphub & Open WebUI](ai-stack/02-mcphub-openwebui.md)
+## 3.3 🎓 [Hermes & Lionheart](ai-stack/03-hermes-lion.md) *(🚧 WIP)*
+## 3.4 🛡️ [LiteLLM & Vibe-Kanban](ai-stack/04-litellm-vibekanban.md) *(🚧 WIP)*
+## 3.5 ☁️ [Vast.AI, LocalAI & OpenLIT](ai-stack/05-vastai-localai.md) *(🚧 WIP)*
 
 ---
 ```shell
@@ -102,20 +102,20 @@ Never run scripts or script snippets without carefully reviewing them.
 ```
 
 
-## 4. 💎 Luxurious Python Stack
-### 4.1 📚 [Stack Description](luxuspythonstack.md)
-### 4.2 🤖 [Agent Guide Blueprint](skills/luxuspythonstack/references/blueprint-AGENTS.md)
-### 4.3 👷 [Daily Commands Reference](skills/luxuspythonstack/references/daily-commands.md)
-### 4.4 🏗️ [Skill - *luxuspythonstack/*](skills/luxuspythonstack/SKILL.md)
-### 4.5 🔧 [Scripts - *luxuspythonstack.sh*](scripts/luxuspythonstack.sh)
-### 4.6 📋 [Scripts - dsdash.ipynb](scripts/dsdash.ipynb)
+# 4. 💎 Luxurious Python Stack
+## 4.1 📚 [Stack Description](luxuspythonstack.md)
+## 4.2 🤖 [Agent Guide Blueprint](skills/luxuspythonstack/references/blueprint-AGENTS.md)
+## 4.3 👷 [Daily Commands Reference](skills/luxuspythonstack/references/daily-commands.md)
+## 4.4 🏗️ [Skill - *luxuspythonstack/*](skills/luxuspythonstack/SKILL.md)
+## 4.5 🔧 [Scripts - *luxuspythonstack.sh*](scripts/luxuspythonstack.sh)
+## 4.6 📋 [Scripts - dsdash.ipynb](scripts/dsdash.ipynb)
 
 ---
 
 
-## 5. Overview Responsibilities
+# 5. Overview Responsibilities
 
-### 5.1 Software Architecture
+## 5.1 Software Architecture
 
 <table><tr align=center><td width="25%"><b>Software</b><br><font size=-2>github stars ⭐ june 26</font></td><td><b>Responsibility</b><br>&nbsp;</td></tr><tr><td><b>Ollama</b><br>173k ⭐</td><td>Ollama is a simple inference engine and is used for
 
@@ -144,11 +144,11 @@ Never run scripts or script snippets without carefully reviewing them.
 * Offers the complete Deen Lupysta repo as a knowledge base.
 </td></tr><tr><td><b>Hermes</b><br>178k ⭐</td><td>The autonomous agent with heartbeat mechanism (cronjob, webhook)
 
-* Use the Lionheart Skill to maintain the Deen Lupysta system
-* Creates regular system diagnostics
-* Monitored by LiteLLM: Guardrails and cost control
+* Use the Lionheart Skill to maintain the Deen Lupysta system and creates system diagnostics
+* If action is required, the file ~/reco.sh is created
+* No actions are taken, only the recommendation file is generated: ~/reco.sh
+* Monitored by LiteLLM: Guardrails, fallback-models and cost control
 * Communicates with the user via telegram, cli or desktop app
-
 </td></tr><tr><td><b>LiteLLM</b><br>49.1k ⭐</td><td>OpenAI compatible Proxy Server (LLM Gateway) to call LLMs
 
 * Manages external and local models
@@ -183,7 +183,7 @@ Never run scripts or script snippets without carefully reviewing them.
 * GPU performance and error handling
 </td></tr></table><br>
 
-### 5.2 Core Artefacts
+## 5.2 Core Artefacts
 
 <table>
   <tr>
@@ -274,3 +274,8 @@ Never run scripts or script snippets without carefully reviewing them.
 
 
 
+ Hermes & Lionheart
+
+
+There are several options available to communicate with Lionheart including CLI, Open WebUI, Telegram<br>
+The exact description can be found in [Lionheart Skill](../skills/lionheart/SKILL.md).

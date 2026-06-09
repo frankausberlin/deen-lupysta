@@ -1,4 +1,4 @@
-### 🐍 Python (uv, mamba, direnv)
+## 🐍 Python (uv, mamba, direnv)
 
 ```shell
 # Python 3 base (pipx only if you need a fallback for tools that don't play nice with `uv tool`)
@@ -98,7 +98,7 @@ rm Miniforge3-*.sh
 exec zsh
 ```
 
-#### Data Science Mamba Environment
+### Data Science Mamba Environment
 
 * ⚠️ Using ipywidgets 7.7.1 for colab runtime compatibility.
 

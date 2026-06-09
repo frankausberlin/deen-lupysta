@@ -1,4 +1,4 @@
-### 🦀 Rust (rustup & cargo)
+## 🦀 Rust (rustup & cargo)
 
 We use **rustup**, the official toolchain installer, to manage Rust completely cleanly and isolated in the user directory. `cargo` handles dependency management and building.
 

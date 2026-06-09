@@ -1,6 +1,6 @@
-### Ollama and Coding Agents
+## Ollama and Coding Agents
 
-#### Ollama (and LLMFit)
+### Ollama (and LLMFit)
 
 ```shell
 # Install latest (official script auto-creates user and systemd service)
@@ -23,7 +23,7 @@ ollama pull translategemma
 brew install llmfit
 ```
 
-#### Coding Agents
+### Coding Agents
 
 * Kilo Code CLI
 ```shell

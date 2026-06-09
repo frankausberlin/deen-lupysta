@@ -1,8 +1,8 @@
-### MCPHub and Open WebUI
+## MCPHub and Open WebUI
 
-#### MCPHub
+### MCPHub
 
-##### System vs. User services — why MCPHub runs as a **user service**
+#### System vs. User services — why MCPHub runs as a **user service**
 
 The AI stack mixes two kinds of services and it matters which type each one runs as.
 
@@ -43,7 +43,7 @@ MCPHub is special because some of the MCP servers it proxies need access to the 
 
 > ⚠️ Why an explicit `PATH=` is still needed in the unit: systemd-user only inherits `PATH` from the desktop login process, which uses the standard system PATH. The shell's `fnm`-loaded PATH only exists in interactive shells. We therefore put the persistent fnm/pnpm/uv bin directories explicitly into the unit — but that's just one line, not 20.
 
-##### Base Installation (fully functional)
+#### Base Installation (fully functional)
 
 ```shell
 # 0) preflight: Node/pnpm and uvx must be available in the interactive shell
@@ -100,7 +100,7 @@ systemctl --user daemon-reload && systemctl --user enable --now mcphub.service
 > 💡 **Logs without sudo**: `journalctl --user -u mcphub.service -f`
 > 💡 **Restart after env or unit changes**: `systemctl --user daemon-reload && systemctl --user restart mcphub.service`
 
-##### Migration from a previous system-level installation
+#### Migration from a previous system-level installation
 
 If you already have an `mcphub.service` under `/etc/systemd/system/`, switch it over once:
 
@@ -116,7 +116,7 @@ sudo ufw delete allow from 172.16.0.0/12 to any port 3000 proto tcp 2>/dev/null 
 # then run the user-service install block above
 ```
 
-##### MCP-Server Collection
+#### MCP-Server Collection
 
 > ⚠️ Note: The filesystem mcp server is configured to access '/', which has advantages and disadvantages.<br>Change this if necessary. <br>
 > ⚠️ If you **don't want to install searxng**, delete the line and **use web-search-mcp**.<br>
@@ -178,7 +178,7 @@ sudo ufw delete allow from 172.16.0.0/12 to any port 3000 proto tcp 2>/dev/null 
 > * cognitive-boost: sequentialthinking, memory
 
 
-##### Client Integration
+#### Client Integration
 
 ```shell
 # for kilocode -> extension settings -> agent behaviour -> mcp servers -> edit global mcp
@@ -224,12 +224,12 @@ claude mcp add --transport http huggingface http://localhost:3000/mcp/huggingfac
 claude mcp add --transport http colab-mcp http://localhost:3000/mcp/colab-mcp
 ```
 
-#### Open WebUI
+### Open WebUI
 
 Open WebUI is a Python application here and is run through `uvx`, not through `pnpm`.
 The Node/pnpm checks above are still required for MCPHub and for the many `npx`-based MCP servers imported later.
 
-##### Install as service
+#### Install as service
 
 ```shell
 # 1) preflight: uvx must be available
@@ -264,7 +264,7 @@ sudo systemctl daemon-reload && sudo systemctl enable --now open-webui.service
   add searxng, context7, mcp-deepwiki and stackexchange<br>
   > --> mcphub admin settings --> settings --> integrations --> add tool-server connection (open api)
 
-##### Websearch in Open WebUI
+#### Websearch in Open WebUI
 
 * Of course I use the already installed searxng.<br>
 select searxng as engine and enter this url: http://localhost:8080/search
@@ -282,7 +282,7 @@ cd ~/gits && git clone https://github.com/mendableai/firecrawl.git && cd firecra
 SEARXNG_ENGINES, SEARXNG_ENDPOINT, SEARXNG_CATEGORIES, OPENAI_BASE_URL, OPENAI_API_KEY, MODEL_NAME, OLLAMA_BASE_URL, MODEL_EMBEDDING_NAME
 
 
-##### RAG in Open WebUI
+#### RAG in Open WebUI
 
 As an example to illustrate, let's set up this repository as a knowledge source for Open WebUI.
 
@@ -320,5 +320,5 @@ alias deensync="rsync -av --delete --exclude='.ipynb_checkpoints/ --exclude='.gi
 
   > ⚠️ To trigger synchronization in Open WebUI, click on the '+' plus in the corresponding collection and select 'Synchronize Folder'.
 
-##### Models in Open WebUI
+#### Models in Open WebUI
 

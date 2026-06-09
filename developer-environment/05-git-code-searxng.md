@@ -1,10 +1,10 @@
-### Github, VSCode, SearXNG
+## Github, VSCode, SearXNG
 
 * manipulated files: .gitignore_global
 * created folders: ~/.searxng/, ~/.searxng/config/, ~/.searxng/data/
 * created files: settings.yml
 
-#### Github:
+### Github:
 ```shell
 # Create global .gitignore (enter your agent folders, .env, venv etc. here)
 # nano ~/.gitignore_global
@@ -20,7 +20,7 @@ gh auth login
 gh auth setup-git
 ```
 
-#### VSCode
+### VSCode
 ```shell
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
@@ -34,7 +34,7 @@ bash -c "$(wget -qO- https://raw.githubusercontent.com/harry-cpp/code-nautilus/m
 ```
 
 
-#### SearXNG
+### SearXNG
 ```shell
 # Create directories
 mkdir -p ~/.searxng/config/ ~/.searxng/data/

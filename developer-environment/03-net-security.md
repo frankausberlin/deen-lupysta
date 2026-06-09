@@ -1,8 +1,8 @@
-### Network & Security
+## Network & Security
 
 * generated files: id_ed25519.pub, id_ed25519, 99-custom-hardening.conf, jail.local
 
-#### SSH Setup
+### SSH Setup
 
 * Server Side — Enable Service
 
@@ -60,7 +60,7 @@ EOF
 sudo sshd -t && sudo systemctl reload ssh
 ```
 
-#### Firewall (UFW)
+### Firewall (UFW)
 
 ```shell
 sudo ufw default deny incoming
@@ -69,7 +69,7 @@ sudo ufw limit ssh       # SSH with brute-force protection
 sudo ufw --force enable
 ```
 
-#### fail2ban 
+### fail2ban 
 
 ```shell
 # write /etc/fail2ban/jail.local
@@ -90,7 +90,7 @@ EOF
 sudo systemctl restart fail2ban
 ```
 
-#### Docker + UFW
+### Docker + UFW
 
 Do this after install docker (chapter 1.4).
 
@@ -109,7 +109,7 @@ sudo LC_ALL=C ufw-docker install
 sudo systemctl restart ufw
 ```
 
-#### Security Best Practices
+### Security Best Practices
 
 - Keep a second SSH session open when modifying sshd_config
 - Use `AllowUsers` instead of `AllowGroups` for explicit access control

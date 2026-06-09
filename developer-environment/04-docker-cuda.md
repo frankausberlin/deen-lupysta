@@ -1,8 +1,8 @@
-### Docker & CUDA Toolkit
+## Docker & CUDA Toolkit
 
 * manipulated files: docker.sources, daemon.json
 
-#### Docker Installation (Ubuntu)
+### Docker Installation (Ubuntu)
 
 🤮 **Never install `docker-desktop` under Linux — no CUDA support. Install Docker Engine directly.**
 
@@ -36,7 +36,7 @@ sudo reboot # ⚠️ after reboot, you can do the ufw patch
 
 Verify: `docker run --rm hello-world`
 
-#### NVIDIA Container Toolkit
+### NVIDIA Container Toolkit
 
 Requires suitable NVIDIA drivers (`sudo ubuntu-drivers autoinstall`).
 
@@ -62,7 +62,7 @@ sudo systemctl restart docker
 ```
 Verify: `docker run --rm --gpus all ubuntu nvidia-smi`
 
-#### Portainer (optional)
+### Portainer (optional)
 
 ```shell
 docker volume create portainer_data

@@ -1,4 +1,4 @@
-### Node.js (fnm + pnpm)
+## Node.js (fnm + pnpm)
 
 We use **fnm** (Fast Node Manager) instead of nvm (written in Rust, no shell slowdown). As package manager we use **pnpm** through Corepack (symlink system saves disk space).
 
@@ -7,7 +7,7 @@ We use **fnm** (Fast Node Manager) instead of nvm (written in Rust, no shell slo
 > If a later shlib file exports an old copied `PATH`, that stale path can hide `node`, `npm`, `corepack`, `npx`, and `pnpm` even though Node is installed correctly.
 > Later shlib files must only add single directories with guarded `PATH` additions.
 
-#### 1. Install fnm and integrate it into shlib
+### 1. Install fnm and integrate it into shlib
 
 ```shell
 # 1. Install fnm (without installer-owned shell modifications)
@@ -58,7 +58,7 @@ EOF
 exec zsh
 ```
 
-#### 2. Install Node LTS and enable pnpm
+### 2. Install Node LTS and enable pnpm
 
 ```shell
 # 4. Verify fnm first. If this fails, fix the shlib integration before continuing.
@@ -77,7 +77,7 @@ corepack prepare pnpm@latest --activate
 exec zsh
 ```
 
-#### 3. Verify the Node layer before installing global tools
+### 3. Verify the Node layer before installing global tools
 
 ```shell
 # Required commands
@@ -114,7 +114,7 @@ case ":$PATH:" in
 esac
 ```
 
-#### 4. Install global tools
+### 4. Install global tools
 
 ```shell
 pnpm add -g @kilocode/cli

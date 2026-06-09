@@ -1,4 +1,4 @@
-### 1.2 🚀 Base Tools, Libs & Co.
+## 1.2 🚀 Base Tools, Libs & Co.
 
 * generated shlibs: 20-homebrew.sh
 

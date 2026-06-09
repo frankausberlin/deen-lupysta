@@ -1,4 +1,4 @@
-### ☕ Java (SDKMAN!)
+## ☕ Java (SDKMAN!)
 
 ```shell
 # Install SDKMAN!
