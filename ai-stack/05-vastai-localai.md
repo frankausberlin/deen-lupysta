@@ -1,8 +1,8 @@
-### Vast.AI, LocalAI & OpenLIT
+## Vast.AI, LocalAI & OpenLIT
 
-#### LocalAI
+### LocalAI
 
-##### Self-Hosted Installation as a systemd User Service
+#### Self-Hosted Installation as a systemd User Service
 
 By default, we run LocalAI on the host machine using a statically linked AMD64 binary running under systemd on user-space level (`systemctl --user`). This allows isolated execution, GPU acceleration, and simple port forwarding.
 
@@ -10,7 +10,7 @@ By default, we run LocalAI on the host machine using a statically linked AMD64 b
 * **Port:** `9090` (Bound publicly to support Docker bridges like LiteLLM/Open WebUI)
 * **Binary Location:** `~/.localai/locai`
 
-###### 1. Systemd User Service Configuration
+##### 1. Systemd User Service Configuration
 Create the unit file at `~/.config/systemd/user/localai.service`:
 
 ```ini
@@ -35,19 +35,27 @@ RestartSec=5
 WantedBy=default.target
 ```
 
-###### 2. Start and Enable Service
+##### 2. Start and Enable Service
 ```shell
 # Reload user daemon and start service
 systemctl --user daemon-reload
 systemctl --user enable --now localai.service
 
+# Restart service
+systemctl --user restart localai
+
 # Check service status
 systemctl --user status localai.service --no-pager
+
+# Follow system logs
+journalctl --user -u localai -f
 ```
+
+
 
 ---
 
-##### Security Pitfall in v4.2.x+ (Public Bind Option)
+#### Security Pitfall in v4.2.x+ (Public Bind Option)
 > ⚠️ **Important Security Note for LocalAI v4.2+**
 > Recent versions of LocalAI enforce security standards that block public address bindings (like `:9090` or `0.0.0.0:9090`) unless authentication is present. Since your Docker instances (e.g. Open WebUI, LiteLLM) require connecting to the host machine's port, you must either:
 > 1. Specify an API key / credentials, OR
@@ -56,7 +64,7 @@ systemctl --user status localai.service --no-pager
 
 ---
 
-##### Standard Update Procedure (Manual)
+#### Standard Update Procedure (Manual)
 
 To manually update the standalone LocalAI installation to a custom or newer version (for example, `v4.2.6`), perform the following steps:
 
@@ -78,6 +86,21 @@ systemctl --user start localai.service
 systemctl --user status localai.service --no-pager
 ```
 
+#### The Model Modders on Hugging Face
+
+*mradermacher, bartowski & co.*
+
+There's a scene on Hugging Face where model modders create usable versions of the original models using quantization.
+
+The Q parameter
+* During quantization, weights are compressed (e.g., Q8, Q4, Q2). With each quantization level, the model becomes smaller but also loses some nuances ("becomes dumber").
+
+The K-quant parameter
+* The appendages _K_S, _K_M, and _K_L describe that the quantization is not applied uniformly to the entire model. Instead, critical, quality-determining layers are kept at higher precision (less compressed). A distinction is made here between Small, Medium, and Large.
+
+The i1 parameter (Importance Matrix)
+* A newer, clever procedure (I-Quants) where a preliminary analysis with a calibration dataset determines which weights are vital (and compressed less) and which ones can be compressed significantly.
+
 
 ---
 
@@ -94,7 +117,7 @@ There should be descriptions here unterm other topics:
 
 ---
 
-#### OpenLIT
+### OpenLIT
 
 OpenLIT is used for monitoring LLM and GPU metrics.
 

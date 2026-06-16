@@ -4,6 +4,8 @@
 * generated shlibs: 10-deenlupysta.sh (link), 15-original-zshrc.sh
 * generated files: .zshrc (shlib'ed version), .zshrc (link), README.md (link), .zshrc.lock
 
+***I do not believe that my rules are universally correct. However, I do believe that consistent rules are better than no rules at all.***
+
 ### Nala
 
 ```shell

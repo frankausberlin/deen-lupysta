@@ -1,4 +1,6 @@
-<table><tr><td align=right><img src="https://lh3.googleusercontent.com/d/1JdavIkcaCKkXrqiJtGHpAMvXAp73Z8tA" width=1000><br>ai-flawored</td></tr>
+*(🚧 WIP)*
+
+<table><tr><td align=right><img src="https://lh3.googleusercontent.com/d/1JdavIkcaCKkXrqiJtGHpAMvXAp73Z8tA" width=1000><font size=-2><br>for agents, for humans, for the hole damned world</td></tr>
 <tr align=center><td><table>
 
 <tr align=center><td colspan=5>💎 Luxurious Python Stack<br></td></tr>
@@ -23,7 +25,9 @@
 # The AI-flavored Developer Environment & Luxurious Python Stack 
 
 consists of the installation instructions for the developer environment with an AI stack that integrates seamlessly into the Luxurious Python Stack. Python is optional; it also works with other languages ​​(python happens to be my first choice).
+The instructions are intended for both humans and agents.
 
+some highlights:
 * A collection of installation cheat sheets
 * The Shell Library System (shlib) - simple but efficient
 * Set up a secure Ubuntu system, monitored and maintained by Lionheart
@@ -36,9 +40,9 @@ consists of the installation instructions for the developer environment with an 
 * Routing strategies, resiliency and cost control for agent models with LiteLLM
 * Manages software development of agent swarms using vibe-kanban
 * Host and integrate LLMs yourself with LocalAI and VastAI, monitored by OpenLIT
+* A [Stage Concept](#6.-🪜-Stage-Concept) for an agent-supported, incremental, and evaluable integration
 
 ***The repository here should in no way be seen as a strict guide. It's just one possible path among many, very much influenced by my preferences. Think of it as a box full of different blueprints that you can mix, match, and swap as you wish.***
-
 
 ---
 
@@ -113,13 +117,12 @@ Never run scripts or script snippets without carefully reviewing them.
 ## 4.7 🏗️ [Skill - *luxuspythonstack/*](skills/luxuspythonstack/SKILL.md)
 ## 4.8 🔧 [Scripts - *luxuspythonstack.sh*](scripts/luxuspythonstack.sh)
 ## 4.9 📋 [Scripts - dsdash.ipynb](scripts/dsdash.ipynb)
-
 ---
 
 
-# 5. Overview Responsibilities
+# 5. 💡 Overview Responsibilities
 
-## 5.1 Software Architecture
+## 5.1 🏗 Software Architecture
 
 <table><tr align=center><td width="25%"><b>Software</b><br><font size=-2>github stars ⭐ june 26</font></td><td><b>Responsibility</b><br>&nbsp;</td></tr><tr><td><b>Ollama</b><br>173k ⭐</td><td>Ollama is a simple inference engine and is used for
 
@@ -187,13 +190,23 @@ Never run scripts or script snippets without carefully reviewing them.
 * GPU performance and error handling
 </td></tr></table><br>
 
-## 5.2 Core Artefacts
+## 5.2 🏛️ Core Artefacts
 
 <table>
   <tr>
     <td width="20%"><b>Artefacts</b></td>
     <td width="80%"><b>Responsibility</b></td>
   </tr>
+  <tr>
+    <td><b>Deen Lupysta Repo</b></td>
+    <td>
+      <ul>
+        <li>Knowledge base for agents and humans</li>
+        <li>Integrated into the Open WebUI RAG to answer questions</li>
+        <li>Effective integration using setup matrix and stage concept</li>
+      </ul>
+    </td>
+  </tr>  
   <tr>
     <td><b>Shlib System</b></td>
     <td>
@@ -276,3 +289,80 @@ Never run scripts or script snippets without carefully reviewing them.
   </tr>
 </table>
 
+# 6. 🪜 Stage Concept
+
+One step after the next. Deen Lupysta is too large to install in one go. That's why I came up with a stage concept. In each stage, a part of Deen Lupysta is installed and configured and evaluated with practical use cases.
+
+## 6.1 🔴 Stage 1: 
+
+### Kurzer Ollama Check
+
+* Voraussetzung: ollama ist installiert und ein mindestens ein model (z.b. granite4.1:3b (2.1 GB))
+
+> *Here is a classic math problem: Peter and Hans are talking.<br>
+Peter says: “If you give me one of your apples, then we'll both have the same number of apples.”<br>
+Hans replies: “But if you give me one of your apples, then I will have twice as many apples as you.”<br>
+How many apples does Peter have and how many apples does Hans have?*<br>Answer: Peter 5 and Hans 7
+
+
+
+Deen Lupysta RAG einrichten.
+
+
+
+## 6.2 🟠 Stage 2:
+
+## 6.3 🟡 Stage 3:
+
+## 6.4 🟢 Stage 4:
+
+## 6.5 🔵 Stage 5:
+
+## 6.6 🟣 Stage 6:
+
+## 6.7 🟤 Stage 7:
+
+## 6.8 ⚫ Stage 8:
+
+## 6.9 ⚪ Stage 9:
+
+
+<table>
+<tr><td align="center"><b>Setup<br>Matrix</b></td><td><code>Oll
+ama</code></td><td><code>Age
+nts</code></td><td><code>MCP
+Hub</code></td><td><code>OWe
+bUI</code></td><td><code>Her
+mes</code></td><td><code>Lit
+LLM</code></td><td><code>Vib
+Kan</code></td><td><code>Loc
+lAI</code></td><td><code>Opn
+LIT</code></td><td><code>DeL
+uRe</code></td><td><code>Shl
+ibS</code></td><td><code>Pol
+ici</code></td><td><code>Gua
+rdr</code></td><td><code>Lio
+nSk</code></td><td><code>LuP
+ySt</code></td><td><code>lux
+.sh</code></td><td><code>dee
+.sh</code></td><td><code>dsd
+ash</code></td></tr>
+<tr><td><code>Ollama</code></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>Agents</code></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>MCPHub</code></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>OWebUI</code></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>Hermes</code></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>LitLLM</code></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>VibKan</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>LoclAI</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>OpnLIT</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>DeLuRe</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>ShlibS</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>Polici</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>Guardr</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>LionSk</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>LuPySt</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td><td></td></tr>
+<tr><td><code>lux.sh</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td><td></td></tr>
+<tr><td><code>dee.sh</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td><td></td></tr>
+<tr><td><code>dsdash</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>❌️</td></tr>
+</table>
