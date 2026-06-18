@@ -23,6 +23,13 @@
 consists of the installation instructions for the developer environment with an AI stack that integrates seamlessly into the Luxurious Python Stack. Python is optional; it also works with other languages ​​(python happens to be my first choice but it could just as well e.g. give a node version of it: Deen Lunosta).
 The instructions are intended for both humans and agents.
 
+how to start:
+* Get an overview of Deen Lupysta, preferably by reading the readme.
+* In Chapter '6. Stage Concept' describes the installation process.
+* I strongly recommend installing using agents as described there.
+* Agents are instructed not to carry out any critical operations themselves but only to generate the commands (sudo ..) and then let you execute them (human-in-the-loop principle).
+* If you follow the installation carefully and are not afraid to ask your agents something, you will gain a fundamental understanding of the system: “Learning by Installing”.
+
 some highlights:
 * A collection of installation cheat sheets for agents and humans
 * The Shell Library System (shlib) - simple but efficient
