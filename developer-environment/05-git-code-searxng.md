@@ -1,5 +1,17 @@
 ## Github, VSCode, SearXNG
 
+### Agent Instructions
+
+* Load the Concierge skill (`skills/concierge/SKILL.md`) and follow its rules.
+* In this stage you accompany the user in installing:
+  * Git global config + GitHub CLI auth (SSH, using the key from stage 1.3)
+  * VSCode (apt repo) + Nautilus context-menu integration
+  * SearXNG (Docker, bound to localhost, JSON format enabled for the MCP server)
+* Stage-specific notes:
+  * Git config values (`user.name`, `user.email`, `.gitignore_global`) are personal — the user must fill in their own data, do not invent placeholders.
+  * `gh auth login`: choose SSH and upload the `id_ed25519.pub` from stage 1.3.
+  * SearXNG requires Docker (stage 1.4). The secret key is generated via `openssl rand`; the container is intentionally bound to `127.0.0.1:8080` — do not expose it.
+
 * manipulated files: .gitignore_global
 * created folders: ~/.searxng/, ~/.searxng/config/, ~/.searxng/data/
 * created files: settings.yml

@@ -2,17 +2,17 @@
 
 ### Agent Instructions
 
-* You accompany a person in installing the following components of the developer environment: 
-  * The software nala and git
-  * A clone of the deen lupysta repo
-  * The zsh in the first version
-  * The Shlib system
-* Here comes the process:
-  1. You check whether a shlib system already exists, if so, check it for inconsistencies. If you find any, let the user know and ask if you should fix these inconsistencies. If everything is ok or the user prohibits you from taking action, you are finished and finish with a short status report.
-  2. You briefly introduce yourself and briefly describe your plan and that the user is an important part of the installation process, which is also known as human-in-the-loop. You also explain that the user has to execute all critical commands himself and that he should open a new shell to do this. 
-  3. You check whether the programs nala, git and zsh are installed and generate an installation command for the missing programs. To do this, generate the commands in a copy-paste block for the user. Then you ask the user to execute the commands. If the zsh was not active, ask the user to log out and log in again. and the user should then briefly inform you so that you can continue.
-  4. You briefly check whether the zsh is active and then carry out the setup of the Shlib system described in point: '#### Setup Shlib System and clone Deen Lupysta'
-  5. You write the new .zshrc file with the content described in point '#### The exact content in .zshrc with the three snippets in the middle.' and finish with a short status report.
+* Load the Concierge skill (`skills/concierge/SKILL.md`) and follow its rules.
+* In this stage you accompany the user in installing:
+  * nala and git
+  * a clone of the Deen Lupysta repo
+  * zsh (first version, plain — appearance follows in 1.6)
+  * the Shlib system
+* Stage-specific notes:
+  * This is the bootstrap stage. The repo (and this skill) may not exist locally yet — the clone happens here. If the skill was loaded from elsewhere, keep going; otherwise rely on these instructions until the clone is done.
+  * If a Shlib system already exists, check it for inconsistencies first. Report findings and ask before touching anything; if all is well, finish with a short status report.
+  * zsh must be active before the Shlib setup. If the user just switched shells, they must log out and back in, then confirm before you continue.
+  * Setup steps: '#### Setup Shlib System and clone Deen Lupysta', then write `.zshrc` per '#### The exact content in .zshrc with the three snippets in the middle.'
  
 
 ### Nala and Zshell Part 1

@@ -1,5 +1,21 @@
 ## Network & Security
 
+### Agent Instructions
+
+* Load the Concierge skill (`skills/concierge/SKILL.md`) and follow its rules.
+* In this stage you accompany the user in installing:
+  * SSH (server enable + client key generation/copy)
+  * SSH hardening (`99-custom-hardening.conf`)
+  * UFW firewall and fail2ban
+  * `ufw-docker` patch (only after Docker from stage 1.4 is installed)
+* ⚠️ This is the most dangerous stage — a broken `sshd_config` can lock the user out of the machine. Treat every hardening step as critical HITL:
+  * Instruct the user to keep a second SSH session open while changing `sshd_config`, so a lockout can be recovered.
+  * Always validate before reloading: `sudo sshd -t && sudo systemctl reload ssh`. Never reload an unvalidated config.
+  * The user executes every sudo/firewall/SSH command themselves and confirms the result before you proceed.
+  * Disabling password auth (`PasswordAuthentication no`) is irreversible-by-key — make sure a working key is installed and tested first.
+* Stage-specific notes:
+  * The `ufw-docker` block bypasses Docker's iptables manipulation. It belongs *after* stage 1.4 (Docker). If Docker is not yet installed, defer it.
+
 * generated files: id_ed25519.pub, id_ed25519, 99-custom-hardening.conf, jail.local
 
 ### SSH Setup

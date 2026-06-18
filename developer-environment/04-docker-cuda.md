@@ -1,5 +1,17 @@
 ## Docker & CUDA Toolkit
 
+### Agent Instructions
+
+* Load the Concierge skill (`skills/concierge/SKILL.md`) and follow its rules.
+* In this stage you accompany the user in installing:
+  * Docker Engine (never docker-desktop on Linux)
+  * NVIDIA Container Toolkit (GPU passthrough)
+  * optionally: Portainer
+* Stage-specific notes:
+  * Adding the user to the `docker` group requires a reboot. The `ufw-docker` patch from stage 1.3 can only be applied *after* this reboot — coordinate the order with the user.
+  * The NVIDIA Container Toolkit needs working NVIDIA drivers first (`sudo ubuntu-drivers autoinstall`). Skip the GPU part on machines without an NVIDIA GPU.
+  * Verify each layer before moving on: `docker run --rm hello-world`, then `docker run --rm --gpus all ubuntu nvidia-smi`.
+
 * manipulated files: docker.sources, daemon.json
 
 ### Docker Installation (Ubuntu)

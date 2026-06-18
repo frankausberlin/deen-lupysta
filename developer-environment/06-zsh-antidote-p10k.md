@@ -3,6 +3,18 @@
 > Complete terminal setup: ZSH as shell, Antidote as plugin manager, Powerlevel10k as prompt.<br>
 > The installation and activation of Zsh were completed in Section 1.1 (Part 1).
 
+### Agent Instructions
+
+* Load the Concierge skill (`skills/concierge/SKILL.md`) and follow its rules.
+* In this stage you accompany the user in installing:
+  * MesloLGS NF fonts
+  * Antidote plugin manager + the plugin selection (`.zsh_plugins.txt`)
+  * Powerlevel10k prompt, integrated via shlib (`25-zsh-appearance.sh`, `30-zsh-p10k.sh`)
+* Stage-specific notes:
+  * This is the second half of zsh setup (Part 1 was stage 1.1). zsh must already be the active login shell.
+  * The p10k configuration wizard runs interactively on the user's first terminal restart — it cannot be automated. After the wizard, the generated `~/.p10k.zsh` is moved/linked into the shlib.
+  * The custom Jupyter p10k segment is optional; mention it but don't force it.
+
 <img src="https://lh3.googleusercontent.com/d/1GWuo758MHQI1G9AdVX_lv9H8mXMmDrrA" width=800>
 
 * generated files: .zsh_plugins.txt, .p10k.zsh (link)

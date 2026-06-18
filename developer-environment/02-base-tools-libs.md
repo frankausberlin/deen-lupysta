@@ -1,5 +1,17 @@
 ## 1.2 🚀 Base Tools, Libs & Co.
 
+### Agent Instructions
+
+* Load the Concierge skill (`skills/concierge/SKILL.md`) and follow its rules.
+* In this stage you accompany the user in installing:
+  * core system essentials, CLI tools, build essentials and dev libraries (via nala)
+  * Homebrew + a selection of brew CLI tools (just, direnv, fd, yazi, …)
+  * optionally: GNOME desktop/GUI apps, Flatpak, GRUB theme
+* Stage-specific notes:
+  * Skip the entire "Ubuntu Desktop / GUI" and GRUB blocks on headless systems (server, Raspberry Pi). Ask the user about the target before generating those.
+  * Homebrew registers itself in `~/.shlib/shlibs/20-homebrew.sh`. Verify this shlib exists after install.
+  * The brew install step takes a while — warn the user before they run it.
+
 * generated shlibs: 20-homebrew.sh
 
 ```shell

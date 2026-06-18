@@ -56,8 +56,8 @@ services:
 
 * Open Code
 ```shell
-# Install latest (official script)
-curl -fsSL https://opencode.ai/install | bash
+# Install latest (official script) - was already done during onboarding.
+# curl -fsSL https://opencode.ai/install | bash
 
 # remove path insert from .zshrc and shlib it
 cp ~/.zshrc.lock ~/.zshrc && echo "export PATH=/home/frank/.opencode/bin:$PATH" > ~/.shlib/shlibs/70-opencode.sh
