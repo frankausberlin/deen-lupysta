@@ -218,9 +218,9 @@ Never run scripts or script snippets without carefully reviewing them.
     <td><b>MYDEENLUPYSTA.md</b></td>
     <td>
       <ul>
-        <li>Beschreibt das lokale Deen Lupysta System mit allen Abweichungen von der refernzinstallation aus dem repository.</li>
-        <li>Wird von einem Agenten während der Einrichtung erzeugt und gewartet.</li>
-        <li>Das anlegen von backubps sowie die bereitstellung einer Anweisung zum rückgängig machen (UNDO.md) sind </li>
+        <li>Describes the local Deen Lupysta system with all deviations from the reference installation from the repository.</li>
+        <li>Created and maintained by an agent during setup.</li>
+        <li>Creates backups of changed files and creates an instruction to undo the change (UNDO.md).</li>
       </ul>
     </td>
   </tr>  
