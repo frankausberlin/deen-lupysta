@@ -1,24 +1,29 @@
 ## 1.1 🧱 Shlib System, nala, zsh-1 & Policies
 
-* generated folders:  ~/.shlib, ~/.shlib/exports, ~/.shlib/shlibs, ~/gits
-* generated shlibs: 10-deenlupysta.sh (link), 15-original-zshrc.sh
-* generated files: .zshrc (shlib'ed version), .zshrc (link), README.md (link), .zshrc.lock
+### Agent Instructions
 
-***I do not believe that my rules are universally correct. However, I do believe that consistent rules are better than no rules at all.***
+* You accompany a person in installing the following components of the developer environment: 
+  * The software nala and git
+  * A clone of the deen lupysta repo
+  * The zsh in the first version
+  * The Shlib system
+* Here comes the process:
+  1. You check whether a shlib system already exists, if so, check it for inconsistencies. If you find any, let the user know and ask if you should fix these inconsistencies. If everything is ok or the user prohibits you from taking action, you are finished and finish with a short status report.
+  2. You briefly introduce yourself and briefly describe your plan and that the user is an important part of the installation process, which is also known as human-in-the-loop. You also explain that the user has to execute all critical commands himself and that he should open a new shell to do this. 
+  3. You check whether the programs nala, git and zsh are installed and generate an installation command for the missing programs. To do this, generate the commands in a copy-paste block for the user. Then you ask the user to execute the commands. If the zsh was not active, ask the user to log out and log in again. and the user should then briefly inform you so that you can continue.
+  4. You briefly check whether the zsh is active and then carry out the setup of the Shlib system described in point: '#### Setup Shlib System and clone Deen Lupysta'
+  5. You write the new .zshrc file with the content described in point '#### The exact content in .zshrc with the three snippets in the middle.' and finish with a short status report.
+ 
 
-### Nala
+### Nala and Zshell Part 1
 
 ```shell
-# use nala instead of apt
+# User: use nala instead of apt
 sudo apt update && sudo apt install -y nala
 sudo nala update && sudo nala upgrade
-```
 
-### Zshell Part 1
-
-```shell
-# Install and switch to zsh
-sudo nala install -y zsh && chsh -s $(which zsh) # Select option 2: Recommended settings
+# User: Install zsh and git and switch to zsh
+sudo nala install -y zsh git && chsh -s $(which zsh) # Select option 2: Recommended settings
 # ⚠️ A full re-login (logout/login) is required so that login shells pick up zsh.
 # ⚠️ Insert after relogin and genearation of the .zshrc: 'setopt INTERACTIVE_COMMENTS' 
 # This is important so that copy/paste works properly, without it the comment symbol '#' is not allowed
@@ -35,7 +40,7 @@ The early installation and activation of zsh serves to use the shlib system from
 
 The Shlib (Shell Library) system keeps the `.zshrc` file clean and manageable by moving shell configuration into sorted, versioned files. 
 
-* **Architecture**
+#### Architecture
 
 Three components in `.zshrc`:
 
@@ -43,11 +48,11 @@ Three components in `.zshrc`:
 2. **Exports Loader** — Files in `~/.shlib/exports/` become env vars (filename = varname, content = value)
 3. **Library Loader** — Sorted scripts in `~/.shlib/shlibs/` are sourced in order
 
-* **Convention**
+#### Convention
 
 The numbering is freely selectable. However, it is recommended to stick to the numbering from the developer environment and the ai stack.
 
-* **Setup**
+#### Setup Shlib System and clone Deen Lupysta
 
 ```shell
 # create folders
@@ -56,8 +61,8 @@ mkdir -p ~/.shlib/exports ~/.shlib/shlibs ~/gits
 # To be on the safe side, exclude the contents of the export folder from Github
 echo  "# Ignore everything in this directory\n*\n# Except this file\n\!.gitignore" > ~/.shlib/exports/.gitignore
 
-# clone Deen Lupysta
-sudo nala install git && cd ~/gits
+# User: clone Deen Lupysta
+cd ~/gits
 git clone https://github.com/frankausberlin/deen-lupysta
 
 # The Deen Lupysta shlib: path and export tools, aliases, cw
@@ -72,10 +77,9 @@ mv ~/.zshrc ~/.shlib/shlibs/15-original-zshrc.sh
 # Optional: I view the .shlib folder as a kind of dashboard that gives me access to the most interesting config files via file links(single point of reference)
 # e.g.
 ln -s ~/.zshrc ~/.shlib/.zshrc
-ln -s ~/.config/Code/User/globalStorage/kilocode.kilo-code/settings/mcp_settings.json ~/.shlib/kilo_mcps.json
 ```
 
-* **The exact content in .zshrc with the three snippets in the middle.**
+#### The exact content in .zshrc with the three snippets in the middle.
 
 Insert in .zshrc (`nano ~/.zshrc`)
 ```shell
@@ -106,7 +110,7 @@ if command -v direnv > /dev/null; then
 fi
 ```
 
-* **Lock Mechanism**
+#### Lock Mechanism
 
 After cleaning `.zshrc` and moving configuration to shlib files, create a lock:
 
@@ -114,7 +118,7 @@ After cleaning `.zshrc` and moving configuration to shlib files, create a lock:
 cp ~/.zshrc ~/.zshrc.lock # or use the alias 'shliblock' from deenlupysta.sh after 'exec zsh'
 ```
 
-* **Exports System**
+#### Exports System
 
 Files in `~/.shlib/exports/` are exported as environment variables on shell start. The filename becomes the variable name, the file content (trimmed) becomes the value.
 
@@ -125,7 +129,7 @@ Files in `~/.shlib/exports/` are exported as environment variables on shell star
 
 All export files should be `chmod 600` to prevent other users from reading secrets.
 
-* **Directory Structure**
+#### Directory Structure
 ```
 ~/.shlib/
 ├── exports/          # Secrets as env vars
@@ -142,6 +146,8 @@ All export files should be `chmod 600` to prevent other users from reading secre
 └── .zshrc (link --> ~/.zshrc)
 ```
 ### Policies
+
+***I do not believe that my rules are universally correct. However, I do believe that consistent rules are better than no rules at all.***
 
 #### Package Manager Policy
 

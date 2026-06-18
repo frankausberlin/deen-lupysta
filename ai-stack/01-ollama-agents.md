@@ -23,6 +23,28 @@ ollama pull translategemma
 brew install llmfit
 ```
 
+### Odysseus
+
+```shell
+git clone https://github.com/pewdiepie-archdaemon/odysseus.git
+cd odysseus
+cp .env.example .env       # optional, but recommended for explicit defaults
+
+# ab hier weiche ich von der standard installation ab, um die gpu variante zu verwenden
+mv docker-compose.yml docker-compose.cpu-backup.yml
+cp docker-compose.gpu-nvidia.yml docker-compose.yml
+
+# Nun ändere ich an drei stellen die docker-compose.yml um searxng daraus zu entfernen und die bereits vorhanden version zu verwenden.
+
+# 1. Ändere die searxng url unter
+services:
+...
+  odys
+      - SEARXNG_INSTANCE=http://searxng:8080
+      - SEARXNG_INSTANCE=http://host.docker.internal:8090   
+
+```
+
 ### Coding Agents
 
 * Kilo Code CLI
