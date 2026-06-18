@@ -3,16 +3,15 @@
 <table><tr><td align=right><img src="https://lh3.googleusercontent.com/d/1jn-jtlNEAjJ771Ziu4P92YlJX8yb41q9" width=1000><font size=-2><br>for agents, for humans, for the hole damned world</td></tr>
 <tr align=center><td>
 
-| | | | | | |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| 💎 **Luxurious Python Stack** | | | | | |
-| | 💻 Global<br>System | 🔬 Mamba<br>Jupyter | 🗂️ Projects<br>pyproject.toml | 🏢 CI/CD<br>Justfile | 🤖 AI Agents<br>SKILL.md |
-| **🧠 AI Stack** | | | | | |
-| | 🦙 Ollama, Agents<br>Odysseus | 🔌 MCPHub<br>Open WebUI | 🎓 Hermes<br>Lionheart | 🛡️ LiteLLM<br>Vibe-Kanban | ☁️ vast.ai<br>LocalAI, OpenLIT |
-| **🛠️ Developer Environment** | | | | | |
-| | 🐧 Ubuntu<br>Base-System | 🛡️ Network<br>Security | 📦 Docker<br>Cuda | 👾 Git, Code<br>SearXNG | 🌎 Eco<br>Systems |
-| **🧱 Shlib System / Policies / ZShell / Nala** | | | | | |
-
+| | | | | |
+| :---: | :---: | :---: | :---: | :---: |
+| 💎 **Luxurious**<br>**Python Stack** | | | | |
+| 💻 Global<br>System | 🔬 Mamba<br>Jupyter | 🗂️ Projects<br>pyproject.toml | 🏢 CI/CD<br>Justfile | 🤖 AI Agents<br>SKILL.md |
+| **🧠 AI Stack** | | | | |
+| 🦙 Ollama, Agents<br>Odysseus | 🔌 MCPHub<br>Open WebUI | 🎓 Hermes<br>Lionheart | 🛡️ LiteLLM<br>Vibe-Kanban | ☁️ vast.ai<br>LocalAI, OpenLIT |
+| **🛠️ Developer**<br>**Environment** | | | | |
+| 🐧 Ubuntu<br>Base-System | 🛡️ Network<br>Security | 📦 Docker<br>Cuda | 👾 Git, Code<br>SearXNG | 🌎 Eco<br>Systems |
+| **🧱 Policies / ZShell**<br>**Shlib System / Nala** | | | | |
 
 *I'm constantly installing and configuring Ubuntu on my laptop, PC, and Pi. However, since I'm just a simple programmer and not a Lion (Linux Operator Nerd), I've started storing the most important things in Colab notebooks so I can easily access everything via copy and paste.*
 
