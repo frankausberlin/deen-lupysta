@@ -1,22 +1,18 @@
-  ***(🚧 WIP)* Actually, the only reason I have this thing public at the moment is because I often use git clone in different systems for testing reasons, saving me the trouble of logging into github every time using 2-step authentication. But at the moment the project is still far from release status and should not be unleashed on humanity.**
+  ***(🚧 WIP)* <font color=red>Actually, the only reason I have this thing public at the moment is because I often use git clone in different systems for testing reasons, saving me the trouble of logging into github every time using 2-step authentication. But at the moment the project is still far from release status and should not be unleashed on humanity.</font>**
 
 <table><tr><td align=right><img src="https://lh3.googleusercontent.com/d/1jn-jtlNEAjJ771Ziu4P92YlJX8yb41q9" width=1000><font size=-2><br>for agents, for humans, for the hole damned world</td></tr>
-<tr align=center><td><table>
+<tr align=center><td>
 
-<tr align=center><td colspan=5>💎 Luxurious Python Stack<br></td></tr>
+| | | | | | |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| 💎 **Luxurious Python Stack** | | | | | |
+| | 💻 Global<br>System | 🔬 Mamba<br>Jupyter | 🗂️ Projects<br>pyproject.toml | 🏢 CI/CD<br>Justfile | 🤖 AI Agents<br>SKILL.md |
+| **🧠 AI Stack** | | | | | |
+| | 🦙 Ollama, Agents<br>Odysseus | 🔌 MCPHub<br>Open WebUI | 🎓 Hermes<br>Lionheart | 🛡️ LiteLLM<br>Vibe-Kanban | ☁️ vast.ai<br>LocalAI, OpenLIT |
+| **🛠️ Developer Environment** | | | | | |
+| | 🐧 Ubuntu<br>Base-System | 🛡️ Network<br>Security | 📦 Docker<br>Cuda | 👾 Git, Code<br>SearXNG | 🌎 Eco<br>Systems |
+| **🧱 Shlib System / Policies / ZShell / Nala** | | | | | |
 
-<tr><td align=center>💻 Global<br>System</td><td align=center>🔬 Mamba<br>Jupyter</td><td align=center>🗂️ Projects<br>pyproject.toml</td>
-<td align=center>🏢 CI/CD<br>Justfile</td><td align=center>🤖 AI Agents <br> SKILL.md</td></tr>
-
-<tr align=center><td colspan=5>🧠 AI Stack<br></td></tr>
-
-<tr align=center><td>🦙 Ollama<br>Agents</td><td>🔌 MCPHub<br>Open WebUI</td><td>🎓 Hermes<br>Lionheart</td><td>🛡️ LiteLLM<br>Vibe-Kanban</td><td>☁️ vast.ai<br>LocalAI, OpenLIT</td></tr>
-
-<tr align=center><td colspan=5>🛠️ Developer Environment<br></td></tr>
-
-<tr align=center><td>🐧Ubuntu<br>Base-System</td><td>🛡️Network<br>Security</td><td>📦Docker<br>Cuda</td><td>👾Git, Code<br>SearXNG</td><td>🌎Eco<br>Systems</td></tr>
-
-<tr align=center><td colspan=5>🧱 Shlib System / Policies / ZShell / Nala</td></tr><tr align=center><td colspan=5></td></tr></table>
 
 *I'm constantly installing and configuring Ubuntu on my laptop, PC, and Pi. However, since I'm just a simple programmer and not a Lion (Linux Operator Nerd), I've started storing the most important things in Colab notebooks so I can easily access everything via copy and paste.*
 
@@ -24,7 +20,7 @@
 
 # The AI-flavored Developer Environment & Luxurious Python Stack 
 
-consists of the installation instructions for the developer environment with an AI stack that integrates seamlessly into the Luxurious Python Stack. Python is optional; it also works with other languages ​​(python happens to be my first choice).
+consists of the installation instructions for the developer environment with an AI stack that integrates seamlessly into the Luxurious Python Stack. Python is optional; it also works with other languages ​​(python happens to be my first choice but it could just as well e.g. give a node version of it: Deen Lunosta).
 The instructions are intended for both humans and agents.
 
 some highlights:
@@ -125,187 +121,34 @@ Never run scripts or script snippets without carefully reviewing them.
 
 ## 5.1 🏗 Software Architecture
 
-<table><tr align=center><td width="25%"><b>Software</b><br><font size=-2>github stars ⭐ june 26</font></td><td><b>Responsibility</b><br>&nbsp;</td></tr><tr><td><b><a href='https://github.com/ollama/ollama'>Ollama</a></b><br>173k ⭐</td><td>Ollama is a simple inference engine and is used for
-
-* Embedding & reranking models (e.g. `qwen3-embedding:0.6b`)
-* OCR, vision and translation models (e.g. `translategemma`)
-* Chat and agent models are unlikely to run on ollama.
-</td></tr><tr><td><b>Agents</b><br><a href='https://github.com/anomalyco/opencode'>OpenCode</a> 169k ⭐<br><a href='https://github.com/anthropics/claude-code'>Claude</a> 130k ⭐<br><a href='https://github.com/Kilo-Org/kilocode'>Kilo Code</a> 20k ⭐</td><td>Agents use tools, have skills, complete tasks and chat with humans or other agents
-
-* Autonomous codebase manipulation & task execution
-* System health monitoring & automated routines
-* Human-in-the-Loop (HITL) coding assistance
-* Autonomous programming, Swarm communication
-</td></tr><tr><td><b><a href='https://github.com/pewdiepie-archdaemon/odysseus'>Odysseus</a></b><br>73k ⭐</td><td>The AI ​​stack from YouTube legend Pewdiepie
-
-* A simple chat harness with integrated web search
-* Good cooperation with local models and convenient deep research function
-* The auto-extract function automatically creates memories and skills
-* Agents can compete against each other in compare mode.
-</td></tr><tr><td><b><a href='https://github.com/samanhappy/mcphub'>MCPHub</a></b><br>2.1k ⭐</td><td>The MCPHub is the toolbox for agents or other harnesses
-
-* Centralized Model Context Protocol proxy (User Service)
-* Connects LLMs to local/web tools (SearXNG, Filesystem, Docker, etc.)
-* Offers all common API formats (open api, html, sse).
-* Allows you to create groups with a selection of servers and tools
-* Easy to create your own prompts and resources (according to protocol standard)
-</td></tr><tr><td><b><a href='https://github.com/open-webui/open-webui'>OpenWebUI</a></b><br>140k ⭐</td><td>Open WebUI is an extensible, feature-rich, and user-friendly self-hosted AI platform
-
-* Primary graphical interface for Chat & RAG
-* RAG system with configurable embedding and reranking model 
-* Configurable web crawler (e.g. Firecrawl)
-* Realtime audio conversation with local models (ollama or localai)
-* Offers the complete Deen Lupysta repo as a knowledge base.
-</td></tr><tr><td><b><a href='https://github.com/NousResearch/hermes-agent'>Hermes</a></b><br>178k ⭐</td><td>The autonomous agent with heartbeat mechanism (cronjob, webhook)
-
-* Use the Lionheart Skill to maintain the Deen Lupysta system and creates system diagnostics
-* If action is required, the file ~/reco.sh is created
-* No actions are taken, only the recommendation file is generated: ~/reco.sh
-* Monitored by LiteLLM: Guardrails, fallback-models and cost control
-* Communicates with the user via telegram, cli or desktop app
-</td></tr><tr><td><b><a href='https://github.com/BerriAI/litellm'>LiteLLM</a></b><br>49.1k ⭐</td><td>OpenAI compatible Proxy Server (LLM Gateway) to call LLMs
-
-* Manages external and local models
-* Provides a unified interface for AI applications
-* Track spend, set budgets per virtual key/user
-* Secures LLM calls with Guradrails
-* Reliability through model routing
-* Routing strategies <br>
-  e.g. use openrouter free until the quota is exhausted and then use kilo free
-</td></tr><tr><td><b><a href='https://github.com/BloopAI/vibe-kanban'>VibeKanban</a></b><br>26.8k ⭐</td><td>VibeKanban handles a kanban board and branches for autonomous agents
-
-* Parallel orchestration lets multiple agents work in parallel or in chains (sequences).
-* Git & project integration with branches for tasks
-* Bidirectional MCP
-  * As a client, it passes tools (from mcphub or litellm) to the agents.
-  * As a server, it provides the Kanban board itself as an MCP resource
-* Autonomous agents can independently create tasks or query the status of the board.
-
-> ⚠️ **Sunsetting notice (April 2026):** The company bloop has shut down. The project continues as community-maintained open source (Apache-2.0). Remote services are limited; local-only architecture is the recommended deployment. Expect slower release cadence and self-hosted deployments.
-</td></tr><tr><td><b><a href='https://github.com/mudler/LocalAI'>LocalAI</a></b><br>46.6k ⭐</td><td>LocalAI is a composable AI stack for running models locally and is used in two scenarios:
-
-1. Local
-    * Only 'small things' are offered such as whispers, voice models and small fallback models
-2. Hosted 
-    * Uses powerful open weights models 
-    * Manages multiple model instances to realize agent swarms
-    * Employs a persistence mechanic to handle host failures
-</td></tr><tr><td><b><a href='https://github.com/openlit/openlit'>OpenLIT</a></b><br>2.5k ⭐</td><td>Open-source AI engineering platform
-
-* Hardware-related system for managing and maintaining swarms
-* LLM observability and metric monitoring
-* GPU performance and error handling
-</td></tr></table><br>
+| **Software**<br>GitHub stars ⭐ June 26 | **Responsibility** |
+| :--- | :--- |
+| **[Ollama](https://github.com/ollama/ollama)**<br>173k ⭐ | Ollama is a simple inference engine and is used for<br>• Embedding & reranking models (e.g. `qwen3-embedding:0.6b`)<br>• OCR, vision and translation models (e.g. `translategemma`)<br>• Chat and agent models are unlikely to run on ollama. |
+| **Agents**<br>[OpenCode](https://github.com/anomalyco/opencode) 169k ⭐<br>[Claude](https://github.com/anthropics/claude-code) 130k ⭐<br>[Kilo Code](https://github.com/Kilo-Org/kilocode) 20k ⭐ | Agents use tools, have skills, complete tasks and chat with humans or other agents<br>• Autonomous codebase manipulation & task execution<br>• System health monitoring & automated routines<br>• Human-in-the-Loop (HITL) coding assistance<br>• Autonomous programming, Swarm communication |
+| **[Odysseus](https://github.com/pewdiepie-archdaemon/odysseus)**<br>73k ⭐ | The AI stack from YouTube legend Pewdiepie<br>• A simple chat harness with integrated web search<br>• Good cooperation with local models and convenient deep research function<br>• The auto-extract function automatically creates memories and skills<br>• Agents can compete against each other in compare mode. |
+| **[MCPHub](https://github.com/samanhappy/mcphub)**<br>2.1k ⭐ | The MCPHub is the toolbox for agents or other harnesses<br>• Centralized Model Context Protocol proxy (User Service)<br>• Connects LLMs to local/web tools (SearXNG, Filesystem, Docker, etc.)<br>• Offers all common API formats (open api, html, sse).<br>• Allows you to create groups with a selection of servers and tools<br>• Easy to create your own prompts and resources (according to protocol standard) |
+| **[OpenWebUI](https://github.com/open-webui/open-webui)**<br>140k ⭐ | Open WebUI is an extensible, feature-rich, and user-friendly self-hosted AI platform<br>• Primary graphical interface for Chat & RAG<br>• RAG system with configurable embedding and reranking model <br>• Configurable web crawler (e.g. Firecrawl)<br>• Realtime audio conversation with local models (ollama or localai)<br>• Offers the complete Deen Lupysta repo as a knowledge base. |
+| **[Hermes](https://github.com/NousResearch/hermes-agent)**<br>178k ⭐ | The autonomous agent with heartbeat mechanism (cronjob, webhook)<br>• Use the Lionheart Skill to maintain the Deen Lupysta system and creates system diagnostics<br>• If action is required, the file ~/reco.sh is created<br>• No actions are taken, only the recommendation file is generated: ~/reco.sh<br>• Monitored by LiteLLM: Guardrails, fallback-models and cost control<br>• Communicates with the user via telegram, cli or desktop app |
+| **[LiteLLM](https://github.com/BerriAI/litellm)**<br>49.1k ⭐ | OpenAI compatible Proxy Server (LLM Gateway) to call LLMs<br>• Manages external and local models<br>• Provides a unified interface for AI applications<br>• Track spend, set budgets per virtual key/user<br>• Secures LLM calls with Guardrails<br>• Reliability through model routing<br>• Routing strategies (e.g. use openrouter free until the quota is exhausted and then use kilo free) |
+| **[VibeKanban](https://github.com/BloopAI/vibe-kanban)**<br>26.8k ⭐ | VibeKanban handles a kanban board and branches for autonomous agents<br>• Parallel orchestration lets multiple agents work in parallel or in chains (sequences).<br>• Git & project integration with branches for tasks<br>• Bidirectional MCP<br>&nbsp;&nbsp;&nbsp;&nbsp;- As a client, it passes tools (from mcphub or litellm) to the agents.<br>&nbsp;&nbsp;&nbsp;&nbsp;- As a server, it provides the Kanban board itself as an MCP resource<br>• Autonomous agents can independently create tasks or query the status of the board.<br><br>⚠️ **Sunsetting notice (April 2026):** The company bloop has shut down. The project continues as community-maintained open source (Apache-2.0). Remote services are limited; local-only architecture is the recommended deployment. Expect slower release cadence and self-hosted deployments. |
+| **[LocalAI](https://github.com/mudler/LocalAI)**<br>46.6k ⭐ | LocalAI is a composable AI stack for running models locally and is used in two scenarios:<br><br>**1. Local**<br>• Only 'small things' are offered such as whispers, voice models and small fallback models<br><br>**2. Hosted**<br>• Uses powerful open weights models <br>• Manages multiple model instances to realize agent swarms<br>• Employs a persistence mechanic to handle host failures |
+| **[OpenLIT](https://github.com/openlit/openlit)**<br>2.5k ⭐ | Open-source AI engineering platform<br>• Hardware-related system for managing and maintaining swarms<br>• LLM observability and metric monitoring<br>• GPU performance and error handling |
+<br>
 
 ## 5.2 🏛️ Core Artefacts
 
-<table>
-  <tr>
-    <td width="20%"><b>Artefacts</b></td>
-    <td width="80%"><b>Responsibility</b></td>
-  </tr>
-  <tr>
-    <td><b>Deen Lupysta Repo</b></td>
-    <td>
-      <ul>
-        <li>Knowledge base for agents and humans</li>
-        <li>Integrated into the Open WebUI RAG to answer questions</li>
-        <li>Effective integration using setup matrix and stage concept</li>
-      </ul>
-    </td>
-  </tr>  
-  <tr>
-    <td><b>MYDEENLUPYSTA.md</b></td>
-    <td>
-      <ul>
-        <li>Describes the local Deen Lupysta system with all deviations from the reference installation from the repository.</li>
-        <li>Created and maintained by an agent during setup.</li>
-        <li>Creates backups of changed files and creates an instruction to undo the change (UNDO.md).</li>
-      </ul>
-    </td>
-  </tr>  
-  <tr>
-    <td><b>Shlib System</b></td>
-    <td>
-      <ul>
-        <li>Modular, multi-device shell configuration</li>
-        <li><code>.zshrc</code> lock mechanism and integrity validation</li>
-        <li>Dynamic environment variable loading via file exports</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td><b>Policies</b></td>
-    <td>
-      <ul>
-        <li>Strict package manager guidelines (apt vs. brew vs. uv vs. pnpm)</li>
-        <li>Consistent folder structures and routing rules</li>
-        <li>Conflict prevention across system layers</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td><b>Guardrails</b></td>
-    <td>
-      <ul>
-        <li>Security boundaries for autonomous agent behavior</li>
-        <li>Prevention of destructive or system-altering commands</li>
-        <li>Enforcement of Human-in-the-Loop validation constraints</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td><b>Lionheart Skill</b></td>
-    <td>
-      <ul>
-        <li>4-Tier daily/weekly system health monitoring</li>
-        <li>Telegram notification and status reporting</li>
-        <li>Generation of executable, commented action templates (<code>reco.sh</code>)</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td><b>Luxus-Python-Stack</b></td>
-    <td>
-      <ul>
-        <li>5-level environment isolation architecture</li>
-        <li>Mamba / uv / direnv workflow definitions</li>
-        <li>Agent session context management (<code>AGENTS.md</code>, <code>SESSION.md</code>)</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td><b>luxuspythonstack.sh</b></td>
-    <td>
-      <ul>
-        <li>Automated project scaffolding and setup (<code>pyinit</code>)</li>
-        <li>Fast environment toggles and state saving (<code>act</code>)</li>
-        <li>Configurable, token-aware Jupyter runtime launcher (<code>jupyter-launcher</code>)</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td><b>deenlupysta.sh</b></td>
-    <td>
-      <ul>
-        <li>Path sanitization and deduplication (<code>repair_path</code>)</li>
-        <li>Core system routines and alias management (<code>cw</code>, <code>suu</code>, <code>los</code>)</li>
-        <li>Repository synchronization commands (<code>deensync</code>)</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td><b>dsdash.ipynb</b></td>
-    <td>
-      <ul>
-        <li>Data Science utility snippets and interactive UI widgets</li>
-        <li>CUDA hardware validation across PyTorch, TF, JAX, and Numba</li>
-        <li>OpenRouter frontier model scraper and spec analyzer</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
+| Artefacts | Responsibility |
+| :--- | :--- |
+| **Deen Lupysta Repo** | • Knowledge base for agents and humans<br>• Integrated into the Open WebUI RAG to answer questions<br>• Effective integration using setup matrix and stage concept |
+| **MYDEENLUPYSTA.md** | • Describes the local Deen Lupysta system with all deviations from the reference installation from the repository.<br>• Created and maintained by an agent during setup.<br>• Creates backups of changed files and creates an instruction to undo the change (UNDO.md). |
+| **Shlib System** | • Modular, multi-device shell configuration<br>• `.zshrc` lock mechanism and integrity validation<br>• Dynamic environment variable loading via file exports |
+| **Policies** | • Strict package manager guidelines (apt vs. brew vs. uv vs. pnpm)<br>• Consistent folder structures and routing rules<br>• Conflict prevention across system layers |
+| **Guardrails** | • Security boundaries for autonomous agent behavior<br>• Prevention of destructive or system-altering commands<br>• Enforcement of Human-in-the-Loop validation constraints |
+| **Lionheart Skill** | • 4-Tier daily/weekly system health monitoring<br>• Telegram notification and status reporting<br>• Generation of executable, commented action templates (`reco.sh`) |
+| **Luxus-Python-Stack** | • 5-level environment isolation architecture<br>• Mamba / uv / direnv workflow definitions<br>• Agent session context management (`AGENTS.md`, `SESSION.md`) |
+| **luxuspythonstack.sh** | • Automated project scaffolding and setup (`pyinit`)<br>• Fast environment toggles and state saving (`act`)<br>• Configurable, token-aware Jupyter runtime launcher (`jupyter-launcher`) |
+| **deenlupysta.sh** | • Path sanitization and deduplication (`repair_path`)<br>• Core system routines and alias management (`cw`, `suu`, `los`)<br>• Repository synchronization commands (`deensync`) |
+| **dsdash.ipynb** | • Data Science utility snippets and interactive UI widgets<br>• CUDA hardware validation across PyTorch, TF, JAX, and Numba<br>• OpenRouter frontier model scraper and spec analyzer |
 
 # 6. 🪜 Stage Concept
 
