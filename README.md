@@ -17,35 +17,54 @@
 
 *That escalated a little...*</td></tr></table>
 
-# The AI-flavored Developer Environment & Luxurious Python Stack 
+# 📚 The AI-flavored Developer Environment & Luxurious Python Stack 
 
 consists of the installation instructions for the developer environment with an AI stack that integrates seamlessly into the Luxurious Python Stack. Python is optional; it also works with other languages ​​(python happens to be my first choice but it could just as well e.g. give a node version of it: Deen Lunosta).
 The instructions are intended for both humans and agents.
 
-how to start:
+🚀 how to start:
+
 * Get an overview of Deen Lupysta, preferably by reading the readme.
 * In Chapter '6. Stage Concept' describes the installation process.
 * I strongly recommend installing using agents as described there.
 * Agents are instructed not to carry out any critical operations themselves but only to generate the commands (sudo ..) and then let you execute them (human-in-the-loop principle).
 * If you follow the installation carefully and are not afraid to ask your agents something, you will gain a fundamental understanding of the system: “Learning by Installing”.
 
-some highlights:
+💥 some highlights:
+
 * A collection of installation cheat sheets for agents and humans
 * The Shell Library System (shlib) - simple but efficient
 * Set up a secure Ubuntu AI developement system with the Concierge skill, monitored and maintained by the Lionheart skill
-* A Stage Concept in which all subsystems are installed and integrated step by step and in an evaluable manner
 * Multi-level concept for Python development in the area of data science and classic CI/CD projects
 * A comfortable data science mamba environment with cuda support for pytorch, tensorflow, numba and jax.
 * Setting up an AI system with Rag and VAD supported real-time conversation based on Open WebUI
 * The MCPHub self-hosts a toolbox for agents and Open WebUI
-* Swarm and CI/CD ready luxus-python-stack skill for coding agents (luxury python stack)
+* Swarm and CI/CD ready luxus-python-stack skill for coding agents
 * Setting up security concepts (guardrails) for heartbeat agents
 * Routing strategies, resiliency and cost control for agent models with LiteLLM
 * Manages software development of agent swarms using vibe-kanban
 * Host and integrate LLMs yourself with LocalAI and VastAI, monitored by OpenLIT
 * A [Stage Concept](#6.-🪜-Stage-Concept) for an agent-supported, incremental, and evaluable integration
 
-***The repository here should in no way be seen as a strict guide. It's just one possible path among many, very much influenced by my preferences. Think of it as a box full of different blueprints that you can mix, match, and swap as you wish.***
+👉 how it works:
+
+* You just need to install OpenCode or another agent and use the Concierge skill (described 🟠 Stage 1: Onboarding). You do the rest together with the concierge (Human-In-The-Loop).
+
+* In the file MYDEENLUPYSTA.md there is a profile with the current configuration. It is created by the concierge during the installation and contains all relevant information for the subsystems set up (responsibilities, paths to configuration files, fundamental decisions such as omitting or adding a subsystem). It serves the user as a single point of reference and is the basis for Lionheart to maintain the system.
+
+* The Lionheart skill is triggered by a heartbeat and reacts accordingly. Heartbeats:<br>
+  - Daily Check (cron job)
+  - Weekly analysis (cron job)
+  - Guardrails webhook events (eg out-of-budget, common errors)
+  - Events from other subsystems, freely configurable via concierge
+
+* Finally, the luxury Python Stack skill is for software development agents who produce software in swarms and supports autonomous work and the human-in-the-loop process.
+
+* We have clear responsibilities:<br>
+  * the concierge maintains MYDEENLUPYSTA.md, removes subsystem, adds new ones, sets up the desired system architecture and the desired heartbeats from subsystems.<br>
+  * Lionheart ensures the operation of the Linux system and Deen Lupysta, reads log files, cleans up, solves problems and communicates with the user via telegram.
+
+***The repository here should in no way be seen as a strict guide. It's just one possible path among many, very much influenced by my preferences. Think of it as a box full of different blueprints that you can mix, match, and swap as you wish. I simply recommend making all adjustments with the concierge, this will avoid problems, eliminate complex configuration processes and ensure a clean integration.***
 
 ---
 
@@ -163,19 +182,35 @@ One step after the next. Deen Lupysta is too large to install in one go. That's 
 
 ## 6.1 🟠 Stage 1: Onboarding
 
-Wir installieren vorab OpenCode um den Concierge Skill zu verwenden.
+We install Nala, Git and OpenCode in advance to use the concierge skill. To do this we need to clone the deen-lupysta repo.
 
 * Open Code
 ```shell
-# Install latest (official script)
+# use nala instead of apt
+sudo apt update && sudo apt install -y nala
+sudo nala update && sudo nala upgrade
+
+# install git and clone deen lupysta
+sudo nala install git && mkdir -p ~/gits && cd ~/gits
+git clone https://github.com/frankausberlin/deen-lupysta
+mkdir -p ~/deenlupysta
+
+# Install OpenCode 
 curl -fsSL https://opencode.ai/install | bash
+
+# ⚠️ Note: of course you don't necessarily have to use opencode, but if you use another agent, you should make sure that it also uses the skill. The skill is just a file and can also be used directly by transferring it using prompt.
+
+# run opencode to setup your model provider
+# then we can link the skill
+mkdir -p ~/opencode/skills
+ln -s ~/gits/deen-lupysta/skills/concierge ~/opencode/skills/concierge
+
+# The next time you start opencode you will have access to the skill. Simply start your prompt with “Use your concierge skill”.
 ```
-
-
 
 ## 6.2 🟡 Stage 2: Base System
 
-Step 1: Read and execute the agent instructions in developer-environment/01-shlib-policy.md. Then do the same for the file developer-environment/02-base-tools-libs.md.
+Step 1: Read and execute the agent instructions in developer-environment/01-shlib-policy.md. The Concierge skill in ~/gits/deen-lupysta/skills/concierge is active from the start of Stage 2. On first load it sets up its state foundation (creates ~/.deenlupysta/ with backup/ and UNDO.md, and writes the initial MYDEENLUPYSTA.md capturing what is already installed) before continuing. Then read and execute the agent instructions in developer-environment/02-base-tools-libs.md.
 
 
 

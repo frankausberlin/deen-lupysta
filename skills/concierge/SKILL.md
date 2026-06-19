@@ -24,6 +24,20 @@ Two operating modes:
 - **Reconcile (primary):** A Deen Lupysta system already exists. The Concierge compares actual state against the repo, reconstructs missing artefacts (above all `MYDEENLUPYSTA.md`), documents deviations, and brings the system up to the current spec stage-by-stage — always with the user in the loop.
 - **Install (secondary):** Greenfield setup on a fresh machine. Strictly follows the stage concept from `README.md` §6.
 
+## First Contact — when the profile does not exist yet
+
+Stage 1 (Onboarding) installs only OpenCode and symlinks this skill. From the moment the user first runs OpenCode with the Concierge skill active (or the skill is invoked during Stage 2), the **repo checkout already exists**. The local state, however, usually does not yet:
+
+- `~/.deenlupysta/` may not exist — no `MYDEENLUPYSTA.md`, no backup folder, no `UNDO.md`
+
+On first load, therefore:
+
+1. **Establish state before acting.** Check for `~/.deenlupysta/`. If it is missing, create it (root + `backup/` + empty `UNDO.md`) before recommending any further change.
+2. **Create the profile.** Write the initial `MYDEENLUPYSTA.md`, recording what is already present (OpenCode, nala, git, the repo checkout). Mark anything you could not directly verify as *"reconstructed — please verify"*.
+3. **Then continue normally** with the Reconcile/Install workflow for the stage the user is currently in (typically Stage 2 — zsh + Shlib) and beyond.
+
+In short: on first load the repo is already there, but the state-tracking foundation is not — laying that down and capturing the current snapshot in `MYDEENLUPYSTA.md` is the Concierge's first duty, before driving any new change.
+
 ## Hard Rules
 
 These rules are non-negotiable and apply in both modes:
@@ -72,15 +86,15 @@ Run this for greenfield installs or for a stage the user wants to add during rec
 
 The canonical stage list lives in `README.md` §6. The Concierge does not duplicate it here — always read the current `README.md` for the authoritative stage order and the file-to-stage mapping. As of writing:
 
-- 🟠 Stage 1 — Base System (`developer-environment/01`…`06`)
-- 🟡 Stage 2 — Ecosystems (`07`…`12`)
-- 🟢 Stage 3 — Ollama & Agents (`ai-stack/01`)
-- 🔵 Stage 4 — MCPHub & Open WebUI (`ai-stack/02`)
-- 🟣 Stage 5 — Hermes & Lionheart (`ai-stack/03`)
-- 🟤 Stage 6 — LiteLLM & Vibe-Kanban (`ai-stack/04`)
-- ⚫ Stage 7 — Vast.AI, LocalAI & OpenLIT (`ai-stack/05`)
-- ⚪ Stage 8 — Luxus Python Stack reference project
-- 🔴 Stage 9 — ???
+- 🟠 Stage 1 — Onboarding: install OpenCode + first Concierge call (no local artefacts yet — see "First Contact" above)
+- 🟡 Stage 2 — Base System (`developer-environment/01`…`06`)
+- 🟢 Stage 3 — Ecosystems (`07`…`12`)
+- 🔵 Stage 4 — Ollama & Agents (`ai-stack/01`)
+- 🟣 Stage 5 — MCPHub & Open WebUI (`ai-stack/02`)
+- 🟤 Stage 6 — Hermes & Lionheart (`ai-stack/03`)
+- ⚫ Stage 7 — LiteLLM & Vibe-Kanban (`ai-stack/04`)
+- ⚪ Stage 8 — Vast.AI, LocalAI & OpenLIT (`ai-stack/05`)
+- 🔴 Stage 9 — Luxus Python Stack reference project
 
 If the stage map in `README.md` disagrees with this list, `README.md` wins.
 

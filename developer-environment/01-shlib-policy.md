@@ -1,31 +1,25 @@
-## 1.1 🧱 Shlib System, nala, zsh-1 & Policies
+4## 1.1 🧱 ZSH-1 & Shlib System
 
 ### Agent Instructions
 
 * Load the Concierge skill (`skills/concierge/SKILL.md`) and follow its rules.
 * In this stage you accompany the user in installing:
-  * nala and git
-  * a clone of the Deen Lupysta repo
   * zsh (first version, plain — appearance follows in 1.6)
   * the Shlib system
 * Stage-specific notes:
-  * This is the bootstrap stage. The repo (and this skill) may not exist locally yet — the clone happens here. If the skill was loaded from elsewhere, keep going; otherwise rely on these instructions until the clone is done.
+  * Prerequisites from Stage 1 (Onboarding): nala, git, the `~/gits/deen-lupysta` checkout and OpenCode with the Concierge skill symlinked — must already be in place. If something is missing, stop and refer the user back to `README.md` §6.1.
   * If a Shlib system already exists, check it for inconsistencies first. Report findings and ask before touching anything; if all is well, finish with a short status report.
   * zsh must be active before the Shlib setup. If the user just switched shells, they must log out and back in, then confirm before you continue.
-  * Setup steps: '#### Setup Shlib System and clone Deen Lupysta', then write `.zshrc` per '#### The exact content in .zshrc with the three snippets in the middle.'
- 
+  * Setup steps: '#### Setup Shlib System', then write `.zshrc` per '#### The exact content in .zshrc with the three snippets in the middle.'
 
-### Nala and Zshell Part 1
+
+### Zshell Part 1
 
 ```shell
-# User: use nala instead of apt
-sudo apt update && sudo apt install -y nala
-sudo nala update && sudo nala upgrade
-
-# User: Install zsh and git and switch to zsh
-sudo nala install -y zsh git && chsh -s $(which zsh) # Select option 2: Recommended settings
+# User: Install zsh and switch to zsh (nala and git are already present from Stage 1)
+sudo nala install -y zsh && chsh -s $(which zsh) # Select option 2: Recommended settings
 # ⚠️ A full re-login (logout/login) is required so that login shells pick up zsh.
-# ⚠️ Insert after relogin and genearation of the .zshrc: 'setopt INTERACTIVE_COMMENTS' 
+# ⚠️ Insert after relogin and genearation of the .zshrc: 'setopt INTERACTIVE_COMMENTS'
 # This is important so that copy/paste works properly, without it the comment symbol '#' is not allowed
 ```
 
@@ -52,20 +46,16 @@ Three components in `.zshrc`:
 
 The numbering is freely selectable. However, it is recommended to stick to the numbering from the developer environment and the ai stack.
 
-#### Setup Shlib System and clone Deen Lupysta
+#### Setup Shlib System
 
 ```shell
 # create folders
-mkdir -p ~/.shlib/exports ~/.shlib/shlibs ~/gits
+mkdir -p ~/.shlib/exports ~/.shlib/shlibs
 
 # To be on the safe side, exclude the contents of the export folder from Github
 echo  "# Ignore everything in this directory\n*\n# Except this file\n\!.gitignore" > ~/.shlib/exports/.gitignore
 
-# User: clone Deen Lupysta
-cd ~/gits
-git clone https://github.com/frankausberlin/deen-lupysta
-
-# The Deen Lupysta shlib: path and export tools, aliases, cw
+# The Deen Lupysta shlib: path and export tools, aliases, cw (repo was already cloned in Stage 1)
 ln -s ~/gits/deen-lupysta/scripts/deenlupysta.sh ~/.shlib/shlibs/10-deenlupysta.sh
 
 # We'll use this text here as the README.
