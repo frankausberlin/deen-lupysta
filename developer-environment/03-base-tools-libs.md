@@ -9,7 +9,7 @@
   * optionally: GNOME desktop/GUI apps, Flatpak, GRUB theme
 * Stage-specific notes:
   * Skip the entire "Ubuntu Desktop / GUI" and GRUB blocks on headless systems (server, Raspberry Pi). Ask the user about the target before generating those.
-  * Homebrew registers itself in `~/.shlib/shlibs/20-homebrew.sh`. Verify this shlib exists after install.
+  * Homebrew registers itself in `~/.shlib/shlibs/22-homebrew.sh`. Verify this shlib exists after install.
   * The brew install step takes a while — warn the user before they run it.
 
 
@@ -73,8 +73,8 @@ sudo snap refresh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# Write to shlib: 20-homebrew.sh
-echo '[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' > ~/.shlib/shlibs/20-homebrew.sh
+# Write to shlib: 22-homebrew.sh
+echo '[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' > ~/.shlib/shlibs/22-homebrew.sh
 
 # restore zshrc
 shliblock R

@@ -8,7 +8,7 @@
 brew install rbenv ruby-build
 
 # Hook rbenv into ZSH
-cat << 'EOF' >> ~/.shlib/shlibs/60-ruby.sh
+cat << 'EOF' >> ~/.shlib/shlibs/45-ruby.sh
 
 # --- Ruby / rbenv ---
 eval "$(rbenv init - zsh)"

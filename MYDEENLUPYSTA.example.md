@@ -47,7 +47,7 @@ All software from the instruction has been installed:<br>
 * Build Essentials & Dev Libraries
 * Multimedia & Image Processing
 * GNOME desktop session Software
-* Homebrew exports moved to ~/.shlib/shlibs/20-homebrew.sh
+* Homebrew exports moved to ~/.shlib/shlibs/22-homebrew.sh
 * GNOME: disable-extension-version-validation true
 * The fallout grub theme is installed in /etc/default/grub 
 * A link to /etc/default/grub was created in ~/.shlib/grub
@@ -138,11 +138,11 @@ zsh-users/zsh-history-substring-search
 hlissner/zsh-autopair
 ```
 * A link to ~/.zsh_plugins.txt was created in ~/.shlib/.zsh_plugins.txt
-* The shlib file ~/.shlib/shlibs/25-zsh-appearance.sh was created.
+* The shlib file ~/.shlib/shlibs/31-zsh-appearance.sh was created.
 * P10K was configured via wizard
-* The settings inserted by P10K into the .zshrc have been moved to ~/.shlib/shlibs/30-zsh-p10k.sh.
-* The prompt_my_jupyter function is located in ~/.shlib/shlibs/30-zsh-p10k.sh and has been integrated into ~/.p10k.zsh.
-* The prompt_lionheart_reco function is located in ~/.shlib/shlibs/30-zsh-p10k.sh and has been integrated into ~/.p10k.zsh.
+* The settings inserted by P10K into the .zshrc have been moved to ~/.shlib/shlibs/32-zsh-p10k.sh.
+* The prompt_my_jupyter function is located in ~/.shlib/shlibs/32-zsh-p10k.sh and has been integrated into ~/.p10k.zsh.
+* The prompt_lionheart_reco function is located in ~/.shlib/shlibs/32-zsh-p10k.sh and has been integrated into ~/.p10k.zsh.
 * A link to ~/.p10k.zsh was created in ~/.shlib/.p10k.zsh
 
 
@@ -154,7 +154,7 @@ hlissner/zsh-autopair
 * pnpm is used as the primary package manager, provided by Corepack.
 * Node LTS (lts-latest) is installed and set as default.
 * Corepack shims are enabled and set up for pnpm@latest.
-* The shlib file ~/.shlib/shlibs/35-nodejs-config.sh was created to dynamically manage the paths for Node, fnm and pnpm.
+* The shlib file ~/.shlib/shlibs/40-nodejs-config.sh was created to dynamically manage the paths for Node, fnm and pnpm.
 * Important system policy: Full PATH snapshots are not stored in shlib files to prevent freezing of stale fnm_multishells paths. Path extensions are only carried out in a targeted and checked manner.
 * A persistent default node path (~/.local/share/fnm/aliases/default/bin) is set up as a stable fallback for systemd services and non-interactive shells.
 * Global tools were installed via pnpm: pm2.
@@ -167,7 +167,7 @@ hlissner/zsh-autopair
 * Python 3 Base (nala), uv (as an extremely fast Rust-based manager) and mamba (via Miniforge3) are installed.
 * Central CLI tools (Ruff, bump-my-version, basedpyright, nbstripout) were provided globally via uv tool (as a performant replacement for pipx).
 * A custom direnv layout for uv has been set up in ~/.config/direnv/direnvrc. The allowuv alias triggers automatic environment detection and creation in project folders.
-* The shlib file ~/.shlib/shlibs/40-python-config.sh was created to orderly initialize UV, direnv (log output suppressed for p10k compatibility) and Mamba.
+* The shlib file ~/.shlib/shlibs/41-python-config.sh was created to orderly initialize UV, direnv (log output suppressed for p10k compatibility) and Mamba.
 * Important system policy (Python protection): UV_PYTHON_PREFERENCE=only-managed is set. UV strictly uses its own Python versions to never impact the system Python.
 * Important system policy (environment management): For complex environments (such as data science) the "wipe and recreate" principle applies. Instead of updating Mamba environments (which can cause conflicts when mixed with uv pip), they are completely deleted and reinstalled extremely quickly thanks to UV's speed.
 * A separate act function controls the change of the Mamba environment and stores the current default persistently in ~/.startenv. (On shell startup, Mamba will be skipped if direnv finds a local .envrc in the project folder).
@@ -179,7 +179,7 @@ hlissner/zsh-autopair
 ### 09-rust.md
 
 * Rustup & Cargo are installed and working
-* The file ~/.shlib/shlibs/45-rust.sh is created
+* The file ~/.shlib/shlibs/42-rust.sh is created
 * Cargo Binstall is installed
 * Some tools are installed with `cargo binstall -y cargo-watch cargo-update cargo-edit`
 
@@ -187,7 +187,7 @@ hlissner/zsh-autopair
 ### 10-go.md
 
 * Go is installed via added PPA
-* The file ~/.shlib/shlibs/50-go-config.sh has been created
+* The file ~/.shlib/shlibs/43-go-config.sh has been created
 * lf was installed with go
 
 
@@ -196,14 +196,14 @@ hlissner/zsh-autopair
 * SDKMAN was installed with `curl -s "https://get.sdkman.io" | bash`
 * java 21.0.2-tem sdk is installed and default
 * Maven and gradle are installed
-* The file ~/.shlib/shlibs/55-java.sh is created
+* The file ~/.shlib/shlibs/44-java.sh is created
 
 
 ### 12-ruby.md
 
 * Rbenv and ruby-build are installed via Homebrew
 * Ruby 3.3.0 has been compiled and set global
-* The file ~/.shlib/shlibs/60-ruby.sh is created
+* The file ~/.shlib/shlibs/45-ruby.sh is created
 * Bundler was installed with `gem install bundler`
 
 

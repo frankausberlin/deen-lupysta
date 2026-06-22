@@ -9,7 +9,7 @@
 * In this stage you accompany the user in installing:
   * MesloLGS NF fonts
   * Antidote plugin manager + the plugin selection (`.zsh_plugins.txt`)
-  * Powerlevel10k prompt, integrated via shlib (`25-zsh-appearance.sh`, `30-zsh-p10k.sh`)
+  * Powerlevel10k prompt, integrated via shlib (`31-zsh-appearance.sh`, `32-zsh-p10k.sh`)
 * Stage-specific notes:
   * This is the second half of zsh setup (Part 1 was stage 1.1). zsh must already be the active login shell.
   * The p10k configuration wizard runs interactively on the user's first terminal restart — it cannot be automated. After the wizard, the generated `~/.p10k.zsh` is moved/linked into the shlib.
@@ -65,7 +65,7 @@ ln -s ~/.zsh_plugins.txt ~/.shlib/.zsh_plugins.txt
 ### 5. Integration into shlib
 
 ```shell
-cat << 'EOF' >> ~/.shlib/shlibs/25-zsh-appearance.sh
+cat << 'EOF' >> ~/.shlib/shlibs/31-zsh-appearance.sh
 
 # --- Antidote & Plugins ---
 source ~/.antidote/antidote.zsh
@@ -95,7 +95,7 @@ Restart terminal. Powerlevel10k will guide through the configuration wizard on f
 After p10k wizard configuration, move auto-generated config into shlib:
 
 ```shell
-cat << 'EOF' >> ~/.shlib/shlibs/30-zsh-p10k.sh
+cat << 'EOF' >> ~/.shlib/shlibs/32-zsh-p10k.sh
 # ─── Custom Lionheart P10k Segment (reco.sh Tracker) ──────────────────────────
 # insert in ~/.p10k.zsh to the list of segments in POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS 
 # (or left) without 'prompt_', just 'lionheart_reco'

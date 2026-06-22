@@ -34,7 +34,7 @@ curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Mi
 bash Miniforge3-$(uname)-$(uname -m).sh -b -p "$HOME/miniforge3"
 
 # Register UV safety net (instead of `conda init zsh` we put Conda and UV directly into the shlib)
-cat << 'EOF' > ~/.shlib/shlibs/40-python-config.sh
+cat << 'EOF' > ~/.shlib/shlibs/41-python-config.sh
 # --- UV ---
 # Strictly use own/managed Python versions (Protects System-Python!)
 export UV_PYTHON_PREFERENCE=only-managed
