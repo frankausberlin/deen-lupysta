@@ -12,7 +12,6 @@
   * Homebrew registers itself in `~/.shlib/shlibs/20-homebrew.sh`. Verify this shlib exists after install.
   * The brew install step takes a while — warn the user before they run it.
 
-* generated shlibs: 20-homebrew.sh
 
 ```shell
 # Home, sweet home
@@ -77,6 +76,9 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # Write to shlib: 20-homebrew.sh
 echo '[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' > ~/.shlib/shlibs/20-homebrew.sh
 
+# restore zshrc
+shliblock R
+
 # install brew stuff
 brew install gcc yazi lazyjournal lazydocker yq fd
 brew install just direnv
@@ -114,4 +116,7 @@ sudo nano /etc/default/grub
 
 # reload grub
 sudo update-grub
+
+# create comfort link in .shlib
+ln -s /etc/default/grub ~/.shlib/grub
 ```

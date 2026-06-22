@@ -6,7 +6,6 @@
 * In this stage you accompany the user in installing:
   * Docker Engine (never docker-desktop on Linux)
   * NVIDIA Container Toolkit (GPU passthrough)
-  * optionally: Portainer
 * Stage-specific notes:
   * Adding the user to the `docker` group requires a reboot. The `ufw-docker` patch from stage 1.3 can only be applied *after* this reboot — coordinate the order with the user.
   * The NVIDIA Container Toolkit needs working NVIDIA drivers first (`sudo ubuntu-drivers autoinstall`). Skip the GPU part on machines without an NVIDIA GPU.
@@ -74,15 +73,16 @@ sudo systemctl restart docker
 ```
 Verify: `docker run --rm --gpus all ubuntu nvidia-smi`
 
-### Portainer (optional)
+
+### UFW patch
 
 ```shell
-docker volume create portainer_data
-docker run -d \
-  -p 127.0.0.1:9443:9443 \
-  --name portainer \
-  --restart always \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v portainer_data:/data \
-  portainer/portainer-ce:latest
+# Download ufw-docker script
+sudo wget -O /usr/local/bin/ufw-docker \
+  https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker
+sudo chmod +x /usr/local/bin/ufw-docker
+
+# Install and apply (LC_ALL=C forces English output so the script recognizes the UFW "active" status)
+sudo LC_ALL=C ufw-docker install
+sudo systemctl restart ufw
 ```

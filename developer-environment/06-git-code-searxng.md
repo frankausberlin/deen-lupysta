@@ -4,7 +4,7 @@
 
 * Load the Concierge skill (`skills/concierge/SKILL.md`) and follow its rules.
 * In this stage you accompany the user in installing:
-  * Git global config + GitHub CLI auth (SSH, using the key from stage 1.3)
+  * Git global config + GitHub CLI auth (SSH, using the key from the ssh-chapter)
   * VSCode (apt repo) + Nautilus context-menu integration
   * SearXNG (Docker, bound to localhost, JSON format enabled for the MCP server)
 * Stage-specific notes:
@@ -12,9 +12,6 @@
   * `gh auth login`: choose SSH and upload the `id_ed25519.pub` from stage 1.3.
   * SearXNG requires Docker (stage 1.4). The secret key is generated via `openssl rand`; the container is intentionally bound to `127.0.0.1:8080` — do not expose it.
 
-* manipulated files: .gitignore_global
-* created folders: ~/.searxng/, ~/.searxng/config/, ~/.searxng/data/
-* created files: settings.yml
 
 ### Github:
 ```shell
@@ -37,7 +34,7 @@ gh auth setup-git
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 rm -f packages.microsoft.gpg
-echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | \
+echo "deb https://packages.microsoft.com/repos/code stable main" | \
 sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
 sudo nala update && sudo nala install -y code
 
@@ -65,5 +62,8 @@ docker run --name searxng -d --restart always -p 127.0.0.1:8080:8080 \
     -v "$HOME/.searxng/config/:/etc/searxng/" \
     -v "$HOME/.searxng/data/:/var/cache/searxng/" \
     docker.io/searxng/searxng:latest
+
+# Comfort link
+ln -s ~/.searxng/config/settings.yml ~/.shlib/settings_searxng.yml
 ```
 

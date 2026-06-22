@@ -72,10 +72,8 @@ If you use the [shlib system](developer-environment/01-shlib-policy.md), create 
 
 ```shell
 ln -s /path/to/deen-lupysta/scripts/scripts/scripts/luxuspythonstack.sh \
-      /path/to/.shlib/shlibs/80-luxuspythonstack.sh
+      /path/to/.shlib/shlibs/10-luxuspythonstack.sh
 ```
-
-Use a different number when it fits your shlib layout better, for example `70-luxuspythonstack.sh` or `85-luxuspythonstack.sh`.
 
 ### Agent Skill Installation
 

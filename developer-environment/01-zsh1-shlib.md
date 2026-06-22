@@ -32,19 +32,24 @@ The early installation and activation of zsh serves to use the shlib system from
 
 ### Shlib System
 
-The Shlib (Shell Library) system keeps the `.zshrc` file clean and manageable by moving shell configuration into sorted, versioned files. 
+The Shlib (Shell Library) system keeps the `.zshrc` file clean and manageable by moving shell configuration into sorted files. 
 
 #### Architecture
 
-Three components in `.zshrc`:
-
+Three components in `.zshrc`:<br>
 1. **Lock Check** — Detects unauthorized changes to `.zshrc`
 2. **Exports Loader** — Files in `~/.shlib/exports/` become env vars (filename = varname, content = value)
 3. **Library Loader** — Sorted scripts in `~/.shlib/shlibs/` are sourced in order
 
+Optional use case:<br>
+I recommend creating a list of system links to all important system configuration files here:<br>
+e.g.: `ln -s ~/.searxng/config/settings.yml ~/.shlib/settings_searxng.yml`
+
 #### Convention
 
-The numbering is freely selectable. However, it is recommended to stick to the numbering from the developer environment and the ai stack.
+* The numbering is freely selectable. The user must ensure consistency himself (do not use anything before it is integrated).
+* In Deen Lupysta I use a mini classification system: 00 original zshrc, 10-19 deen lupysta, 20-39 diverse, 40-59 ecosystems, 60-79 ai-stack
+* The file 00-original-zshrc.sh should be deleted and its contents sorted by topic and transferred to shlib files. (eg. 20-homebin.sh, 21-connectaliases.sh, 30-zsh-config.sh)
 
 #### Setup Shlib System
 
@@ -62,7 +67,8 @@ ln -s ~/gits/deen-lupysta/scripts/deenlupysta.sh ~/.shlib/shlibs/10-deenlupysta.
 ln -s ~/gits/deen-lupysta/developer-environment/01-shlib-policy.md ~/.shlib/README.md
 
 # turn the current .zshrc into an shlib file (ensure that "setopt INTERACTIVE_COMMENTS" is included).
-mv ~/.zshrc ~/.shlib/shlibs/15-original-zshrc.sh
+# 
+mv ~/.zshrc ~/.shlib/shlibs/00-original-zshrc.sh
 
 # Optional: I view the .shlib folder as a kind of dashboard that gives me access to the most interesting config files via file links(single point of reference)
 # e.g.
@@ -105,7 +111,7 @@ fi
 After cleaning `.zshrc` and moving configuration to shlib files, create a lock:
 
 ```shell
-cp ~/.zshrc ~/.zshrc.lock # or use the alias 'shliblock' from deenlupysta.sh after 'exec zsh'
+cp ~/.zshrc ~/.zshrc.lock # or use the function 'shliblock' from deenlupysta.sh after 'exec zsh'
 ```
 
 #### Exports System
@@ -118,6 +124,7 @@ Files in `~/.shlib/exports/` are exported as environment variables on shell star
 ```
 
 All export files should be `chmod 600` to prevent other users from reading secrets.
+
 
 #### Directory Structure
 ```
@@ -133,35 +140,8 @@ All export files should be `chmod 600` to prevent other users from reading secre
 │   ├── <nr>-<name> (or as link: ln -s <path-to-script> ~/.shlib/shlibs/<nr>-<name>)
 │   └── ...
 ├── README.md (link --> ~/gits/deen-lupysta/developer-environment/01-shlib-policy.md)
-└── .zshrc (link --> ~/.zshrc)
+├── .zshrc (link --> ~/.zshrc)
+├── # all system relevant configuration
+└── # files as system link
 ```
-### Policies
-
-***I do not believe that my rules are universally correct. However, I do believe that consistent rules are better than no rules at all.***
-
-#### Package Manager Policy
-
-Simple guideline on how to install what.
-
-| Layer | Tool | Scope |
-|-------|------|-------|
-| OS / System | `apt` / `nala` | Core packages, system daemons, C-libraries, compilers |
-| GUI Apps | `flatpak` | Desktop applications (sandboxed) |
-| Modern CLI | `brew` | CLI tools + TUIs not in apt |
-| Python Global | `uv tool` | Python CLI utilities (ruff, basedpyright); `pipx` only as fallback if `uv` is unavailable |
-| Python Project | `uv add` / `uv sync` | ALL project dependencies |
-| Python Data Science | `mamba install` + `uv pip install` | Heavy C-extensions, CUDA, ML frameworks |
-| Node | `pnpm` | All JS/TS dependencies |
-| Rust | `cargo` | Rust binaries and project deps |
-| Go | `go install` | Go-based CLI tools |
-| Java | `sdk` (SDKMAN) | JDK versions + JVM tools |
-| Ruby | `gem` / `bundle` | CLI tools + project deps |
-
-#### Working Folder Policy
-
-* Use `cw` to switch to the current working directory
-* use `cw .` to make the current directory the working directory.
-
-⚠️ **These policies are recommendations. You are of course free to customize them. <br>
-It is only recommended that you set a system once and then stick to it.**
 

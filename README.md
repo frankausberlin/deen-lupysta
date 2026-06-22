@@ -80,38 +80,25 @@ Never run scripts or script snippets without carefully reviewing them.
 
 ---
 
-```shell
-▀▛▘▌       ▛▀▖         ▜               ▛▀▘      ▗                    ▐  
- ▌ ▛▀▖▞▀▖  ▌ ▌▞▀▖▌ ▌▞▀▖▐ ▞▀▖▛▀▖▞▀▖▙▀▖  ▙▄ ▛▀▖▌ ▌▄ ▙▀▖▞▀▖▛▀▖▛▚▀▖▞▀▖▛▀▖▜▀ 
- ▌ ▌ ▌▛▀   ▌ ▌▛▀ ▐▐ ▛▀ ▐ ▌ ▌▙▄▘▛▀ ▌    ▌  ▌ ▌▐▐ ▐ ▌  ▌ ▌▌ ▌▌▐ ▌▛▀ ▌ ▌▐ ▖
- ▘ ▘ ▘▝▀▘  ▀▀ ▝▀▘ ▘ ▝▀▘ ▘▝▀ ▌  ▝▀▘▘    ▀▀▘▘ ▘ ▘ ▀▘▘  ▝▀ ▘ ▘▘▝ ▘▝▀▘▘ ▘ ▀ 
-```
-
-
-# 1. 🐧 Base System
-## 1.1 🧱 [Shlib System / Package Manager Policy](developer-environment/01-shlib-policy.md)
-## 1.2 🚀 [Base Tools, Libs & Co.](developer-environment/02-base-tools-libs.md)
-## 1.3 🔒 [Network & security](developer-environment/03-net-security.md)
-## 1.4 📦️ [Docker & CUDA Toolkit](developer-environment/04-docker-cuda.md)
-## 1.5 🌐 [Git, Code & SearXng](developer-environment/05-git-code-searxng.md)
-## 1.6 🧿 [ZSH, Antidote & p10k](developer-environment/06-zsh-antidote-p10k.md)
-## 1.7 📋 [Shell Library deenlupysta.sh](scripts/deenlupysta.sh)
+# 1. 🐧 Developer Environment
+## 1.1 🧱 [Shlib System / ZSH I](developer-environment/01-zsh1-shlib.md)
+## 1.2 📜 [Package Manager Policy](developer-environment/02-policies.md)
+## 1.3 🚀 [Base Tools, Libs & Co.](developer-environment/03-base-tools-libs.md)
+## 1.4 🔒 [Network & security](developer-environment/04-net-security.md)
+## 1.5 📦️ [Docker & CUDA Toolkit](developer-environment/05-docker-cuda.md)
+## 1.6 🌐 [Git, Code & SearXng](developer-environment/06-git-code-searxng.md)
+## 1.7 🧿 [ZSH II, Antidote & p10k](developer-environment/07-zsh2-antidote-p10k.md)
+## 1.8 📋 [Shell Library deenlupysta.sh](scripts/deenlupysta.sh)
 
 # 2. 🗺️ Ecosystems
-## 2.1 🟢 [Node.js (fnm + pnpm)](developer-environment/07-nodejs.md)
-## 2.2 🐍 [Python (uv, mamba, direnv)](developer-environment/08-python.md)
-## 2.3 🦀 [Rust (rustup & cargo)](developer-environment/09-rust.md)
-## 2.4 🐹 [Go (Go Toolchain)](developer-environment/10-go.md)
-## 2.5 ☕ [Java (SDKMAN!)](developer-environment/11-java.md)
-## 2.6 💎 [Ruby (rbenv & bundler)](developer-environment/12-ruby.md)
+## 2.1 🟢 [Node.js (fnm + pnpm)](developer-environment/01-nodejs.md)
+## 2.2 🐍 [Python (uv, mamba, direnv)](developer-environment/02-python.md)
+## 2.3 🦀 [Rust (rustup & cargo)](developer-environment/03-rust.md)
+## 2.4 🐹 [Go (Go Toolchain)](developer-environment/04-go.md)
+## 2.5 ☕ [Java (SDKMAN!)](developer-environment/05-java.md)
+## 2.6 💎 [Ruby (rbenv & bundler)](developer-environment/06-ruby.md)
 
 ---
-```shell
-▀▛▘▌       ▞▀▖ ▜▘  ▞▀▖▐        ▌  
- ▌ ▛▀▖▞▀▖  ▙▄▌ ▐   ▚▄ ▜▀ ▝▀▖▞▀▖▌▗▘
- ▌ ▌ ▌▛▀   ▌ ▌ ▐   ▖ ▌▐ ▖▞▀▌▌ ▖▛▚ 
- ▘ ▘ ▘▝▀▘  ▘ ▘ ▀▘  ▝▀  ▀ ▝▀▘▝▀ ▘ ▘
-```
 
 # 3. 🧠 AI Stack
 ## 3.1 🦙 [Ollama & Agents](ai-stack/01-ollama-agents.md)
@@ -121,12 +108,7 @@ Never run scripts or script snippets without carefully reviewing them.
 ## 3.5 ☁️ [Vast.AI, LocalAI & OpenLIT](ai-stack/05-vastai-localai.md) *(🚧 WIP)*
 
 ---
-```shell
-▀▛▘▌       ▌              ▗            ▛▀▖   ▐  ▌          ▞▀▖▐        ▌  
- ▌ ▛▀▖▞▀▖  ▌  ▌ ▌▚▗▘▌ ▌▙▀▖▄ ▞▀▖▌ ▌▞▀▘  ▙▄▘▌ ▌▜▀ ▛▀▖▞▀▖▛▀▖  ▚▄ ▜▀ ▝▀▖▞▀▖▌▗▘
- ▌ ▌ ▌▛▀   ▌  ▌ ▌▗▚ ▌ ▌▌  ▐ ▌ ▌▌ ▌▝▀▖  ▌  ▚▄▌▐ ▖▌ ▌▌ ▌▌ ▌  ▖ ▌▐ ▖▞▀▌▌ ▖▛▚ 
- ▘ ▘ ▘▝▀▘  ▀▀▘▝▀▘▘ ▘▝▀▘▘  ▀▘▝▀ ▝▀▘▀▀   ▘  ▗▄▘ ▀ ▘ ▘▝▀ ▘ ▘  ▝▀  ▀ ▝▀▘▝▀ ▘ ▘
-```
+
 
 
 # 4. 💎 Luxurious Python Stack
@@ -164,14 +146,15 @@ Never run scripts or script snippets without carefully reviewing them.
 
 | Artefacts | Responsibility |
 | :--- | :--- |
-| **Deen Lupysta Repo** | • Knowledge base for agents and humans<br>• Integrated into the Open WebUI RAG to answer questions<br>• Effective integration using setup matrix and stage concept |
+| **Concierge Skill** | • Maintains the MYDEENLUPYSTA.md, the central system reference<br>• Guides the user through the installation and configuration process<br>• Effective integration using setup matrix and stage concept |
+| **Deen Lupysta Repo** | • Knowledge base for agents and humans<br>• Integrated into the Open WebUI RAG to answer questions<br>• Allows easy adjustments to the system |
 | **MYDEENLUPYSTA.md** | • Describes the local Deen Lupysta system with all deviations from the reference installation from the repository.<br>• Created and maintained by an agent during setup.<br>• Creates backups of changed files and creates an instruction to undo the change (UNDO.md). |
 | **Shlib System** | • Modular, multi-device shell configuration<br>• `.zshrc` lock mechanism and integrity validation<br>• Dynamic environment variable loading via file exports |
 | **Policies** | • Strict package manager guidelines (apt vs. brew vs. uv vs. pnpm)<br>• Consistent folder structures, routing rules and conflict prevention across system layers<br>• Strict instructions for agents and provision of skills |
 | **Guardrails** | • Security boundaries for autonomous agent behavior<br>• Prevention of destructive or system-altering commands<br>• Enforcement of Human-in-the-Loop validation constraints |
 | **Heartbeats** | • Events that trigger an agent to perform a specific task<br>• Cronjob events with a daily and a weekly check<br>• Application events are generated by subsystems, e.g. Budget, routing, guardrails, error handling ... |
 | **Lionheart Skill** | • 4-Tier daily/weekly system health monitoring<br>• Telegram notification and status reporting<br>• Generation of executable, commented action templates (`reco.sh`) |
-| **Luxus-Python-Stack** | • 5-level environment isolation architecture<br>• Mamba / uv / direnv workflow definitions<br>• Agent session context management (`AGENTS.md`, `SESSION.md`) |
+| **Luxus Python Stack** | • 5-level environment isolation architecture<br>• Mamba / uv / direnv workflow definitions<br>• Agent session context management (`AGENTS.md`, `SESSION.md`)<br> • Luxury Python stack skill for efficient work in swarms and with humans|
 | **luxuspythonstack.sh** | • Automated project scaffolding and setup (`pyinit`)<br>• Fast environment toggles and state saving (`act`)<br>• Configurable, token-aware Jupyter runtime launcher (`jupyter-launcher`) |
 | **deenlupysta.sh** | • Path sanitization and deduplication (`repair_path`)<br>• Core system routines and alias management (`cw`, `suu`, `los`)<br>• Repository synchronization commands (`deensync`) |
 | **dsdash.ipynb** | • Data Science utility snippets and interactive UI widgets<br>• CUDA hardware validation across PyTorch, TF, JAX, and Numba<br>• OpenRouter frontier model scraper and spec analyzer |
@@ -194,6 +177,7 @@ sudo nala update && sudo nala upgrade
 sudo nala install git && mkdir -p ~/gits && cd ~/gits
 git clone https://github.com/frankausberlin/deen-lupysta
 mkdir -p ~/deenlupysta
+cp ~/gits/deen-lupysta/MYDEENLUPYSTA.md.example ~/deenlupysta
 
 # Install OpenCode 
 curl -fsSL https://opencode.ai/install | bash

@@ -98,6 +98,8 @@ rm Miniforge3-*.sh
 exec zsh
 ```
 
+* ⚠️ Repository hygiene: It is recommended to run nbstripout --install in the project folder to prevent Notebook outputs from ending up in Git repositories.
+
 ### Data Science Mamba Environment
 
 * ⚠️ Using ipywidgets 7.7.1 for colab runtime compatibility.
