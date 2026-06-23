@@ -18,7 +18,7 @@ Summary:<br>
 
 ## 6.2 🟡 Stage 2: Developer Environment
 
-### developer-environment/01-zsh1-shlib.md
+### developer-environment/02-zsh1-shlib.md
 
 Summary:<br>
 * zshell is active
@@ -31,10 +31,10 @@ Summary:<br>
 * A link to the .zshrc was created in ~/.shlib/.zshrc
 
 Deviation:<br>
-* The file 15-original-zshrc.sh is missing from my system
+* The file 00-original-zshrc.sh is missing from my system
 
 
-### developer-environment/02-policies.md
+### developer-environment/01-policies.md
 
 * Simple guideline on how to install what.
 

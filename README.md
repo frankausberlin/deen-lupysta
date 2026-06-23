@@ -81,8 +81,8 @@ Never run scripts or script snippets without carefully reviewing them.
 ---
 
 # 1. 🐧 Developer Environment
-## 1.1 🧱 [Shlib System / ZSH I](developer-environment/01-zsh1-shlib.md)
-## 1.2 📜 [Package Manager Policy](developer-environment/02-policies.md)
+## 1.1 📜 [Package Manager Policy](developer-environment/01-policies.md)
+## 1.2 🧱 [Shlib System / ZSH I](developer-environment/02-zsh1-shlib.md)
 ## 1.3 🚀 [Base Tools, Libs & Co.](developer-environment/03-base-tools-libs.md)
 ## 1.4 🔒 [Network & security](developer-environment/04-net-security.md)
 ## 1.5 📦️ [Docker & CUDA Toolkit](developer-environment/05-docker-cuda.md)
@@ -194,14 +194,34 @@ ln -s ~/gits/deen-lupysta/skills/concierge ~/opencode/skills/concierge
 
 ## 6.2 🟡 Stage 2: Base System
 
-Step 1: Read and execute the agent instructions in developer-environment/01-shlib-policy.md. The Concierge skill in ~/gits/deen-lupysta/skills/concierge is active from the start of Stage 2. On first load it sets up its state foundation (creates ~/.deenlupysta/ with backup/ and UNDO.md, and writes the initial MYDEENLUPYSTA.md capturing what is already installed) before continuing. Then read and execute the agent instructions in developer-environment/02-base-tools-libs.md.
+* In this stage the Linux developer system is installed or aligned. 
+* There are 5 setup steps to be carried out. 
+* These are described in the respective markdown files and have their own agent guide.
+* After each setup step, tests must be carried out by the user and the agent to ensure functionality.
 
 
+### Step 1: 
 
-Step 2: Read and execute the agent instructions in the developer-environment/03-net-security.md file. Then do the same for the file developer-environment/04-docker-cuda.md.
+Lies die datei developer-environment/01-policies.md.
 
 
- 
+### Step 2:
+
+developer-environment/02-zsh1-shlib.md
+developer-environment/03-base-tools-libs.md.
+
+**Test:**<br>
+
+* Test das Shlib-System<br>
+  * 
+
+
+### Step 3:
+
+developer-environment/03-net-security.md
+developer-environment/04-docker-cuda.md
+
+### Step 4:
 
 05-git-code-searxng.md
 06-zsh-antidote-p10k.md

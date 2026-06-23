@@ -1,4 +1,4 @@
-4## 1.1 🧱 ZSH-1 & Shlib System
+## 1.1 🧱 ZSH-1 & Shlib System
 
 ### Agent Instructions
 
@@ -7,11 +7,17 @@
   * zsh (first version, plain — appearance follows in 1.6)
   * the Shlib system
 * Stage-specific notes:
-  * Prerequisites from Stage 1 (Onboarding): nala, git, the `~/gits/deen-lupysta` checkout and OpenCode with the Concierge skill symlinked — must already be in place. If something is missing, stop and refer the user back to `README.md` §6.1.
-  * If a Shlib system already exists, check it for inconsistencies first. Report findings and ask before touching anything; if all is well, finish with a short status report.
+  * Prerequisites from Stage 1 (Onboarding): nala, git, the `~/gits/deen-lupysta` checkout and OpenCode with the Concierge skill symlinked — must already be in place. If something is missing, stop and refer the user back to `README.md`.
   * zsh must be active before the Shlib setup. If the user just switched shells, they must log out and back in, then confirm before you continue.
-  * Setup steps: '#### Setup Shlib System', then write `.zshrc` per '#### The exact content in .zshrc with the three snippets in the middle.'
-
+  * If a Shlib system already exists (folder ~/.shlib)<br>
+    1. use the [auto-test](../test/02-zsh1-shlib-test.md) to check the shlibsytem.
+    2. Report problems and ask before touching anything.
+    3. if all is well, give a short status report.
+    4. Point out to the user that there is the possibility of carrying out further tests with their support and ask them whether they would like to do so. If so, run the tests together with the user.
+  * If no Shlib system was found: 
+    1. [integrate the shlib system](####Setup-Shlib-System)
+    2. [write the new `.zshrc`](####The-exact-content-in-.zshrc)
+    3. [test it](../test/02-zsh1-shlib-test.md)
 
 ### Zshell Part 1
 
@@ -75,7 +81,9 @@ mv ~/.zshrc ~/.shlib/shlibs/00-original-zshrc.sh
 ln -s ~/.zshrc ~/.shlib/.zshrc
 ```
 
-#### The exact content in .zshrc with the three snippets in the middle.
+#### The exact content in .zshrc
+
+with the three snippets in the middle.
 
 Insert in .zshrc (`nano ~/.zshrc`)
 ```shell
@@ -123,7 +131,7 @@ Files in `~/.shlib/exports/` are exported as environment variables on shell star
 # Result: export GITHUB_TOKEN="ghp_xxx"
 ```
 
-All export files should be `chmod 600` to prevent other users from reading secrets.
+⚠️ All export files should be `chmod 600` to prevent other users from reading secrets.
 
 
 #### Directory Structure
@@ -142,6 +150,6 @@ All export files should be `chmod 600` to prevent other users from reading secre
 ├── README.md (link --> ~/gits/deen-lupysta/developer-environment/01-shlib-policy.md)
 ├── .zshrc (link --> ~/.zshrc)
 ├── # all system relevant configuration
-└── # files as system link
+└── # files as system links
 ```
 
