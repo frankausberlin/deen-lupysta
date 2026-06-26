@@ -28,7 +28,3 @@ Simple guideline on how to install what.
 ⚠️ **These policies are recommendations. You are of course free to customize them. <br>
 It is only recommended that you set a system once and then stick to it.**
 
-#### Tests
-
-**Test:**<br>
-* No test, just read it

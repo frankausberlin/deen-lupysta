@@ -103,7 +103,7 @@ curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 http://localhost:8080
 
 **🟢 Tier 1, but critical.** If lock is violated → ⚠️ in Telegram, full diff
 in reco.sh. This is a serious signal — something (SDKMAN, brew, an installer)
-wrote to `.zshrc` without Frank's knowledge.
+wrote to `.zshrc` without Users's knowledge.
 
 ---
 

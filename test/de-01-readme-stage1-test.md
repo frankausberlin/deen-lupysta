@@ -1,16 +1,14 @@
 # Test Onboarding
 
-## Test: Stage 1 tools
+## [auto] Stage 1 tools
 
 * check if opencode, nala and git are installed
 
-
-## Test: Repo setup
+## [auto] Repo setup
 
 * check if ~/gits/deen-lupysta exists
-* check if ~/deen-lupysta and ~/deen-lupysta/MYDEENLUPYSTA.md exists
+* check if ~/deenlupysta and ~/deenlupysta/MYDEENLUPYSTA.md exists
 
-## 
+## [auto] Concierge skill link
 
-check if the link to the concierge skill is created in the [used agent](../README.md##6.1-🟠-Stage-1:-Onboarding), e.g. ~/.opencode/skills
-
+* check if the link to the concierge skill is created in the used agent's skills folder, e.g. ~/.opencode/skills
