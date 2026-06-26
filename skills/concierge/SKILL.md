@@ -154,7 +154,7 @@ These rules are non-negotiable and apply in both modes:
 
 The canonical stage list lives in `README.md` §6. The Concierge does not duplicate it here — always read the current `README.md` for the authoritative stage order and the file-to-stage mapping. As of writing:
 
-- 🟠 Stage 1 — Onboarding: install OpenCode + first Concierge call (no local artefacts yet — tested via `de-01-readme-stage1-test.md`)
+- 🟠 Stage 1 — Onboarding: install an agent (e.g. Hermes) + first Concierge call (no local artefacts yet — tested via `de-01-readme-stage1-test.md`)
 - 🟡 Stage 2 — Base System (`developer-environment/01`…`06`)
 - 🟢 Stage 3 — Ecosystems (`07`…`12`)
 - 🔵 Stage 4 — Ollama & Agents (`ai-stack/01`)

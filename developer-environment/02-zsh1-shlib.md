@@ -7,7 +7,7 @@
   * zsh (first version, plain — appearance follows in 1.6)
   * the Shlib system
 * Stage-specific notes:
-  * Prerequisites from Stage 1 (Onboarding): nala, git, the `~/gits/deen-lupysta` checkout and OpenCode with the Concierge skill symlinked — must already be in place. If something is missing, stop and refer the user back to `README.md`.
+  * Prerequisites from Stage 1 (Onboarding): nala, git, the `~/gits/deen-lupysta` checkout and an agent (e.g. Hermes) with the Concierge skill symlinked — must already be in place. If something is missing, stop and refer the user back to `README.md`.
   * zsh must be active before the Shlib setup. If the user just switched shells, they must log out and back in, then confirm before you continue.
   * If a Shlib system already exists (folder ~/.shlib)<br>
     1. use the [auto-test](../test/02-zsh1-shlib-test.md) to check the shlibsytem.

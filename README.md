@@ -174,9 +174,9 @@ One step after the next. Deen Lupysta is too large to install in one go. That's 
 
 ## 6.1 🟠 Stage 1: Onboarding
 
-We install Nala, Git and OpenCode in advance to use the concierge skill. To do this we need to clone the deen-lupysta repo.
+We install Nala, Git and an agent in advance to use the concierge skill. To do this we need to clone the deen-lupysta repo.
 
-* Open Code
+* Hermes (or any other agent with skill support)
 ```shell
 # use nala instead of apt
 sudo apt update && sudo apt install -y nala
@@ -188,17 +188,17 @@ git clone https://github.com/frankausberlin/deen-lupysta
 mkdir -p ~/deenlupysta/backup && touch ~/deenlupysta/backup/UNDO.md
 cp ~/gits/deen-lupysta/MYDEENLUPYSTA.md.example ~/deenlupysta
 
-# Install OpenCode 
-curl -fsSL https://opencode.ai/install | bash
+# Install Hermes 
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 
-# ⚠️ Note: of course you don't necessarily have to use opencode, but if you use another agent, you should make sure that it also uses the skill. The skill is just a file and can also be used directly by transferring it using prompt.
+# ⚠️ Note: you don't necessarily have to use Hermes, but if you use another agent, you should make sure that it also uses the skill. The skill is just a file and can also be used directly by transferring it using prompt.
 
-# run opencode to setup your model provider
+# run hermes to setup your model provider
 # then we can link the skill
-mkdir -p ~/opencode/skills
-ln -s ~/gits/deen-lupysta/skills/concierge ~/opencode/skills/concierge
+ln -s ~/gits/deen-lupysta/skills/concierge ~/.hermes/skills/autonomous-ai-agents/concierge
 
-# The next time you start opencode you will have access to the skill. Simply start your prompt with “Use your concierge skill”.
+
+# The next time you start hermes you will have access to the skill. Simply start your prompt with "Use your concierge skill".
 ```
 
 ## 6.2 🟡 Stage 2: Base System
