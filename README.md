@@ -62,7 +62,7 @@ The instructions are intended for both humans and agents.
 
 * We have clear responsibilities:<br>
   * the Concierge maintains MYDEENLUPYSTA.md, removes subsystem, adds new ones, sets up the desired system architecture and the desired heartbeats from subsystems. He also solves problems togehter with the user (human-in-the-loop) that lionheart found and documented (reco.sh)<br>
-  *Lionheart runs the Linux system and Deen Lupysta, reads log files, cleans up, analyzes problems and creates the reco.sh. Lionheart works autonomously, its cron jobs (heartbeats) are managed by Conrad after consultation with the user.
+  * Lionheart runs the Linux system and Deen Lupysta, reads log files, cleans up, analyzes problems and creates the reco.sh. Lionheart works autonomously, its cron jobs (heartbeats) are managed by Conrad after consultation with the user.
   * The luxury Python stack skill is only relevant for the area of ​​software development.
 
 ***The repository here should in no way be seen as a strict guide. It's just one possible path among many, very much influenced by my preferences. Think of it as a box full of different blueprints that you can mix, match, and swap as you wish. I simply recommend making all adjustments with the concierge, this will avoid problems, eliminate complex configuration processes and ensure a clean integration.***

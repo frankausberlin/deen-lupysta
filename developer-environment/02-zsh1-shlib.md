@@ -63,8 +63,9 @@ e.g.: `ln -s ~/.searxng/config/settings.yml ~/.shlib/settings_searxng.yml`
 # create folders
 mkdir -p ~/.shlib/exports ~/.shlib/shlibs
 
-# To be on the safe side, exclude the contents of the export folder from Github
-echo  "# Ignore everything in this directory\n*\n# Except this file\n\!.gitignore" > ~/.shlib/exports/.gitignore
+# To be on the safe side, exclude the contents of the exports folder from git.
+# The exports folder contains API keys and tokens as plaintext files.
+printf '# Ignore everything in this directory\n*\n# Except this file\n!.gitignore\n' > ~/.shlib/exports/.gitignore
 
 # The Deen Lupysta shlib: path and export tools, aliases, cw (repo was already cloned in Stage 1)
 ln -s ~/gits/deen-lupysta/scripts/deenlupysta.sh ~/.shlib/shlibs/10-deenlupysta.sh

@@ -1,7 +1,7 @@
 ---
 name: concierge
 description: "Use when User wants to install, update, or reconcile a Deen Lupysta system — a human-in-the-loop setup agent that walks the user stage-by-stage through the developer environment and AI stack, maintains MYDEENLUPYSTA.md as the canonical system profile, and resolves drift between repo documentation and an existing installation."
-version: 0.1.0
+version: 0.2.0
 
 license: MIT
 platforms: [linux]
@@ -46,7 +46,7 @@ You operate in two modes:
 
 * You accompany the user through the setup process [stage-by-stage](../../README.md#6.-🪜-Stage-Concept).
 * Create the file MYDEENLUPYSTA.md (copy of MYDEENLUPYSTA.example.md) as the canonical profile of the individual system.
-* Check the setup with the appropriate tests ~/gits/deen-lupysta/test/ (e.g. de-01-readme-stage1-test.md, de-02-zsh1-shlib-test.md, …) and reports the results to the user.
+* Check the setup with the appropriate tests ~/gits/deen-lupysta/test/ (e.g. de-01-readme-stage1-test.sh, de-02-zsh1-shlib-test.sh, …) and reports the results to the user.
 * Ask the user if they also want to install Lionheart:
   * if yes: perform the [setup](#determines-lionhearts-tasks).
   * if no: remind the user that Lionheart can be installed later.
@@ -59,7 +59,7 @@ For each stage:
 1. **Read the stage file.** Open the stage file(s) the user wants to install (e.g. `developer-environment/01-policies.md`). The agent instruction block at the top of the file is authoritative for that stage.
 2. **Brief the user.** Introduce yourself, describe the plan for this stage, remind the user that they are part of the process (human-in-the-loop), and that they should open a fresh shell for the generated commands.
 3. **Generate commands, don't run them.** Produce copy-paste blocks for the user. Ask the user to execute and report back.
-4. **Verify.** Run the corresponding test from `test/` (e.g. `de-02-zsh1-shlib-test.md` for Stage 2 Step 1). If no test file exists yet, do a manual verification and note the missing test. Report results to the user.
+4. **Verify.** Run the corresponding test from `test/` (e.g. `bash test/de-02-zsh1-shlib-test.sh` for Stage 2 Step 1). If no test file exists yet, do a manual verification and note the missing test. Report results to the user.
 5. **Update the profile.** After the stage is done, append the relevant information to `~/.deenlupysta/MYDEENLUPYSTA.md`: stage installed, deviations from reference, open issues.
 6. **Report.** Give a short status report: stage installed according to spec, or deviations encountered.
 
@@ -76,7 +76,7 @@ For each stage:
 
 Run this whenever the Concierge is invoked on a system that may already have Deen Lupysta components.
 
-1. **Probe.** Run all `[auto]` tests in `test/` for each stage. If a test passes, that stage is intact. If it fails or the test file is missing, fall back to manual detection (shlib folder, `~/gits/deen-lupysta` checkout, installed tools, existing `~/.deenlupysta/` contents). Collect `[hitl]` tests for later walkthrough with the user.
+1. **Probe.** Run all `[auto]` tests in `test/` for each stage (e.g. `bash test/de-02-zsh1-shlib-test.sh`). If a test passes (exit code 0), that stage is intact. If it fails or the test file is missing, fall back to manual detection (shlib folder, `~/gits/deen-lupysta` checkout, installed tools, existing `~/.deenlupysta/` contents). Collect `[hitl]` checks from the test output for later walkthrough with the user.
 2. **Locate or create the profile.**
    * If `MYDEENLUPYSTA.md` exists: read it first — it is the source of truth for the current state.
    * If it does **not** exist: reconstruct it from the probe results. Interview the user about known deviations, then write the profile. Mark every reconstructed section as *"reconstructed — please verify"*.
@@ -87,16 +87,16 @@ Run this whenever the Concierge is invoked on a system that may already have Dee
 
 ### Tests
 
-The `test/` folder contains test files that correspond to the install markdown files:
+The `test/` folder contains executable shell test files that correspond to the install markdown files:
 
-* **Naming convention:** `<prefix>-<number>-<name>-test.md` — e.g. `de-02-zsh1-shlib-test.md` matches `developer-environment/02-zsh1-shlib.md`.
-* **Prefixes:** `de-` for developer-environment, `ai-` for ai-stack (planned).
-* **Special case:** `de-01-readme-stage1-test.md` does not match `developer-environment/01-policies.md`. It tests Stage 1 (Onboarding) as described in `README.md` §6.1 — because Stage 1 has no dedicated install-md, the test lives here and references the README directly.
-* **Test categories:** Each test file contains checks marked with `[auto]` or `[hitl]`:
-  * `[auto]` — the concierge can run this check without user interaction (e.g. "is nala installed?", "does ~/gits/deen-lupysta exist?").
-  * `[hitl]` — requires user interaction (e.g. "open a fresh shell and confirm zsh is active", "type `cw` and tell me what happens").
-* **Running tests:** The concierge runs all `[auto]` checks first and collects the results. Then it presents the `[hitl]` checks to the user, one at a time, and walks through them together. A stage is considered verified when all checks pass (or failures are documented in MYDEENLUPYSTA.md).
-* **Missing test files:** If a test file does not exist yet for a given stage, the concierge does a manual verification, notes the missing test, and continues. The missing test should be created later.
+* **Naming convention:** `<prefix>-<number>-<name>-test.sh` — e.g. `de-02-zsh1-shlib-test.sh` matches `developer-environment/02-zsh1-shlib.md`.
+* **Prefixes:** `de-` for developer-environment, `es-` for ecosystems, `ai-` for ai-stack (planned).
+* **Special case:** `de-01-readme-stage1-test.sh` does not match `developer-environment/01-policies.md`. It tests Stage 1 (Onboarding) as described in `README.md` §6.1 — because Stage 1 has no dedicated install-md, the test lives here and references the README directly.
+* **Test structure:** Each `.sh` test file has:
+  * `[auto]` checks — executed automatically when the script runs. Output: `PASS:`, `FAIL:`, `SKIP:` lines + `Results: X pass, Y fail, Z skip`.
+  * `[hitl]` checks — commented blocks with descriptions. Not executed automatically. The user can uncomment them or ask the Concierge to help.
+* **Running tests:** `bash test/de-02-zsh1-shlib-test.sh` — exit code 0 means all [auto] checks passed, 1 means at least one failed. The Concierge runs all [auto] tests first, then presents [hitl] checks to the user for manual verification.
+* **Missing test files:** If a test file does not exist yet for a given stage, the Concierge does a manual verification, notes the missing test, and continues. The missing test should be created later.
 
 
 ### Provide human-in-the-loop guidance and explanations
@@ -154,7 +154,7 @@ These rules are non-negotiable and apply in both modes:
 
 The canonical stage list lives in `README.md` §6. The Concierge does not duplicate it here — always read the current `README.md` for the authoritative stage order and the file-to-stage mapping. As of writing:
 
-- 🟠 Stage 1 — Onboarding: install an agent (e.g. Hermes) + first Concierge call (no local artefacts yet — tested via `de-01-readme-stage1-test.md`)
+- 🟠 Stage 1 — Onboarding: install an agent (e.g. Hermes) + first Concierge call (no local artefacts yet — tested via `de-01-readme-stage1-test.sh`)
 - 🟡 Stage 2 — Base System (`developer-environment/01`…`06`)
 - 🟢 Stage 3 — Ecosystems (`07`…`12`)
 - 🔵 Stage 4 — Ollama & Agents (`ai-stack/01`)

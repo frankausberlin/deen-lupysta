@@ -8,21 +8,52 @@
   * VSCode (apt repo) + Nautilus context-menu integration
   * SearXNG (Docker, bound to localhost, JSON format enabled for the MCP server)
 * Stage-specific notes:
-  * Git config values (`user.name`, `user.email`, `.gitignore_global`) are personal — the user must fill in their own data, do not invent placeholders.
+  * Git config values (`user.name`, `user.email`) are personal — the user must fill in their own data, do not invent placeholders.
   * `gh auth login`: choose SSH and upload the `id_ed25519.pub` from stage 1.3.
   * SearXNG requires Docker (stage 1.4). The secret key is generated via `openssl rand`; the container is intentionally bound to `127.0.0.1:8080` — do not expose it.
 
 
 ### Github:
 ```shell
-# Create global .gitignore (enter your agent folders, .env, venv etc. here)
-# nano ~/.gitignore_global
+# Create global .gitignore
+cat > ~/.gitignore_global << 'EOF'
+# Agent folders
+.opencode/
+.kilocode/
+.cursor/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Virtual environments
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+EOF
+
 git config --global core.excludesfile ~/.gitignore_global
+
 # Git config
 git config --global user.name "Your Name"
 git config --global user.email "noreply-email" # -> https://github.com/settings/emails
 git config --global init.defaultBranch main
 git config --global pull.rebase true
+
 # GitHub Login (Choose "SSH" and upload your id_ed25519.pub key!)
 gh auth login
 # Sets the credential helper for HTTPS remotes
@@ -66,4 +97,3 @@ docker run --name searxng -d --restart always -p 127.0.0.1:8080:8080 \
 # Comfort link
 ln -s ~/.searxng/config/settings.yml ~/.shlib/settings_searxng.yml
 ```
-
