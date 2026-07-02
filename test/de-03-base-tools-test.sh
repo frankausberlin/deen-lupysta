@@ -1,5 +1,5 @@
 #!/bin/bash
-# de-03-base-tools-test.sh — Stage 2 Step 2: Base Tools, Libs & Co.
+# bs-03-base-tools-test.sh — Stage 2 Step 2: Base Tools, Libs & Co.
 # Corresponds to:   base-system/03-base-tools-libs.md
 
 set -euo pipefail
@@ -9,7 +9,7 @@ ok()   { echo "  PASS: $1"; PASS=$((PASS+1)); }
 no()   { echo "  FAIL: $1"; FAIL=$((FAIL+1)); }
 skip() { echo "  SKIP: $1"; SKIP=$((SKIP+1)); }
 
-echo "=== de-03: Base Tools, Libs & Co. ==="
+echo "=== bs-03: Base Tools, Libs & Co. ==="
 
 # --- [auto] Directories ---
 for d in ~/bin ~/labor ~/labor/tmp; do

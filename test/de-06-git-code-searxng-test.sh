@@ -1,5 +1,5 @@
 #!/bin/bash
-# de-06-git-code-searxng-test.sh — Stage 2 Step 4: Git, Code & SearXNG
+# bs-06-git-code-searxng-test.sh — Stage 2 Step 4: Git, Code & SearXNG
 # Corresponds to:   base-system/06-git-code-searxng.md
 # SearXNG standard port: 8090 (keeps 8080 free for Odysseus etc.)
 
@@ -13,7 +13,7 @@ skip() { echo "  SKIP: $1"; SKIP=$((SKIP+1)); }
 # Helper: grep for pattern in variable output (pipefail-safe)
 contains() { echo "$1" | grep -c "$2" 2>/dev/null | grep -q '[1-9]'; }
 
-echo "=== de-06: Git, Code & SearXNG ==="
+echo "=== bs-06: Git, Code & SearXNG ==="
 
 # --- [auto] Git configuration ---
 if [ -f ~/.gitignore_global ]; then

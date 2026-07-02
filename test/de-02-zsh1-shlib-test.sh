@@ -1,5 +1,5 @@
 #!/bin/bash
-# de-02-zsh1-shlib-test.sh — Stage 2 Step 1: ZSH & Shlib System
+# bs-02-zsh1-shlib-test.sh — Stage 2 Step 1: ZSH & Shlib System
 # Corresponds to:   base-system/02-zsh1-shlib.md
 
 set -euo pipefail
@@ -9,7 +9,7 @@ ok()   { echo "  PASS: $1"; PASS=$((PASS+1)); }
 no()   { echo "  FAIL: $1"; FAIL=$((FAIL+1)); }
 skip() { echo "  SKIP: $1"; SKIP=$((SKIP+1)); }
 
-echo "=== de-02: ZSH-1 & Shlib System ==="
+echo "=== bs-02: ZSH-1 & Shlib System ==="
 
 # --- [auto] ZSH installed and active ---
 if command -v zsh &>/dev/null; then

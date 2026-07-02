@@ -35,11 +35,11 @@ metadata:
 
 - The `./deenlupysta/test/` folder contains executable shell test files that correspond to the MYDEENLUPYSTA.md. 
 - Each stage has its own test file (`.sh`) that verifies the installation and configuration of the stage.<br>
-  ⚠️ The exception is stage 1, which is described in the README.md and does not have its own install md (`de-01-readme-stage1-test.sh`)
+  ⚠️ The exception is stage 1, which is described in the README.md and does not have its own install md (`bs-01-readme-stage1-test.sh`)
 - Each `.sh` test file has 
   - `[auto]` checks (executed automatically)
   - `[hitl]` checks (human-in-the-loop, commented blocks with descriptions)
-  - A file name in the form `<prefix>-<number>-<name>-test.sh` (e.g. `de-02-zsh1-shlib-test.sh` matches `  base-system/02-zsh1-shlib.md`)
+  - A file name in the form `<prefix>-<number>-<name>-test.sh` (e.g. `bs-02-zsh1-shlib-test.sh` matches `  base-system/02-zsh1-shlib.md`)
 - The Concierge runs all `[auto]` tests first, then presents `[hitl]` checks to the user for manual verification.
 
 
@@ -123,13 +123,13 @@ These rules are non-negotiable:
 
 The `test/` folder contains executable shell test files that correspond to the install markdown files:
 
-* **Naming convention:** `<prefix>-<number>-<name>-test.sh` — e.g. `de-02-zsh1-shlib-test.sh` matches `  base-system/02-zsh1-shlib.md`.
+* **Naming convention:** `<prefix>-<number>-<name>-test.sh` — e.g. `bs-02-zsh1-shlib-test.sh` matches `  base-system/02-zsh1-shlib.md`.
 * **Prefixes:** `de-` for   base-system, `es-` for ecosystems, `ai-` for ai-stack (planned).
-* **Special case:** `de-01-readme-stage1-test.sh` does not match `  base-system/01-policies.md`. It tests Stage 1 (Onboarding) as described in `README.md` §6.1 — because Stage 1 has no dedicated install-md, the test lives here and references the README directly.
+* **Special case:** `bs-01-readme-stage1-test.sh` does not match `  base-system/01-policies.md`. It tests Stage 1 (Onboarding) as described in `README.md` §6.1 — because Stage 1 has no dedicated install-md, the test lives here and references the README directly.
 * **Test structure:** Each `.sh` test file has:
   * `[auto]` checks — executed automatically when the script runs. Output: `PASS:`, `FAIL:`, `SKIP:` lines + `Results: X pass, Y fail, Z skip`.
   * `[hitl]` checks — commented blocks with descriptions. Not executed automatically. The user can uncomment them or ask the Concierge to help.
-* **Running tests:** `bash test/de-02-zsh1-shlib-test.sh` — exit code 0 means all [auto] checks passed, 1 means at least one failed. The Concierge runs all [auto] tests first, then presents [hitl] checks to the user for manual verification.
+* **Running tests:** `bash test/bs-02-zsh1-shlib-test.sh` — exit code 0 means all [auto] checks passed, 1 means at least one failed. The Concierge runs all [auto] tests first, then presents [hitl] checks to the user for manual verification.
 * **Missing test files:** If a test file does not exist yet for a given stage, the Concierge does a manual verification, notes the missing test, and continues. The missing test should be created later.
 
 
@@ -177,7 +177,7 @@ That's it. The backup copy is the undo. No diffs, no complex procedures. If a ch
 
 The canonical stage list lives in `README.md` §6. The Concierge does not duplicate it here — always read the current `README.md` for the authoritative stage order and the file-to-stage mapping. As of writing:
 
-- 🟠 Stage 1 — Onboarding: install an agent (e.g. Hermes) + first Concierge call (no local artefacts yet — tested via `de-01-readme-stage1-test.sh`)
+- 🟠 Stage 1 — Onboarding: install an agent (e.g. Hermes) + first Concierge call (no local artefacts yet — tested via `bs-01-readme-stage1-test.sh`)
 - 🟡 Stage 2 — Base System (`  base-system/01`…`06`)
 - 🟢 Stage 3 — Ecosystems (`07`…`12`)
 - 🔵 Stage 4 — Ollama & Agents (`ai-stack/01`)

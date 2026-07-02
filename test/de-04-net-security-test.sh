@@ -1,5 +1,5 @@
 #!/bin/bash
-# de-04-net-security-test.sh — Stage 2 Step 3: Network & Security
+# bs-04-net-security-test.sh — Stage 2 Step 3: Network & Security
 # Corresponds to:   base-system/04-net-security.md
 
 set -euo pipefail
@@ -9,7 +9,7 @@ ok()   { echo "  PASS: $1"; PASS=$((PASS+1)); }
 no()   { echo "  FAIL: $1"; FAIL=$((FAIL+1)); }
 skip() { echo "  SKIP: $1"; SKIP=$((SKIP+1)); }
 
-echo "=== de-04: Network & Security ==="
+echo "=== bs-04: Network & Security ==="
 
 # --- [auto] SSH server ---
 if systemctl is-enabled --quiet ssh 2>/dev/null; then

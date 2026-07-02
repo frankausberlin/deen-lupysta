@@ -20,7 +20,7 @@ list here — the test files are the source of truth.
 Run a test manually to see what it checks:
 
 ```bash
-bash ~/gits/deen-lupysta/test/de-02-zsh1-shlib-test.sh
+bash ~/gits/deen-lupysta/test/bs-02-zsh1-shlib-test.sh
 ```
 
 ## Additional Daily Checks (not in test files)
@@ -64,7 +64,7 @@ Leo here. All healthy. ✋
 
 With findings:
 ```
-⚠️ Lionheart Daily Check: 2 failures in de-04-net-security.
+⚠️ Lionheart Daily Check: 2 failures in bs-04-net-security.
 Details in ~/reco.sh
 ```
 

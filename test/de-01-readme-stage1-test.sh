@@ -1,5 +1,5 @@
 #!/bin/bash
-# de-01-readme-stage1-test.sh — Stage 1: Onboarding
+# bs-01-readme-stage1-test.sh — Stage 1: Onboarding
 # Corresponds to: README.md §6.1
 # Tests: nala, git, deen-lupysta repo, concierge skill link, MYDEENLUPYSTA.md
 
@@ -10,7 +10,7 @@ ok()   { echo "  PASS: $1"; PASS=$((PASS+1)); }
 no()   { echo "  FAIL: $1"; FAIL=$((FAIL+1)); }
 skip() { echo "  SKIP: $1"; SKIP=$((SKIP+1)); }
 
-echo "=== de-01: Stage 1 — Onboarding ==="
+echo "=== bs-01: Stage 1 — Onboarding ==="
 
 # --- [auto] nala installed ---
 if command -v nala &>/dev/null; then

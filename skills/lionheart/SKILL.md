@@ -31,7 +31,7 @@ He observes, documents, and recommends. The user stays in the loop.
 
 3. **Three operating modes.** The user decides how much autonomy Lionheart has:
    - **No heartbeats** — User maintains the system manually with Conrad (the Concierge).
-     Lionheart is not active. Tests can be run manually anytime: `bash test/de-02-*.sh`.
+     Lionheart is not active. Tests can be run manually anytime: `bash test/bs-02-*.sh`.
    - **Manual trigger** — User starts Lionheart on demand ("Leo, run the daily check"
      or "run the weekly checkup"). Lionheart runs, reports, writes reco.sh if needed.
    - **Full cron** — Daily and/or weekly cron jobs run automatically. Telegram delivery
@@ -54,8 +54,8 @@ For each stage marked INSTALLED, Lionheart collects the corresponding test files
 
 | Stage | Test files |
 |-------|-----------|
-| 1 — Onboarding | `de-01-readme-stage1-test.sh` |
-| 2 — Base System | `de-02-*.sh` through `de-07-*.sh` |
+| 1 — Onboarding | `bs-01-readme-stage1-test.sh` |
+| 2 — Base System | `bs-02-*.sh` through `bs-07-*.sh` |
 | 3 — Ecosystems | `es-01-*.sh` through `es-06-*.sh` |
 | 4 — Ollama & Agents | `ai-01-*.sh` (when available) |
 | 5 — MCPHub & Open WebUI | `ai-02-*.sh` (when available) |
@@ -70,7 +70,7 @@ If MYDEENLUPYSTA.md is missing, Lionheart reports the error and stops.
 For each installed stage, Lionheart executes the corresponding .sh test files:
 
 ```bash
-bash ~/gits/deen-lupysta/test/de-02-zsh1-shlib-test.sh
+bash ~/gits/deen-lupysta/test/bs-02-zsh1-shlib-test.sh
 ```
 
 Each test file outputs `PASS:`, `FAIL:`, `SKIP:` lines and a final `Results: X pass, Y fail, Z skip`.

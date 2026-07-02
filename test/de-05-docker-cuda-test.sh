@@ -1,5 +1,5 @@
 #!/bin/bash
-# de-05-docker-cuda-test.sh — Stage 2 Step 3: Docker & CUDA Toolkit
+# bs-05-docker-cuda-test.sh — Stage 2 Step 3: Docker & CUDA Toolkit
 # Corresponds to:   base-system/05-docker-cuda.md
 
 set -euo pipefail
@@ -12,7 +12,7 @@ skip() { echo "  SKIP: $1"; SKIP=$((SKIP+1)); }
 # Helper: grep for pattern in variable output (pipefail-safe)
 contains() { echo "$1" | grep -c "$2" 2>/dev/null | grep -q '[1-9]'; }
 
-echo "=== de-05: Docker & CUDA Toolkit ==="
+echo "=== bs-05: Docker & CUDA Toolkit ==="
 
 # --- [auto] Docker Engine ---
 if command -v docker &>/dev/null; then

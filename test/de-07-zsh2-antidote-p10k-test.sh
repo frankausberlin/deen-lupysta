@@ -1,5 +1,5 @@
 #!/bin/bash
-# de-07-zsh2-antidote-p10k-test.sh — Stage 2 Step 4: ZSH II, Antidote & P10k
+# bs-07-zsh2-antidote-p10k-test.sh — Stage 2 Step 4: ZSH II, Antidote & P10k
 # Corresponds to:   base-system/07-zsh2-antidote-p10k.md
 
 set -euo pipefail
@@ -12,7 +12,7 @@ skip() { echo "  SKIP: $1"; SKIP=$((SKIP+1)); }
 # Helper: grep for pattern in variable output (pipefail-safe)
 contains() { echo "$1" | grep -c "$2" 2>/dev/null | grep -q '[1-9]'; }
 
-echo "=== de-07: ZSH II, Antidote & P10k ==="
+echo "=== bs-07: ZSH II, Antidote & P10k ==="
 
 # --- [auto] MesloLGS NF fonts ---
 # fc-list outputs "MesloLGS NF:style=Regular" etc.
