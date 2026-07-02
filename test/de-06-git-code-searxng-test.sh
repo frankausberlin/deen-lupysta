@@ -1,6 +1,7 @@
 #!/bin/bash
 # de-06-git-code-searxng-test.sh — Stage 2 Step 4: Git, Code & SearXNG
-# Corresponds to: developer-environment/06-git-code-searxng.md
+# Corresponds to:   base-system/06-git-code-searxng.md
+# SearXNG standard port: 8090 (keeps 8080 free for Odysseus etc.)
 
 set -euo pipefail
 PASS=0; FAIL=0; SKIP=0
@@ -112,10 +113,10 @@ else
   no "searxng docker container not running"
 fi
 
-if contains "$DOCKER_PORTS" "127.0.0.1:8080"; then
-  ok "searxng bound to 127.0.0.1:8080"
+if contains "$DOCKER_PORTS" "127.0.0.1:8090"; then
+  ok "searxng bound to 127.0.0.1:8090"
 else
-  no "searxng not bound to 127.0.0.1:8080 (check docker ps)"
+  no "searxng not bound to 127.0.0.1:8090 (check docker ps)"
 fi
 
 if [ -L ~/.shlib/settings_searxng.yml ]; then
@@ -134,9 +135,9 @@ fi
 # Right-click in Nautilus and confirm "Open with Code" appears in context menu
 
 # --- [hitl] SearXNG functional check ---
-# Open http://localhost:8080 and confirm SearXNG search page loads
+# Open http://localhost:8090 and confirm SearXNG search page loads
 # Run a test search and confirm JSON format works:
-# curl -s "http://localhost:8080/search?q=test&format=json" | jq .
+# curl -s "http://localhost:8090/search?q=test&format=json" | jq .
 
 echo ""
 echo "Results: $PASS pass, $FAIL fail, $SKIP skip"

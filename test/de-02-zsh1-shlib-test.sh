@@ -1,6 +1,6 @@
 #!/bin/bash
 # de-02-zsh1-shlib-test.sh — Stage 2 Step 1: ZSH & Shlib System
-# Corresponds to: developer-environment/02-zsh1-shlib.md
+# Corresponds to:   base-system/02-zsh1-shlib.md
 
 set -euo pipefail
 PASS=0; FAIL=0; SKIP=0

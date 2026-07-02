@@ -25,7 +25,7 @@ informative) and the **commands** (compact, commented if necessary).
 # ─────────────────────────────────────────────
 # 🔴 SearXNG container down
 #
-# Problem: SearXNG not responding (curl timeout on localhost:8080).
+# Problem: SearXNG not responding (curl timeout on localhost:8090).
 # Container is running but the application is hung.
 #
 # Solution: Restart the container. No data loss — config is in
@@ -34,7 +34,7 @@ informative) and the **commands** (compact, commented if necessary).
 # Command:
 docker restart searxng
 #
-# Verify afterwards: curl -s -o /dev/null -w "%{http_code}" http://localhost:8080
+# Verify afterwards: curl -s -o /dev/null -w "%{http_code}" http://localhost:8090
 # (should return 200)
 # ─────────────────────────────────────────────
 ```

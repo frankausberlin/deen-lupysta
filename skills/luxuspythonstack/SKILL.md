@@ -196,6 +196,6 @@ Load on demand as needed:
 
 - [`references/daily-commands.md`](references/daily-commands.md) — Complete command reference
 - [`references/blueprint-AGENTS.md`](references/blueprint-AGENTS.md) — Template for AGENTS.md generation
-- [`../../developer-environment/`](../../developer-environment/) — Full developer environment setup guides
+- [`../../  base-system/`](../../  base-system/) — Full developer environment setup guides
 - [`../../ai-stack/`](../../ai-stack/) — AI stack component setup
 - [`../../luxuspythonstack.md`](../../luxuspythonstack.md) — Full Luxurious Python Stack documentation

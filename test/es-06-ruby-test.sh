@@ -1,6 +1,6 @@
 #!/bin/bash
 # es-06-ruby-test.sh — Stage 3: Ruby (rbenv & bundler)
-# Corresponds to: developer-environment/06-ruby.md
+# Corresponds to:   base-system/06-ruby.md
 
 set -euo pipefail
 PASS=0; FAIL=0; SKIP=0

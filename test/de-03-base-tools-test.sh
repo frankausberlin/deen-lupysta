@@ -1,6 +1,6 @@
 #!/bin/bash
 # de-03-base-tools-test.sh — Stage 2 Step 2: Base Tools, Libs & Co.
-# Corresponds to: developer-environment/03-base-tools-libs.md
+# Corresponds to:   base-system/03-base-tools-libs.md
 
 set -euo pipefail
 PASS=0; FAIL=0; SKIP=0

@@ -10,7 +10,8 @@
 * Stage-specific notes:
   * Git config values (`user.name`, `user.email`) are personal — the user must fill in their own data, do not invent placeholders.
   * `gh auth login`: choose SSH and upload the `id_ed25519.pub` from stage 1.3.
-  * SearXNG requires Docker (stage 1.4). The secret key is generated via `openssl rand`; the container is intentionally bound to `127.0.0.1:8080` — do not expose it.
+  * SearXNG requires Docker (stage 1.4). The secret key is generated via `openssl rand`; the container is intentionally bound to localhost — do not expose it.
+  * SearXNG runs on port 8090 (not the default 8080). This keeps port 8080 free for other applications like Odysseus, which brings its own SearXNG. See `ai-stack/01-ollama-agents.md` for details.
 
 
 ### Github:
@@ -88,8 +89,9 @@ sed -i "s/ultrasecretkey/$(openssl rand -hex 32)/g" ~/.searxng/config/settings.y
 # Unlock JSON format for the MCP server
 "$(command -v yq)" -i '.search.formats = (.search.formats + ["json"] | unique)' "$HOME/.searxng/config/settings.yml"
 
-# Start container (Securely bound to localhost!)
-docker run --name searxng -d --restart always -p 127.0.0.1:8080:8080 \
+# Start container (Securely bound to localhost on port 8090!)
+# Port 8090 keeps 8080 free for other apps (e.g. Odysseus).
+docker run --name searxng -d --restart always -p 127.0.0.1:8090:8080 \
     -v "$HOME/.searxng/config/:/etc/searxng/" \
     -v "$HOME/.searxng/data/:/var/cache/searxng/" \
     docker.io/searxng/searxng:latest

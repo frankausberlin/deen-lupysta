@@ -1,6 +1,6 @@
 #!/bin/bash
 # es-05-java-test.sh — Stage 3: Java (SDKMAN!)
-# Corresponds to: developer-environment/05-java.md
+# Corresponds to:   base-system/05-java.md
 
 set -euo pipefail
 PASS=0; FAIL=0; SKIP=0

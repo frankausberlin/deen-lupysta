@@ -1,6 +1,6 @@
 #!/bin/bash
 # es-03-rust-test.sh — Stage 3: Rust (rustup & cargo)
-# Corresponds to: developer-environment/03-rust.md
+# Corresponds to:   base-system/03-rust.md
 
 set -euo pipefail
 PASS=0; FAIL=0; SKIP=0

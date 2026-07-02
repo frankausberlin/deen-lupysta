@@ -18,7 +18,7 @@ Summary:<br>
 
 ## 6.2 🟡 Stage 2: Developer Environment
 
-### developer-environment/02-zsh1-shlib.md
+###   base-system/02-zsh1-shlib.md
 
 Summary:<br>
 * zshell is active
@@ -28,18 +28,19 @@ Summary:<br>
 * The file 10-deenlupysta.sh (as a link) were added to the shlib system
 * A link in the opencode skill folder with a reference to the concierge skill has been created.
 * created folders: folders ~/.shlib, ~/.shlib/shlibs, ~/.shlib/exports
+* .gitignore created in ~/.shlib/exports/ (protects API keys from git)
 * A link to the .zshrc was created in ~/.shlib/.zshrc
 
 Deviation:<br>
 * The file 00-original-zshrc.sh is missing from my system
 
 
-### developer-environment/01-policies.md
+###   base-system/01-policies.md
 
 * Simple guideline on how to install what.
 
 
-### developer-environment/03-base-tools-libs.md
+###   base-system/03-base-tools-libs.md
 
 All software from the instruction has been installed:<br>
 * Core System Essentials
@@ -54,7 +55,7 @@ All software from the instruction has been installed:<br>
 * created folders: ~/bin, ~/labor, ~/labor/tmp
 
 
-### developer-environment/04-net-security.md
+###   base-system/04-net-security.md
 
 * SSH has been enabled and keys are present in ~/.ssh
 * At least one key was generated (e.g. id_ed25519)
@@ -72,7 +73,7 @@ ClientAliveInterval 300
 ClientAliveCountMax 2
 X11Forwarding no
 KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org
-Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssl.com
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
 ```
 * The file /etc/fail2ban/jail.local was created with these settings:<br>
@@ -93,7 +94,7 @@ banaction = ufw
 * A link to /etc/ssh/sshd_config.d/99-custom-hardening.conf was created in  ~/.shlib/99-custom-hardening.conf
 
 
-### developer-environment/05-docker-cuda.md
+###   base-system/05-docker-cuda.md
 
 * Docker is installed
 * `docker run --rm hello-world` works
@@ -102,7 +103,7 @@ banaction = ufw
 * UFW is installed under /usr/local/bin/ufw-docker with `sudo LC_ALL=C ufw-docker install`
 
 
-### developer-environment/05-git-code-searxng.md
+###   base-system/05-git-code-searxng.md
 
 * git installed
 * global git config: user frankausberlin, email 58914204+frankausberlin@users.noreply.github.com
@@ -111,7 +112,7 @@ banaction = ufw
 * Add 'Open in Code' to context menu (nautilus) with `bash -c "$(wget -qO- https://raw.githubusercontent.com/harry-cpp/code-nautilus/master/install.sh)"`
 * SearXNG was startet with:
 ```shell
-docker run --name searxng -d --restart always -p 127.0.0.1:8080:8080 \
+docker run --name searxng -d --restart always -p 127.0.0.1:8090:8080 \
     -v "$HOME/.searxng/config/:/etc/searxng/" \
     -v "$HOME/.searxng/data/:/var/cache/searxng/" \
     docker.io/searxng/searxng:latest
@@ -122,7 +123,7 @@ docker run --name searxng -d --restart always -p 127.0.0.1:8080:8080 \
 * created folders: ~/.searxng/, ~/.searxng/config/, ~/.searxng/data/
 
 
-### developer-environment/06-zsh-antidote-p10k.md
+###   base-system/06-zsh-antidote-p10k.md
 
 * MesloLGS NF font is installed in ~/.local/share/fonts
 * Antidote is installed ~/.antidote
@@ -205,7 +206,6 @@ hlissner/zsh-autopair
 * Ruby 3.3.0 has been compiled and set global
 * The file ~/.shlib/shlibs/45-ruby.sh is created
 * Bundler was installed with `gem install bundler`
-
 
 
 

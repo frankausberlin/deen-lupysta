@@ -1,6 +1,6 @@
 #!/bin/bash
 # de-05-docker-cuda-test.sh — Stage 2 Step 3: Docker & CUDA Toolkit
-# Corresponds to: developer-environment/05-docker-cuda.md
+# Corresponds to:   base-system/05-docker-cuda.md
 
 set -euo pipefail
 PASS=0; FAIL=0; SKIP=0

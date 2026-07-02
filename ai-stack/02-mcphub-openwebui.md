@@ -137,9 +137,9 @@ sudo ufw delete allow from 172.16.0.0/12 to any port 3000 proto tcp 2>/dev/null 
 # 🔐 Secrets handling via the shlib exports system (recommended):
 #   MCPHub expands ${VAR} references in the JSON using its own environment.
 #   Put each secret into a single-line file under ~/.shlib/exports/, e.g.:
-#       echo 'ghp_xxxxxxxxxxxxxxxxxxxx' > ~/.shlib/exports/GITHUB_TOKEN
+#       echo 'ghp_xx...xxxx' > ~/.shlib/exports/GITHUB_TOKEN
 #       echo 'rl_xxxxxxxxxxxxxxxxxxxx' > ~/.shlib/exports/STACKOVERFLOW_API_KEY
-#       echo 'hf_xxxxxxxxxxxxxxxxxxxx' > ~/.shlib/exports/HUGGINGFACE_TOKEN
+#       echo 'hf_xxx...xxxx' > ~/.shlib/exports/HUGGINGFACE_TOKEN
 #       chmod 600 ~/.shlib/exports/*
 #   The shlib loader exports these as env vars on shell init
 #
@@ -148,7 +148,7 @@ sudo ufw delete allow from 172.16.0.0/12 to any port 3000 proto tcp 2>/dev/null 
 # Simply wait until all servers are connected or offline, and then try again with the faulty ones.
 {
     "mcpServers": {
-        "searxng":            {"command": "npx", "args": ["-y", "mcp-searxng"], "env": {"SEARXNG_URL": "http://localhost:8080"}, "disabled": true},
+        "searxng":            {"command": "npx", "args": ["-y", "mcp-searxng"], "env": {"SEARXNG_URL": "http://localhost:8090"}, "disabled": true},
         "web-search-mcp":     {"command": "npx", "args": ["-y", "@guhcostan/web-search-mcp"], "disabled": true},
         "context7":           {"command": "npx", "args": ["-y", "@upstash/context7-mcp" ], "env": {"DEFAULT_MINIMUM_TOKENS": ""}, "disabled": true},
         "mcp-deepwiki":       {"command": "npx", "args": ["-y", "mcp-deepwiki"], "disabled": true},
@@ -267,7 +267,7 @@ sudo systemctl daemon-reload && sudo systemctl enable --now open-webui.service
 #### Websearch in Open WebUI
 
 * Of course I use the already installed searxng.<br>
-select searxng as engine and enter this url: http://localhost:8080/search
+select searxng as engine and enter this url: http://localhost:8090/search
 
 * ⚠️ Make sure 'Bypass Embedding and Retrieval' is enabled and 'Bypass Web Loader' is disabled.
 
@@ -321,4 +321,3 @@ alias deensync="rsync -av --delete --exclude='.ipynb_checkpoints/ --exclude='.gi
   > ⚠️ To trigger synchronization in Open WebUI, click on the '+' plus in the corresponding collection and select 'Synchronize Folder'.
 
 #### Models in Open WebUI
-

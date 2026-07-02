@@ -24,7 +24,7 @@ The Luxurious Python Stack requires the following installed at the system level:
 | `basedpyright` | Strict type checking | `uv tool install basedpyright` |
 | `mamba` | Data science environments (Level 1) | Miniforge installer |
 
-For a full Ubuntu Python setup, do the [python install guide](developer-environment/08-python.md). 
+For a full Ubuntu Python setup, do the [python install guide](  base-system/08-python.md). 
 
 ### direnv Hook
 
@@ -68,7 +68,7 @@ source /path/to/deen-lupysta/scripts/luxuspythonstack.sh
 
 ### shlib Integration
 
-If you use the [shlib system](developer-environment/01-shlib-policy.md), create a symlink in your shlib directory. Choose the two-digit prefix yourself according to your load order; `80` is only an example.
+If you use the [shlib system](  base-system/01-shlib-policy.md), create a symlink in your shlib directory. Choose the two-digit prefix yourself according to your load order; `80` is only an example.
 
 ```shell
 ln -s /path/to/deen-lupysta/scripts/scripts/scripts/luxuspythonstack.sh \

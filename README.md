@@ -19,15 +19,15 @@
 
 # 📚 The AI-flavored Developer Environment & Luxurious Python Stack 
 
-consists of the installation instructions for the developer environment with an AI stack that integrates seamlessly into the Luxurious Python Stack. Python is optional; it also works with other languages ​​(python happens to be my first choice but it could just as well e.g. give a node version of it: Deen Lunosta).
-The instructions are intended for both humans and agents.
+Deen Lupysta is a reference architecture for self-maintaining AI software development systems and is for people and agents.
+
+It consists of installation instructions for subsystems and special artifacts. These are set up together with Conrad, the concierge (skill), and monitored by Lionheart (skill / cronjob).
 
 🚀 how to start:
 
 * Get an overview of Deen Lupysta, preferably by reading the readme.
 * In Chapter '6. Stage Concept' describes the installation process.
 * I strongly recommend installing using agents as described there.
-* Agents are instructed not to carry out any critical operations themselves but only to generate the commands (sudo ..) and then let you execute them (human-in-the-loop principle).
 * If you follow the installation carefully and are not afraid to ask your agents something, you will gain a fundamental understanding of the system: “Learning by Installing”.
 
 💥 some highlights:
@@ -48,7 +48,7 @@ The instructions are intended for both humans and agents.
 
 👉 how it works:
 
-* You just need to install OpenCode or another agent and use the Concierge skill (described 🟠 Stage 1: Onboarding). You do the rest together with Conrad, the concierge (Human-In-The-Loop).
+* You just need to install Hermes, OpenCode or another agent and use the Concierge skill (described 🟠 Stage 1: Onboarding). You do the rest together with Conrad, the concierge (Human-In-The-Loop).
 
 * In the file MYDEENLUPYSTA.md there is a profile with the current configuration. It is created by the concierge during the installation and contains all relevant information for the subsystems set up (responsibilities, paths to configuration files, fundamental decisions such as omitting or adding a subsystem). It serves the user as a single point of reference and is the basis for Lionheart to maintain the system.
 
@@ -83,22 +83,22 @@ Never run scripts or script snippets without carefully reviewing them.
 ---
 
 # 1. 🐧 Developer Environment
-## 1.1 📜 [Package Manager Policy](developer-environment/01-policies.md)
-## 1.2 🧱 [Shlib System / ZSH I](developer-environment/02-zsh1-shlib.md)
-## 1.3 🚀 [Base Tools, Libs & Co.](developer-environment/03-base-tools-libs.md)
-## 1.4 🔒 [Network & security](developer-environment/04-net-security.md)
-## 1.5 📦️ [Docker & CUDA Toolkit](developer-environment/05-docker-cuda.md)
-## 1.6 🌐 [Git, Code & SearXng](developer-environment/06-git-code-searxng.md)
-## 1.7 🧿 [ZSH II, Antidote & p10k](developer-environment/07-zsh2-antidote-p10k.md)
+## 1.1 📜 [Package Manager Policy](  base-system/01-policies.md)
+## 1.2 🧱 [Shlib System / ZSH I](  base-system/02-zsh1-shlib.md)
+## 1.3 🚀 [Base Tools, Libs & Co.](  base-system/03-base-tools-libs.md)
+## 1.4 🔒 [Network & security](  base-system/04-net-security.md)
+## 1.5 📦️ [Docker & CUDA Toolkit](  base-system/05-docker-cuda.md)
+## 1.6 🌐 [Git, Code & SearXng](  base-system/06-git-code-searxng.md)
+## 1.7 🧿 [ZSH II, Antidote & p10k](  base-system/07-zsh2-antidote-p10k.md)
 ## 1.8 📋 [Shell Library deenlupysta.sh](scripts/deenlupysta.sh)
 
 # 2. 🗺️ Ecosystems
-## 2.1 🟢 [Node.js (fnm + pnpm)](developer-environment/01-nodejs.md)
-## 2.2 🐍 [Python (uv, mamba, direnv)](developer-environment/02-python.md)
-## 2.3 🦀 [Rust (rustup & cargo)](developer-environment/03-rust.md)
-## 2.4 🐹 [Go (Go Toolchain)](developer-environment/04-go.md)
-## 2.5 ☕ [Java (SDKMAN!)](developer-environment/05-java.md)
-## 2.6 💎 [Ruby (rbenv & bundler)](developer-environment/06-ruby.md)
+## 2.1 🟢 [Node.js (fnm + pnpm)](  base-system/01-nodejs.md)
+## 2.2 🐍 [Python (uv, mamba, direnv)](  base-system/02-python.md)
+## 2.3 🦀 [Rust (rustup & cargo)](  base-system/03-rust.md)
+## 2.4 🐹 [Go (Go Toolchain)](  base-system/04-go.md)
+## 2.5 ☕ [Java (SDKMAN!)](  base-system/05-java.md)
+## 2.6 💎 [Ruby (rbenv & bundler)](  base-system/06-ruby.md)
 
 ---
 
@@ -156,6 +156,8 @@ Never run scripts or script snippets without carefully reviewing them.
 | **luxuspythonstack.sh** | • Automated project scaffolding and setup (`pyinit`)<br>• Fast environment toggles and state saving (`act`)<br>• Configurable, token-aware Jupyter runtime launcher (`jupyter-launcher`) |
 | **deenlupysta.sh** | • Path sanitization and deduplication (`repair_path`)<br>• Core system routines and alias management (`cw`, `suu`, `los`)<br>• Repository synchronization commands (`deensync`) |
 | **dsdash.ipynb** | • Data Science utility snippets and interactive UI widgets<br>• CUDA hardware validation across PyTorch, TF, JAX, and Numba<br>• OpenRouter frontier model scraper and spec analyzer |
+| **`test/`** | |
+| **``** | |
 
 ### 5.2 🎓 Skills
 
@@ -166,6 +168,12 @@ Never run scripts or script snippets without carefully reviewing them.
 | **Heartbeats** | • Events that trigger an agent to perform a specific task<br>• Cronjob events with a daily and a weekly check<br>• Application events are generated by subsystems, e.g. Budget, routing, guardrails, error handling ... |
 | **Lionheart Skill** | • 4-Tier daily/weekly system health monitoring<br>• Telegram notification and status reporting<br>• Generation of executable, commented action templates (`reco.sh`) |
 | **Luxus Python Stack Skill** | • 5-level environment isolation architecture<br>• Mamba / uv / direnv workflow definitions<br>• Agent session context management (`AGENTS.md`, `SESSION.md`)<br> • Luxury Python stack skill for efficient work in swarms and with humans|
+| **[auto]/[hitl]** | |
+| **y** | |
+| **y** | |
+| **y** | |
+| **y** | |
+| **y** | |
 
 
 # 6. 🪜 Stage Concept
@@ -182,21 +190,19 @@ We install Nala, Git and an agent in advance to use the concierge skill. To do t
 sudo apt update && sudo apt install -y nala
 sudo nala update && sudo nala upgrade
 
-# install git and clone deen lupysta
-sudo nala install git && mkdir -p ~/gits && cd ~/gits
-git clone https://github.com/frankausberlin/deen-lupysta
-mkdir -p ~/deenlupysta/backup && touch ~/deenlupysta/backup/UNDO.md
-cp ~/gits/deen-lupysta/MYDEENLUPYSTA.md.example ~/deenlupysta
-
 # Install Hermes 
+# ⚠️ Note: you don't necessarily have to use Hermes, but if you use another agent, you should make sure that it also uses the skill. 
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 
-# ⚠️ Note: you don't necessarily have to use Hermes, but if you use another agent, you should make sure that it also uses the skill. The skill is just a file and can also be used directly by transferring it using prompt.
 
-# run hermes to setup your model provider
-# then we can link the skill
-ln -s ~/gits/deen-lupysta/skills/concierge ~/.hermes/skills/autonomous-ai-agents/concierge
+# after run hermes to setup your model provider you can install git, clone deen lupysta and link the Concierge skill
+# ⚠️ Note that you will need to adjust the path if you use an agent other than Hermes.
+sudo nala install git && mkdir -p ~/.deenlupysta ~/gits && cd ~/gits 
+git clone https://github.com/frankausberlin/deen-lupysta
+cp ~/gits/deen-lupysta/MYDEENLUPYSTA.md.example ~/deenlupystaln -s ~/gits/deen-lupysta/skills/concierge ~/.hermes/skills/autonomous-ai-agents/concierge
 
+# raw tests (will be adjusted during the installation process)
+cp ~/gits/deen-lupysta/test ~/.deen-lupysta
 
 # The next time you start hermes you will have access to the skill. Simply start your prompt with "Use your concierge skill".
 ```
@@ -211,13 +217,13 @@ ln -s ~/gits/deen-lupysta/skills/concierge ~/.hermes/skills/autonomous-ai-agents
 
 ### Step 1: 
 
-Lies die datei developer-environment/01-policies.md. Diese Datei beinhaltet nur regeln und keine anweisungen.
+Lies die datei   base-system/01-policies.md. Diese Datei beinhaltet nur regeln und keine anweisungen.
 
 
 ### Step 2:
 
-developer-environment/02-zsh1-shlib.md
-developer-environment/03-base-tools-libs.md.
+  base-system/02-zsh1-shlib.md
+  base-system/03-base-tools-libs.md.
 
 **Test:**<br>
 
@@ -227,8 +233,8 @@ developer-environment/03-base-tools-libs.md.
 
 ### Step 3:
 
-developer-environment/03-net-security.md
-developer-environment/04-docker-cuda.md
+  base-system/03-net-security.md
+  base-system/04-docker-cuda.md
 
 ### Step 4:
 
