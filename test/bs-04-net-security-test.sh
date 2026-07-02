@@ -1,6 +1,6 @@
 #!/bin/bash
 # bs-04-net-security-test.sh — Stage 2 Step 3: Network & Security
-# Corresponds to:   base-system/04-net-security.md
+# Corresponds to: base-system/04-net-security.md
 
 set -euo pipefail
 PASS=0; FAIL=0; SKIP=0

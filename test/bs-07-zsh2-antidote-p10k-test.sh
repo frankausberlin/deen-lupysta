@@ -1,6 +1,6 @@
 #!/bin/bash
 # bs-07-zsh2-antidote-p10k-test.sh — Stage 2 Step 4: ZSH II, Antidote & P10k
-# Corresponds to:   base-system/07-zsh2-antidote-p10k.md
+# Corresponds to: base-system/07-zsh2-antidote-p10k.md
 
 set -euo pipefail
 PASS=0; FAIL=0; SKIP=0

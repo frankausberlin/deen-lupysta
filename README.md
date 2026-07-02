@@ -9,8 +9,8 @@
 | 💻 Global<br>System | 🔬 Mamba<br>Jupyter | 🗂️ Projects<br>pyproject.toml | 🏢 CI/CD<br>Justfile | 🤖 AI Agents<br>SKILL.md |
 | **🧠 AI Stack** | | | | |
 | 🦙 Ollama, Agents<br>Odysseus | 🔌 MCPHub<br>Open WebUI | 🎓 Hermes<br>Lionheart | 🛡️ LiteLLM<br>Vibe-Kanban | ☁️ vast.ai<br>LocalAI, OpenLIT |
-| **🛠️ Developer**<br>**Environment** | | | | |
-| 🐧 Ubuntu<br>Base-System | 🛡️ Network<br>Security | 📦 Docker<br>Cuda | 👾 Git, Code<br>SearXNG | 🌎 Eco<br>Systems |
+| **🛠️ Base**<br>**System** | | | | |
+| 🐧 Ubuntu<br>Standard Tools | 🛡️ Network<br>Security | 📦 Docker<br>Cuda | 👾 Git, Code<br>SearXNG | 🌎 Eco<br>Systems |
 | **🧱 Policies / ZShell**<br>**Shlib System / Nala** | | | | |
 
 *I'm constantly installing and configuring Ubuntu on my laptop, PC, and Pi. However, since I'm just a simple programmer and not a Lion (Linux Operator Nerd), I've started storing the most important things in Colab notebooks so I can easily access everything via copy and paste.*
@@ -19,9 +19,9 @@
 
 # 📚 The AI-flavored Developer Environment & Luxurious Python Stack 
 
-Deen Lupysta is a reference architecture for self-maintaining AI software development systems and is for people and agents.
+Deen Lupysta is a reference architecture for self-maintaining AI software development systems and it is for humans and agents.
 
-It consists of installation instructions for subsystems and special artifacts. These are set up together with Conrad, the concierge (skill), and monitored by Lionheart (skill / cronjob).
+It consists of installation instructions for subsystems and special artifacts. These are set up together with Conrad, the Concierge (skill), and monitored by Lionheart (skill / cronjob).
 
 🚀 how to start:
 
@@ -48,9 +48,13 @@ It consists of installation instructions for subsystems and special artifacts. T
 
 👉 how it works:
 
-* You just need to install Hermes, OpenCode or another agent and use the Concierge skill (described 🟠 Stage 1: Onboarding). You do the rest together with Conrad, the concierge (Human-In-The-Loop).
+* You just need to install Hermes, OpenCode or another agent and use the Concierge skill (described 🟠 Stage 1: Onboarding). 
+
+* Together with Conrad, the concierge, you install the individual stages. These consist of several subsystems, the installation and configuration of which are described in separate markdown files.
 
 * In the file MYDEENLUPYSTA.md there is a profile with the current configuration. It is created by the concierge during the installation and contains all relevant information for the subsystems set up (responsibilities, paths to configuration files, fundamental decisions such as omitting or adding a subsystem). It serves the user as a single point of reference and is the basis for Lionheart to maintain the system.
+
+* The `test/` folder contains executable shell scripts with which all stages can be checked. They are adapted to the individual system during setup together with MYDEENLUPYSTA.md. They are used by Conrad and Lionheart.
 
 * The Lionheart skill is triggered by a heartbeat and reacts accordingly. Heartbeats:<br>
   - Daily Check (cron job)
@@ -82,23 +86,23 @@ Never run scripts or script snippets without carefully reviewing them.
 
 ---
 
-# 1. 🐧 Developer Environment
-## 1.1 📜 [Package Manager Policy](  base-system/01-policies.md)
-## 1.2 🧱 [Shlib System / ZSH I](  base-system/02-zsh1-shlib.md)
-## 1.3 🚀 [Base Tools, Libs & Co.](  base-system/03-base-tools-libs.md)
-## 1.4 🔒 [Network & security](  base-system/04-net-security.md)
-## 1.5 📦️ [Docker & CUDA Toolkit](  base-system/05-docker-cuda.md)
-## 1.6 🌐 [Git, Code & SearXng](  base-system/06-git-code-searxng.md)
-## 1.7 🧿 [ZSH II, Antidote & p10k](  base-system/07-zsh2-antidote-p10k.md)
+# 1. 🐧 Base System
+## 1.1 📜 [Package Manager Policy](base-system/01-policies.md)
+## 1.2 🧱 [Shlib System / ZSH I](base-system/02-zsh1-shlib.md)
+## 1.3 🚀 [Base Tools, Libs & Co.](base-system/03-base-tools-libs.md)
+## 1.4 🔒 [Network & security](base-system/04-net-security.md)
+## 1.5 📦️ [Docker & CUDA Toolkit](base-system/05-docker-cuda.md)
+## 1.6 🌐 [Git, Code & SearXng](base-system/06-git-code-searxng.md)
+## 1.7 🧿 [ZSH II, Antidote & p10k](base-system/07-zsh2-antidote-p10k.md)
 ## 1.8 📋 [Shell Library deenlupysta.sh](scripts/deenlupysta.sh)
 
 # 2. 🗺️ Ecosystems
-## 2.1 🟢 [Node.js (fnm + pnpm)](  base-system/01-nodejs.md)
-## 2.2 🐍 [Python (uv, mamba, direnv)](  base-system/02-python.md)
-## 2.3 🦀 [Rust (rustup & cargo)](  base-system/03-rust.md)
-## 2.4 🐹 [Go (Go Toolchain)](  base-system/04-go.md)
-## 2.5 ☕ [Java (SDKMAN!)](  base-system/05-java.md)
-## 2.6 💎 [Ruby (rbenv & bundler)](  base-system/06-ruby.md)
+## 2.1 🟢 [Node.js (fnm + pnpm)](base-system/01-nodejs.md)
+## 2.2 🐍 [Python (uv, mamba, direnv)](base-system/02-python.md)
+## 2.3 🦀 [Rust (rustup & cargo)](base-system/03-rust.md)
+## 2.4 🐹 [Go (Go Toolchain)](base-system/04-go.md)
+## 2.5 ☕ [Java (SDKMAN!)](base-system/05-java.md)
+## 2.6 💎 [Ruby (rbenv & bundler)](base-system/06-ruby.md)
 
 ---
 
@@ -207,6 +211,38 @@ cp ~/gits/deen-lupysta/test ~/.deen-lupysta
 # The next time you start hermes you will have access to the skill. Simply start your prompt with "Use your concierge skill".
 ```
 
+## 6.2 🟡 Stage 2 — Base System (`base-system/01`…`07`)
+
+## 🟢 Stage 3 — Ecosystems (`eco-systems/01`…`06`)
+
+## 🔵 Stage 4 — Ollama & Agents (`ai-stack/01`)
+
+## 🟣 Stage 5 — MCPHub & Open WebUI (`ai-stack/02`)
+
+## 🟤 Stage 6 — Hermes & Lionheart (`ai-stack/03`)
+
+## ⚫ Stage 7 — LiteLLM & Vibe-Kanban (`ai-stack/04`)
+
+## ⚪ Stage 8 — Vast.AI, LocalAI & OpenLIT (`ai-stack/05`)
+
+## 🔴 Stage 9 — Luxus Python Stack reference project
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 6.2 🟡 Stage 2: Base System
 
 * In this stage the Linux developer system is installed or aligned. 
@@ -217,13 +253,13 @@ cp ~/gits/deen-lupysta/test ~/.deen-lupysta
 
 ### Step 1: 
 
-Lies die datei   base-system/01-policies.md. Diese Datei beinhaltet nur regeln und keine anweisungen.
+Lies die datei base-system/01-policies.md. Diese Datei beinhaltet nur regeln und keine anweisungen.
 
 
 ### Step 2:
 
-  base-system/02-zsh1-shlib.md
-  base-system/03-base-tools-libs.md.
+base-system/02-zsh1-shlib.md
+base-system/03-base-tools-libs.md.
 
 **Test:**<br>
 
@@ -233,8 +269,8 @@ Lies die datei   base-system/01-policies.md. Diese Datei beinhaltet nur regeln u
 
 ### Step 3:
 
-  base-system/03-net-security.md
-  base-system/04-docker-cuda.md
+base-system/03-net-security.md
+base-system/04-docker-cuda.md
 
 ### Step 4:
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 # es-02-python-test.sh — Stage 3: Python (uv, mamba, direnv)
-# Corresponds to:   base-system/02-python.md
+# Corresponds to: base-system/02-python.md
 
 set -euo pipefail
 PASS=0; FAIL=0; SKIP=0

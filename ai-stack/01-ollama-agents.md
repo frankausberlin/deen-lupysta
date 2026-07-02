@@ -110,7 +110,7 @@ Then start with `docker compose up -d`. Odysseus will now use the Deen Lupysta S
 * Kilo Code CLI
 ```shell
 # kilocode has already been installed in the Node.js setup.
-# See:   base-system/07-nodejs.md
+# See: base-system/07-nodejs.md
 # pnpm add -g @kilocode/cli
 ```
 

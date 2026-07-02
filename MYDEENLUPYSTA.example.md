@@ -18,7 +18,7 @@ Summary:<br>
 
 ## 6.2 🟡 Stage 2: Developer Environment
 
-###   base-system/02-zsh1-shlib.md
+### base-system/02-zsh1-shlib.md
 
 Summary:<br>
 * zshell is active
@@ -35,12 +35,12 @@ Deviation:<br>
 * The file 00-original-zshrc.sh is missing from my system
 
 
-###   base-system/01-policies.md
+### base-system/01-policies.md
 
 * Simple guideline on how to install what.
 
 
-###   base-system/03-base-tools-libs.md
+### base-system/03-base-tools-libs.md
 
 All software from the instruction has been installed:<br>
 * Core System Essentials
@@ -55,7 +55,7 @@ All software from the instruction has been installed:<br>
 * created folders: ~/bin, ~/labor, ~/labor/tmp
 
 
-###   base-system/04-net-security.md
+### base-system/04-net-security.md
 
 * SSH has been enabled and keys are present in ~/.ssh
 * At least one key was generated (e.g. id_ed25519)
@@ -94,7 +94,7 @@ banaction = ufw
 * A link to /etc/ssh/sshd_config.d/99-custom-hardening.conf was created in  ~/.shlib/99-custom-hardening.conf
 
 
-###   base-system/05-docker-cuda.md
+### base-system/05-docker-cuda.md
 
 * Docker is installed
 * `docker run --rm hello-world` works
@@ -103,7 +103,7 @@ banaction = ufw
 * UFW is installed under /usr/local/bin/ufw-docker with `sudo LC_ALL=C ufw-docker install`
 
 
-###   base-system/05-git-code-searxng.md
+### base-system/05-git-code-searxng.md
 
 * git installed
 * global git config: user frankausberlin, email 58914204+frankausberlin@users.noreply.github.com
@@ -123,7 +123,7 @@ docker run --name searxng -d --restart always -p 127.0.0.1:8090:8080 \
 * created folders: ~/.searxng/, ~/.searxng/config/, ~/.searxng/data/
 
 
-###   base-system/06-zsh-antidote-p10k.md
+### base-system/06-zsh-antidote-p10k.md
 
 * MesloLGS NF font is installed in ~/.local/share/fonts
 * Antidote is installed ~/.antidote

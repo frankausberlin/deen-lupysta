@@ -1,6 +1,6 @@
 #!/bin/bash
 # es-01-nodejs-test.sh — Stage 3: Node.js (fnm + pnpm)
-# Corresponds to:   base-system/01-nodejs.md
+# Corresponds to: base-system/01-nodejs.md
 
 set -euo pipefail
 PASS=0; FAIL=0; SKIP=0

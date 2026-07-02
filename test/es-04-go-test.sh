@@ -1,6 +1,6 @@
 #!/bin/bash
 # es-04-go-test.sh — Stage 3: Go (Go Toolchain)
-# Corresponds to:   base-system/04-go.md
+# Corresponds to: base-system/04-go.md
 
 set -euo pipefail
 PASS=0; FAIL=0; SKIP=0

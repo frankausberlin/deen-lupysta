@@ -1,6 +1,6 @@
 #!/bin/bash
 # bs-06-git-code-searxng-test.sh — Stage 2 Step 4: Git, Code & SearXNG
-# Corresponds to:   base-system/06-git-code-searxng.md
+# Corresponds to: base-system/06-git-code-searxng.md
 # SearXNG standard port: 8090 (keeps 8080 free for Odysseus etc.)
 
 set -euo pipefail
