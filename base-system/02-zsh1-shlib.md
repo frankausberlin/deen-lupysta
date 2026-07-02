@@ -71,7 +71,7 @@ printf '# Ignore everything in this directory\n*\n# Except this file\n!.gitignor
 ln -s ~/gits/deen-lupysta/scripts/deenlupysta.sh ~/.shlib/shlibs/10-deenlupysta.sh
 
 # We'll use this text here as the README.
-ln -s ~/gits/deen-lupysta/base-system/01-shlib-policy.md ~/.shlib/README.md
+ln -s ~/gits/deen-lupysta/base-system/01-policies.md ~/.shlib/README.md
 
 # turn the current .zshrc into an shlib file (ensure that "setopt INTERACTIVE_COMMENTS" is included).
 # 
@@ -144,11 +144,11 @@ Files in `~/.shlib/exports/` are exported as environment variables on shell star
 │   └── ...
 ├── shlibs/           # Sorted shell scripts
 │   ├── 10-deenlupysta.sh
-│   ├── 15-original-zshrc.sh
+│   ├── 00-original-zshrc.sh
 │   ├── ...
 │   ├── <nr>-<name> (or as link: ln -s <path-to-script> ~/.shlib/shlibs/<nr>-<name>)
 │   └── ...
-├── README.md (link --> ~/gits/deen-lupysta/base-system/01-shlib-policy.md)
+├── README.md (link --> ~/gits/deen-lupysta/base-system/01-policies.md)
 ├── .zshrc (link --> ~/.zshrc)
 ├── # all system relevant configuration
 └── # files as system links

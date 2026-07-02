@@ -97,12 +97,12 @@ Never run scripts or script snippets without carefully reviewing them.
 ## 1.8 📋 [Shell Library deenlupysta.sh](scripts/deenlupysta.sh)
 
 # 2. 🗺️ Ecosystems
-## 2.1 🟢 [Node.js (fnm + pnpm)](base-system/01-nodejs.md)
-## 2.2 🐍 [Python (uv, mamba, direnv)](base-system/02-python.md)
-## 2.3 🦀 [Rust (rustup & cargo)](base-system/03-rust.md)
-## 2.4 🐹 [Go (Go Toolchain)](base-system/04-go.md)
-## 2.5 ☕ [Java (SDKMAN!)](base-system/05-java.md)
-## 2.6 💎 [Ruby (rbenv & bundler)](base-system/06-ruby.md)
+## 2.1 🟢 [Node.js (fnm + pnpm)](eco-systems/01-nodejs.md)
+## 2.2 🐍 [Python (uv, mamba, direnv)](eco-systems/02-python.md)
+## 2.3 🦀 [Rust (rustup & cargo)](eco-systems/03-rust.md)
+## 2.4 🐹 [Go (Go Toolchain)](eco-systems/04-go.md)
+## 2.5 ☕ [Java (SDKMAN!)](eco-systems/05-java.md)
+## 2.6 💎 [Ruby (rbenv & bundler)](eco-systems/06-ruby.md)
 
 ---
 
@@ -203,29 +203,15 @@ curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 # ⚠️ Note that you will need to adjust the path if you use an agent other than Hermes.
 sudo nala install git && mkdir -p ~/.deenlupysta ~/gits && cd ~/gits 
 git clone https://github.com/frankausberlin/deen-lupysta
-cp ~/gits/deen-lupysta/MYDEENLUPYSTA.md.example ~/deenlupystaln -s ~/gits/deen-lupysta/skills/concierge ~/.hermes/skills/autonomous-ai-agents/concierge
+cp ~/gits/deen-lupysta/MYDEENLUPYSTA.md.example ~/.deenlupysta/MYDEENLUPYSTA.md
+ln -s ~/gits/deen-lupysta/skills/concierge ~/.hermes/skills/autonomous-ai-agents/concierge
 
 # raw tests (will be adjusted during the installation process)
-cp ~/gits/deen-lupysta/test ~/.deen-lupysta
+cp -r ~/gits/deen-lupysta/test ~/.deenlupysta/
 
 # The next time you start hermes you will have access to the skill. Simply start your prompt with "Use your concierge skill".
 ```
 
-## 6.2 🟡 Stage 2 — Base System (`base-system/01`…`07`)
-
-## 🟢 Stage 3 — Ecosystems (`eco-systems/01`…`06`)
-
-## 🔵 Stage 4 — Ollama & Agents (`ai-stack/01`)
-
-## 🟣 Stage 5 — MCPHub & Open WebUI (`ai-stack/02`)
-
-## 🟤 Stage 6 — Hermes & Lionheart (`ai-stack/03`)
-
-## ⚫ Stage 7 — LiteLLM & Vibe-Kanban (`ai-stack/04`)
-
-## ⚪ Stage 8 — Vast.AI, LocalAI & OpenLIT (`ai-stack/05`)
-
-## 🔴 Stage 9 — Luxus Python Stack reference project
 
 
 
@@ -269,8 +255,8 @@ base-system/03-base-tools-libs.md.
 
 ### Step 3:
 
-base-system/03-net-security.md
-base-system/04-docker-cuda.md
+base-system/04-net-security.md
+base-system/05-docker-cuda.md
 
 ### Step 4:
 
@@ -281,12 +267,12 @@ base-system/04-docker-cuda.md
 
 ## 6.3 🟢 Stage 3: Ecosystems
 
-07-nodejs.md   
-08-python.md      
-09-rust.md
-10-go.md
-11-java.md
-12-ruby.md
+eco-systems/01-nodejs.md   
+eco-systems/02-python.md      
+eco-systems/03-rust.md
+eco-systems/04-go.md
+eco-systems/05-java.md
+eco-systems/06-ruby.md
 
 ## 6.4 🔵 Stage 4:
 

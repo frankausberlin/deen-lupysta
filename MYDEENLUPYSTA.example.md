@@ -103,7 +103,7 @@ banaction = ufw
 * UFW is installed under /usr/local/bin/ufw-docker with `sudo LC_ALL=C ufw-docker install`
 
 
-### base-system/05-git-code-searxng.md
+### base-system/06-git-code-searxng.md
 
 * git installed
 * global git config: user frankausberlin, email 58914204+frankausberlin@users.noreply.github.com
@@ -123,7 +123,7 @@ docker run --name searxng -d --restart always -p 127.0.0.1:8090:8080 \
 * created folders: ~/.searxng/, ~/.searxng/config/, ~/.searxng/data/
 
 
-### base-system/06-zsh-antidote-p10k.md
+### base-system/07-zsh2-antidote-p10k.md
 
 * MesloLGS NF font is installed in ~/.local/share/fonts
 * Antidote is installed ~/.antidote

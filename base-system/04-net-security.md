@@ -49,7 +49,7 @@ ssh-copy-id -o "IdentitiesOnly=yes" -i ~/.ssh/id_ed25519.pub user@host
 # ssh-keygen -R '[host_or_ip]:8022'
 
 # Comfort link
-ln ~/.ssh ~/.gits/.ssh
+ln -s ~/.ssh ~/.shlib/.ssh
 ```
 
 * SSH Hardening (`/etc/ssh/sshd_config.d/99-custom-hardening.conf`)
